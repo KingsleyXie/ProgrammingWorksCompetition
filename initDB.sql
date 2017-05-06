@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS Competition DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE Competition;
+CREATE DATABASE IF NOT EXISTS CS_Competition2017 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE CS_Competition2017;
 
 CREATE TABLE IF NOT EXISTS `productionTeams`(
   `teamID` INTEGER NOT NULL AUTO_INCREMENT,
@@ -10,6 +10,16 @@ CREATE TABLE IF NOT EXISTS `productionTeams`(
   UNIQUE KEY `teamName_UNIQUE`(`teamName`),
   UNIQUE KEY `teamID_UNIQUE`(`teamID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 AUTO_INCREMENT=1001;
+
+CREATE TABLE IF NOT EXISTS `creativityTeams`(
+  `teamID` INTEGER NOT NULL AUTO_INCREMENT,
+  `teamName` VARCHAR(90) NOT NULL,
+  `registerTime` TIMESTAMP NOT NULL,
+  `pwdSHA256` VARCHAR(90) NOT NULL,
+  PRIMARY KEY(`teamID`),
+  UNIQUE KEY `teamName_UNIQUE`(`teamName`),
+  UNIQUE KEY `teamID_UNIQUE`(`teamID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8 AUTO_INCREMENT=2001;
 
 CREATE TABLE IF NOT EXISTS `students`(
   `studentID` INTEGER NOT NULL AUTO_INCREMENT,
@@ -26,16 +36,18 @@ CREATE TABLE IF NOT EXISTS `students`(
   UNIQUE KEY `studentID_UNIQUE`(`studentID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-CREATE TABLE IF NOT EXISTS `creativityTeams`(
-  `teamID` INTEGER NOT NULL AUTO_INCREMENT,
-  `teamName` VARCHAR(90) NOT NULL,
-  `registerTime` TIMESTAMP NOT NULL,
-  `pwdSHA256` VARCHAR(90) NOT NULL,
-  PRIMARY KEY(`teamID`),
-  UNIQUE KEY `teamName_UNIQUE`(`teamName`),
-  UNIQUE KEY `teamID_UNIQUE`(`teamID`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8 AUTO_INCREMENT=2001;
+CREATE TABLE IF NOT EXISTS `forum`(
+  `ID` INTEGER NOT NULL AUTO_INCREMENT,
+  `nickname` VARCHAR(30) NOT NULL,
+  `message` VARCHAR(200) NOT NULL,
+  `postTime` TIMESTAMP NOT NULL,
+  PRIMARY KEY(`ID`),
+  UNIQUE KEY `ID_UNIQUE`(`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+
+
+-- The following data are made for test while developing the system
 
 INSERT INTO `productionTeams` (`teamName`, `registerTime`, `pwdSHA256`)
   VALUES
@@ -70,3 +82,9 @@ INSERT INTO `students` (`studentName`, `studentNo`, `contact`, `campus`, `colleg
     ('Mr.Forg', '201522223333', '15923336666', '五山校区', '外国语学院', '英语交流与访谈', '2013级', 2003, 'teamLeader'),
     ('华莱士', '201522223333', '15923336666', '大学城校区', '外国语学院', '英语交流与访谈', '2012级', 2003, 'teamMember');
     
+
+INSERT INTO `forum` (`nickname`, `message`, `postTime`)
+  VALUES
+    ('管理员', '大家好~ 讨论留言功能已经上线啦，欢迎大家热情参与哦', NOW());
+
+-- There are actually lots of mogic data in `forum` table for test, but I don't dare to upload it, hahaha.
