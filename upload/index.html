@@ -38,111 +38,110 @@
 	<div id="info" class="alert alert-info">
 		<a href="#" class="close" data-dismiss="alert">&times;</a>
 		<h3 id="infoText"> 文件命名没有统一要求 作品文件将会按照队伍 ID 分开存放 <h3>
-		</div>
+	</div>
 
-		<div class="upload"><input id="file" class="file" type="file" name="file"></div>
+	<div class="upload"><input id="file" class="file" type="file" name="file"></div>
 
-		<input class="btn btn-primary btn-lg btn-left" onclick="window.location.href='../teams'" type="submit" name="submit" value="查看队伍信息" />
-		<input class="btn btn-primary btn-lg btn-right"onclick="window.location.href='../'" type="submit" name="submit" value="返回大赛首页" />
-
-
-
-		<div class="copyright">Copyright © 2017 <a href="https://github.com/KingsleyXie/CompetitionRegistrationSystem">Kingsley</a></div>
+	<input class="btn btn-primary btn-lg btn-left" onclick="window.location.href='../teams'" type="submit" name="submit" value="查看队伍信息" />
+	<input class="btn btn-primary btn-lg btn-right"onclick="window.location.href='../'" type="submit" name="submit" value="返回大赛首页" />
 
 
 
-		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/js/fileinput.min.js"></script>
-		<script src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/themes/explorer/theme.min.js"></script>
-		<script src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/js/locales/zh.js"></script>
-		<script type="text/javascript">
-			$.ajax({
-				type: "JSON",
-				url: 'status.php',
-				success: function(response) {
-					if (response.logedIn == 0) {
-						alert('请登录系统后提交文件！');
-						window.location.href = '../login';
-					}
+	<div class="copyright">Copyright © 2017 <a href="https://github.com/KingsleyXie/CompetitionRegistrationSystem">Kingsley</a></div>
 
-					if (response.logedIn == 1 && response.dirExist == 1) {
-						document.getElementById("infoText").innerHTML = '<h3> 您已提交队伍作品文件，若需要更新可覆盖上传 </h3>';
-					}
+
+
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/js/fileinput.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/themes/explorer/theme.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/js/locales/zh.js"></script>
+	<script type="text/javascript">
+		$.ajax({
+			type: "JSON",
+			url: 'status.php',
+			success: function(response) {
+				if (response.logedIn == 0) {
+					alert('请登录系统后提交文件！');
+					window.location.href = '../login';
 				}
-			});
 
-			$("#file").fileinput({
-				theme: 'explorer',
-				language: 'zh',
-				uploadUrl: 'upload.php',
-				browseLabel: '浏览',
-				msgFilesTooMany: '请将所有要上传的文件打包成 <strong>一个</strong> 压缩包',
-				dropZoneTitle: '请以压缩包格式上传队伍作品文件<br> <br> <strong> 将文件拖拽到这里 </strong> 或 <strong> 点击浏览按钮选择文件 </strong>',
-				allowedFileExtensions: ['zip', 'rar', 'tar', 'gzip', 'gz', '7z'],
-				maxFileSize: 500000,
-				maxFileCount: 1,
-				preferIconicPreview: true, 
-				previewFileIconSettings: { 
-					'doc': '<i class="fa fa-file-word-o text-primary"></i>',
-					'xls': '<i class="fa fa-file-excel-o text-success"></i>',
-					'ppt': '<i class="fa fa-file-powerpoint-o text-danger"></i>',
-					'pdf': '<i class="fa fa-file-pdf-o text-danger"></i>',
-					'zip': '<i class="fa fa-file-archive-o text-muted"></i>',
-					'htm': '<i class="fa fa-file-code-o text-info"></i>',
-					'txt': '<i class="fa fa-file-text-o text-info"></i>',
-					'mov': '<i class="fa fa-file-movie-o text-warning"></i>',
-					'mp3': '<i class="fa fa-file-audio-o text-warning"></i>',
-					'jpg': '<i class="fa fa-file-photo-o text-danger"></i>', 
-					'gif': '<i class="fa fa-file-photo-o text-muted"></i>', 
-					'png': '<i class="fa fa-file-photo-o text-primary"></i>'    
-				},
-				previewFileExtSettings: {
-					'doc': function(ext) {
-						return ext.match(/(doc|docx)$/i);
-					},
-					'xls': function(ext) {
-						return ext.match(/(xls|xlsx)$/i);
-					},
-					'ppt': function(ext) {
-						return ext.match(/(ppt|pptx)$/i);
-					},
-					'zip': function(ext) {
-						return ext.match(/(zip|rar|tar|gzip|gz|7z)$/i);
-					},
-					'htm': function(ext) {
-						return ext.match(/(htm|html)$/i);
-					},
-					'txt': function(ext) {
-						return ext.match(/(txt|ini|csv|java|php|js|css)$/i);
-					},
-					'mov': function(ext) {
-						return ext.match(/(avi|mpg|mkv|mov|mp4|3gp|webm|wmv)$/i);
-					},
-					'mp3': function(ext) {
-						return ext.match(/(mp3|wav)$/i);
-					},
-				},
-				slugCallback: function(filename) {
-					return filename.replace('(', '_').replace(']', '_');
-				},
-			});
-
-			$("#file").on("fileuploaded", function(event, data, previewId, index) {
-				var msg = ["文件上传成功！", "请<a href = \"../login\">登录</a>系统后提交文件！", "请选择上传文件！", "很抱歉，上传文件过大，请联系管理员", "上传失败，请使用简体中文、英文或数字命名文件", "上传失败，请尝试重新上传"];
-				if (data.response.code != 0) {
-					document.getElementById("info").className = "alert alert-danger"
-					document.getElementById("infoText").innerHTML = msg[data.response.code];
+				if (response.logedIn == 1 && response.dirExist == 1) {
+					document.getElementById("infoText").innerHTML = '<h3> 您已提交队伍作品文件，若需要更新可覆盖上传 </h3>';
 				}
-				else {
-					document.getElementById("info").className = "alert alert-info"
-					document.getElementById("infoText").innerHTML = msg[data.response.code] +  '<h4> 文件名：' + data.response.filename + '</h4> <h4> 文件大小：' + data.response.filesize + 'MB </h4>';
-					setTimeout(function() {
-						window.location.href = './';
-					}, 6000);  
-				}
-			});
-		</script>
-	</body>
+			}
+		});
 
-	</html>
+		$("#file").fileinput({
+			theme: 'explorer',
+			language: 'zh',
+			uploadUrl: 'upload.php',
+			browseLabel: '浏览',
+			msgFilesTooMany: '请将所有要上传的文件打包成 <strong>一个</strong> 压缩包',
+			dropZoneTitle: '请以压缩包格式上传队伍作品文件<br> <br> <strong> 将文件拖拽到这里 </strong> 或 <strong> 点击浏览按钮选择文件 </strong>',
+			allowedFileExtensions: ['zip', 'rar', 'tar', 'gzip', 'gz', '7z'],
+			maxFileSize: 500000,
+			maxFileCount: 1,
+			preferIconicPreview: true, 
+			previewFileIconSettings: { 
+				'doc': '<i class="fa fa-file-word-o text-primary"></i>',
+				'xls': '<i class="fa fa-file-excel-o text-success"></i>',
+				'ppt': '<i class="fa fa-file-powerpoint-o text-danger"></i>',
+				'pdf': '<i class="fa fa-file-pdf-o text-danger"></i>',
+				'zip': '<i class="fa fa-file-archive-o text-muted"></i>',
+				'htm': '<i class="fa fa-file-code-o text-info"></i>',
+				'txt': '<i class="fa fa-file-text-o text-info"></i>',
+				'mov': '<i class="fa fa-file-movie-o text-warning"></i>',
+				'mp3': '<i class="fa fa-file-audio-o text-warning"></i>',
+				'jpg': '<i class="fa fa-file-photo-o text-danger"></i>', 
+				'gif': '<i class="fa fa-file-photo-o text-muted"></i>', 
+				'png': '<i class="fa fa-file-photo-o text-primary"></i>'    
+			},
+			previewFileExtSettings: {
+				'doc': function(ext) {
+					return ext.match(/(doc|docx)$/i);
+				},
+				'xls': function(ext) {
+					return ext.match(/(xls|xlsx)$/i);
+				},
+				'ppt': function(ext) {
+					return ext.match(/(ppt|pptx)$/i);
+				},
+				'zip': function(ext) {
+					return ext.match(/(zip|rar|tar|gzip|gz|7z)$/i);
+				},
+				'htm': function(ext) {
+					return ext.match(/(htm|html)$/i);
+				},
+				'txt': function(ext) {
+					return ext.match(/(txt|ini|csv|java|php|js|css)$/i);
+				},
+				'mov': function(ext) {
+					return ext.match(/(avi|mpg|mkv|mov|mp4|3gp|webm|wmv)$/i);
+				},
+				'mp3': function(ext) {
+					return ext.match(/(mp3|wav)$/i);
+				},
+			},
+			slugCallback: function(filename) {
+				return filename.replace('(', '_').replace(']', '_');
+			},
+		});
+
+		$("#file").on("fileuploaded", function(event, data, previewId, index) {
+			var msg = ["文件上传成功！", "请<a href = \"../login\">登录</a>系统后提交文件！", "请选择上传文件！", "很抱歉，上传文件过大，请联系管理员", "上传失败，请使用简体中文、英文或数字命名文件", "上传失败，请尝试重新上传"];
+			if (data.response.code != 0) {
+				document.getElementById("info").className = "alert alert-danger";
+				document.getElementById("infoText").innerHTML = msg[data.response.code];
+			}
+			else {
+				document.getElementById("info").className = "alert alert-info";
+				document.getElementById("infoText").innerHTML = msg[data.response.code] +  '<h4> 文件名：' + data.response.filename + '</h4> <h4> 文件大小：' + data.response.filesize + 'MB </h4>';
+				setTimeout(function() {
+					window.location.href = './';
+				}, 6000);  
+			}
+		});
+	</script>
+</body>
+</html>
