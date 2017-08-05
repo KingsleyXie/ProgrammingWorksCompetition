@@ -94,16 +94,16 @@ function teamsPrepare() {
 		url: 'showteams.php',
 		success: function(response)
 		{
-			if (response[0].logedIn == 1) {
-				document.getElementById("logedInTeam").innerHTML += "<button class=\"btn btn-lg btn-primary btn-block\" onclick=\"window.location.href=\'../login\'\">登录以查看</button>";
+			if (response[0].loggedIn == 1) {
+				document.getElementById("loggedInTeam").innerHTML += "<button class=\"btn btn-lg btn-primary btn-block\" onclick=\"window.location.href=\'../login\'\">登录以查看</button>";
 			}
-			if (response[0].logedIn == 0) {
-				document.getElementById("logedInTeam").innerHTML += "<div class=\"table-responsive\"><table class=\"table table-bordered\"><thead><th> 姓名 </th><th> 学号 </th><th> 联系方式 </th><th> 校区 </th><th> 学院 </th><th> 专业 </th><th> 年级 </th></thead><tbody id=\"logedInTeamInfo\"></tbody></table></div>";
+			if (response[0].loggedIn == 0) {
+				document.getElementById("loggedInTeam").innerHTML += "<div class=\"table-responsive\"><table class=\"table table-bordered\"><thead><th> 姓名 </th><th> 学号 </th><th> 联系方式 </th><th> 校区 </th><th> 学院 </th><th> 专业 </th><th> 年级 </th></thead><tbody id=\"loggedInTeamInfo\"></tbody></table></div>";
 			}
 
 			for(var i = 1; i < response.length; i++) {
-				if (response[0].logedIn == 0 && !(response[i].teamID > 1000)) {
-					document.getElementById("logedInTeamInfo").innerHTML += "<tr><td>"+response[i].studentName+"</td><td>"+response[i].studentNo+"</td><td>"+response[i].contact+"</td><td>"+response[i].campus+"</td><td>"+response[i].college+"</td><td>"+response[i].major+"</td><td>"+response[i].grade+"</td></tr>";
+				if (response[0].loggedIn == 0 && !(response[i].teamID > 1000)) {
+					document.getElementById("loggedInTeamInfo").innerHTML += "<tr><td>"+response[i].studentName+"</td><td>"+response[i].studentNo+"</td><td>"+response[i].contact+"</td><td>"+response[i].campus+"</td><td>"+response[i].college+"</td><td>"+response[i].major+"</td><td>"+response[i].grade+"</td></tr>";
 				}
 
 				if(response[i].teamID > 1000) {
@@ -122,8 +122,8 @@ function teamsPrepare() {
 				}
 			}
 
-			if (response[0].logedIn == 0) {
-				document.getElementById("logedInTeam").innerHTML += "<input class=\"btn btn-primary btn-lg btn-left\" onclick=\"window.location.href='../upload'\" type=\"submit\" name=\"submit\" value=\"上传作品\" /><input class=\"btn btn-primary btn-lg btn-right\" onclick=\"logout()\" type=\"submit\" name=\"submit\" value=\"退出系统\" />";
+			if (response[0].loggedIn == 0) {
+				document.getElementById("loggedInTeam").innerHTML += "<input class=\"btn btn-primary btn-lg btn-left\" onclick=\"window.location.href='../upload'\" type=\"submit\" name=\"submit\" value=\"上传作品\" /><input class=\"btn btn-primary btn-lg btn-right\" onclick=\"logout()\" type=\"submit\" name=\"submit\" value=\"退出系统\" />";
 			}
 		}
 	});
@@ -237,12 +237,12 @@ function uploadPrepare() {
 		type: "JSON",
 		url: 'status.php',
 		success: function(response) {
-			if (response.logedIn == 0) {
+			if (response.loggedIn == 0) {
 				alert('请登录系统后提交文件！');
 				window.location.href = '../login';
 			}
 
-			if (response.logedIn == 1 && response.dirExist == 1) {
+			if (response.loggedIn == 1 && response.dirExist == 1) {
 				document.getElementById("infoText").innerHTML = '<h3> 您已提交队伍作品文件，若需要更新可覆盖上传 </h3>';
 			}
 		}

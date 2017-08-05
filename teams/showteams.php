@@ -4,11 +4,11 @@ session_start();
 header('Content-Type: application/json');
 require_once('../assets/config.php');
 
-$response[0] = array( 'logedIn' => 1);
+$response[0] = array( 'loggedIn' => 1);
 $index = 1;
 
 if (isset($_SESSION['teamID'])) {
-    $response[0] = array( 'logedIn' => 0);
+    $response[0] = array( 'loggedIn' => 0);
     $sql = 'SELECT * from students where teamID = ?';
     $stmt = $connect->prepare($sql);
     $stmt->execute(array($_SESSION['teamID']));

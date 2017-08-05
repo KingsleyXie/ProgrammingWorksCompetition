@@ -60,7 +60,7 @@
 	</table>
 
 	<div class="subtitle"> 本队详细信息 </div>
-	<div id="logedInTeam">
+	<div id="loggedInTeam">
 	</div>
 
 
@@ -74,32 +74,70 @@
 	<script src="../assets/js/competition.js"></script>
 	<script type="text/javascript">
 		$.ajax({
-			type: "JSON",
+			type: "POST",
 			url: "showteams.php",
 			success: function(response)
 			{
-				if (response[0].logedIn == 1) {
-					document.getElementById("logedInTeam").innerHTML += "<button class=\"btn btn-lg btn-primary btn-block\" onclick=\"window.location.href='../login'\">登录以查看</button>";
+				if (response[0].loggedIn == 1) {
+					document.getElementById("loggedInTeam").innerHTML +=
+					'<button class="btn btn-lg btn-primary btn-block" onclick="window.location.href=\'../login\'">登录以查看</button>';
 				}
 
-				if (response[0].logedIn == 0) {
-					document.getElementById("logedInTeam").innerHTML += "<div class=\"table-responsive\"><table class=\"table table-bordered\"><thead><th> 姓名 </th><th> 学号 </th><th> 联系方式 </th><th> 校区 </th><th> 学院 </th><th> 专业 </th><th> 年级 </th></thead><tbody id=\"logedInTeamInfo\"></tbody></table></div>";
+				if (response[0].loggedIn == 0) {
+					document.getElementById("loggedInTeam").innerHTML +=
+					'<div class="table-responsive">' +
+						'<table class="table table-bordered">' +
+							'<thead>' +
+								'<th> 姓名 </th>' +
+								'<th> 学号 </th>' +
+								'<th> 联系方式 </th>' +
+								'<th> 校区 </th>' +
+								'<th> 学院 </th>' +
+								'<th> 专业 </th>' +
+								'<th> 年级 </th>' +
+							'</thead>' +
+							'<tbody id="loggedInTeamInfo"></tbody>' +
+						'</table>' +
+					'</div>';
 				}
 
 				for(var i = 1; i < response.length; i++) {
-					if (response[0].logedIn == 0 && !(response[i].teamID > 0)) {
-						document.getElementById("logedInTeamInfo").innerHTML += "<tr><td>"+response[i].studentName+"</td><td>"+response[i].studentNo+"</td><td>"+response[i].contact+"</td><td>"+response[i].campus+"</td><td>"+response[i].college+"</td><td>"+response[i].major+"</td><td>"+response[i].grade+"</td></tr>";
+					if (response[0].loggedIn == 0 && !(response[i].teamID > 0)) {
+						document.getElementById("loggedInTeamInfo").innerHTML += 
+						'<tr>' +
+							'<td>' + response[i].studentName + '</td>' +
+							'<td>' + response[i].studentNo + '</td>' +
+							'<td>' + response[i].contact + '</td>' +
+							'<td>' + response[i].campus + '</td>' +
+							'<td>' + response[i].college + '</td>' +
+							'<td>' + response[i].major + '</td>' +
+							'<td>' + response[i].grade + '</td>' +
+						'</tr>';
 					}
 					if(response[i].teamID < 2000) {
-						document.getElementById("productionTeams").innerHTML += "<tr><td>"+response[i].teamID+"</td><td>"+response[i].teamName+"</td><td>"+response[i].students[0].studentName+"</td><td>"+response[i].calendarTime + " " + response[i].clockTime + "</td></tr>";
+						document.getElementById("productionTeams").innerHTML +=
+						'<tr>' +
+							'<td>' + response[i].teamID + '</td>' +
+							'<td>' + response[i].teamName + '</td>' +
+							'<td>' + response[i].students[0].studentName + '</td>' +
+							'<td>' + response[i].calendarTime + ' ' + response[i].clockTime + '</td>' +
+						'</tr>';
 					}
 					if(response[i].teamID > 2000) {
-						document.getElementById("creativityTeams").innerHTML += "<tr><td>"+response[i].teamID+"</td><td>"+response[i].teamName+"</td><td>"+response[i].students[0].studentName+"</td><td>"+response[i].calendarTime + " " + response[i].clockTime + "</td></tr>";
+						document.getElementById("creativityTeams").innerHTML +=
+						'<tr>' +
+							'<td>' + response[i].teamID + '</td>' +
+							'<td>' + response[i].teamName + '</td>' +
+							'<td>' + response[i].students[0].studentName + '</td>' +
+							'<td>' + response[i].calendarTime + ' ' + response[i].clockTime + '</td>' +
+						'</tr>';
 					}
 				}
 
-				if (response[0].logedIn == 0) {
-					document.getElementById("logedInTeam").innerHTML += "<input class=\"btn btn-primary btn-lg btn-left\" onclick=\"window.location.href='../upload'\" type=\"submit\" name=\"submit\" value=\"上传作品\" /><input class=\"btn btn-primary btn-lg btn-right\" onclick=\"logout()\" type=\"submit\" name=\"submit\" value=\"退出系统\" />";
+				if (response[0].loggedIn == 0) {
+					document.getElementById("loggedInTeam").innerHTML +=
+					'<input class="btn btn-primary btn-lg btn-left" onclick="window.location.href=\'../upload\'" type="submit" name="submit" value="上传作品"/>' +
+					'<input class="btn btn-primary btn-lg btn-right" onclick="logout()" type="submit" name="submit" value="退出系统"/>';
 				}
 			}
 		});
