@@ -1,18 +1,18 @@
 //Global functions: Captcha Fresh & Logout
 function freshCaptcha() {
-	$("#captchaImg").attr("src", "../assets/captcha/captcha.php?"+Math.random());
-	$("#captcha").val("");
+	$('#captchaImg').attr('src', '../assets/captcha/captcha.php?'+Math.random());
+	$('#captcha').val('');
 }
 
 function logout() {
 	$.ajax({
-		type: "JSON",
-		url: "logout.php",
+		type: 'POST',
+		url: 'logout.php',
 		success: function(response) {
 			if (response.code == 0) {
-				alert("退出系统成功，" + response.teamName);
+				alert('退出系统成功，' + response.teamName);
 			}
-			window.location.href = "../"
+			window.location.href = '../';
 		}
 	});
 }
@@ -22,7 +22,7 @@ var MAXN = 3, showed = 1;
 
 function addOneMember() {
 	if (document.getElementById('competitionType').value == 0) {
-		alert("请选择队伍参赛类型！");
+		alert('请选择队伍参赛类型！');
 		return;
 	}
 
@@ -30,55 +30,56 @@ function addOneMember() {
 		MAXN = 5;
 	}
 
-	document.getElementById("teamMember"+showed).style.display="block";
+	document.getElementById('teamMember' + showed).style.display = 'block';
 
 	showed = showed + 1;
 
 	if (showed == MAXN) {
-		document.getElementById("addButton").style.display="none";
+		document.getElementById('addButton').style.display = 'none';
 	}
 }
 
 function Checker() {
-	if (registerform.teamName.value == "" || 
-		registerform.password.value == "" || 
-		registerform.passwordConfirm.value == "" || 
+	if (registerform.teamName.value == '' || 
+		registerform.password.value == '' || 
+		registerform.passwordConfirm.value == '' || 
 		registerform.competitionType.value == 0) {
-		alert("请将队伍基本报名信息填写完整！");
+		alert('请将队伍基本报名信息填写完整！');
 		return false;
 	}
 
 	if (registerform.password.value != registerform.passwordConfirm.value) {
-		alert("两次输入密码不一致！");
+		alert('两次输入密码不一致！');
 		return false;
 	}
 
-	if (registerform.teamLeaderName.value == "" || 
-		registerform.studentNo.value == "" || 
-		registerform.contact.value == "" || 
-		registerform.college.value == "" || 
-		registerform.major.value == "" || 
+	if (registerform.teamLeaderName.value == '' || 
+		registerform.studentNo.value == '' || 
+		registerform.contact.value == '' || 
+		registerform.college.value == '' || 
+		registerform.major.value == '' || 
 		registerform.grade.value == 0 || 
 		registerform.campus.value == 0) {
-		alert("请将队长信息填写完整！");
+		alert('请将队长信息填写完整！');
 		return false;
 	}
 
 	for (var i = 1; i < showed - 1; i++) {
-		if (registerform.teamMemberName1.value == "" || 
-			registerform.studentNo1.value == "" || 
-			registerform.contact1.value == "" || 
-			registerform.college1.value == "" || 
-			registerform.major1.value == "" || 
+		//Todo: Complete this part
+		if (registerform.teamMemberName1.value == '' || 
+			registerform.studentNo1.value == '' || 
+			registerform.contact1.value == '' || 
+			registerform.college1.value == '' || 
+			registerform.major1.value == '' || 
 			registerform.grade1.value == 0 || 
 			registerform.campus1.value == 0) {
-			alert("请将队员 " + i + " 信息填写完整！");
+			alert('请将队员 ' + i + ' 信息填写完整！');
 			return false;
 		}
 	}
 
-	if (registerform.captcha.value == "") {
-		alert("请输入验证码!")
+	if (registerform.captcha.value == '') {
+		alert('请输入验证码!')
 		return false;
 	}
 
@@ -90,40 +91,110 @@ function Checker() {
 //Code for 5 Pages: Load or Send Data
 function teamsPrepare() {
 	$.ajax({
-		type: "JSON",
+		type: 'POST',
 		url: 'showteams.php',
 		success: function(response)
 		{
 			if (response[0].loggedIn == 1) {
-				document.getElementById("loggedInTeam").innerHTML += "<button class=\"btn btn-lg btn-primary btn-block\" onclick=\"window.location.href=\'../login\'\">登录以查看</button>";
+				document.getElementById('loggedInTeam').innerHTML +=
+				'<button class="btn btn-lg btn-primary btn-block" onclick="window.location.href=\'../login\'">登录以查看</button>';
 			}
 			if (response[0].loggedIn == 0) {
-				document.getElementById("loggedInTeam").innerHTML += "<div class=\"table-responsive\"><table class=\"table table-bordered\"><thead><th> 姓名 </th><th> 学号 </th><th> 联系方式 </th><th> 校区 </th><th> 学院 </th><th> 专业 </th><th> 年级 </th></thead><tbody id=\"loggedInTeamInfo\"></tbody></table></div>";
+				document.getElementById('loggedInTeam').innerHTML +=
+				'<div class="table-responsive">' +
+					'<table class="table table-bordered">' +
+						'<thead>' +
+							'<th> 姓名 </th>' +
+							'<th> 学号 </th>' +
+							'<th> 联系方式 </th>' +
+							'<th> 校区 </th>' +
+							'<th> 学院 </th>' +
+							'<th> 专业 </th>' +
+							'<th> 年级 </th>' +
+						'</thead>' +
+						'<tbody id="loggedInTeamInfo"></tbody>' +
+					'</table>' +
+				'</div>';
 			}
 
 			for(var i = 1; i < response.length; i++) {
 				if (response[0].loggedIn == 0 && !(response[i].teamID > 1000)) {
-					document.getElementById("loggedInTeamInfo").innerHTML += "<tr><td>"+response[i].studentName+"</td><td>"+response[i].studentNo+"</td><td>"+response[i].contact+"</td><td>"+response[i].campus+"</td><td>"+response[i].college+"</td><td>"+response[i].major+"</td><td>"+response[i].grade+"</td></tr>";
+					document.getElementById('loggedInTeamInfo').innerHTML +=
+					'<tr>' +
+						'<td>' + response[i].studentName + '</td>' +
+						'<td>' + response[i].studentNo + '</td>' +
+						'<td>' + response[i].contact + '</td>' +
+						'<td>' + response[i].campus + '</td>' +
+						'<td>' + response[i].college + '</td>' +
+						'<td>' + response[i].major + '</td>' +
+						'<td>' + response[i].grade + '</td>' +
+					'</tr>';
 				}
 
 				if(response[i].teamID > 1000) {
-					var teamType = response[i].teamID > 2000 ? "creativityTeams" : "productionTeams";
+					var teamType = response[i].teamID > 2000 ? 'creativityTeams' : 'productionTeams';
 
-					document.getElementById(teamType + "-placeholder").style.display = "none";
-					document.getElementById(teamType).innerHTML += "<div class=\"container\"><div class=\"row clearfix\"><div class=\"col-md-12 column\"><div class=\"panel panel-default\" id=\"team" + response[i].teamID + "\"><div class=\"panel-heading msg-heading\"><div class=\"panel-title\"><div class=\"pull-left msgNo\"> #" + response[i].teamID +  "</div><div class=\"pull-left\">" + response[i].teamName + "</div><div class=\"pull-right msgTime\"><i class=\"fa fa-calendar\"></i> " + response[i].calendarTime + " <i class=\"fa fa-clock-o\"></i> " + response[i].clockTime + "</div></div></div></div></div></div></div>";
+					document.getElementById(teamType + '-placeholder').style.display = 'none';
+					document.getElementById(teamType).innerHTML +=
+					'<div class="container">' +
+						'<div class="row clearfix">' +
+							'<div class="col-md-12 column">' +
+								'<div class="panel panel-default" id="team' + response[i].teamID + '">' +
+									'<div class="panel-heading msg-heading">' +
+										'<div class="panel-title">' +
+											'<div class="pull-left msgNo"> #' + response[i].teamID + ' ' + '</div>' +
+											'<div class="pull-left">"' + response[i].teamName + '</div>' +
+											'<div class="pull-right msgTime">' +
+												//Note: The following two icons are surrounded with 3 spaces, 
+												//in order to make an easier separation
+												'<i class="fa fa-calendar"></i> ' + response[i].calendarTime +
+												' <i class="fa fa-clock-o"></i> ' + response[i].clockTime +
+											'</div>' +
+										'</div>' +
+									'</div>' +
+								'</div>' +
+							'</div>' +
+						'</div>' +
+					'</div>';
 
-					document.getElementById("team" + response[i].teamID).innerHTML += "<table class=\"table table-bordered\"><thead><th> 姓名 </th><th> 校区 </th><th> 学院 </th><th> 专业 </th><th> 年级 </th></thead><tbody id=\"teaminfo" + response[i].teamID + "\"></tbody></table>";
+					document.getElementById('team' + response[i].teamID).innerHTML +=
+					'<table class="table table-bordered">' +
+						'<thead>' +
+							'<th> 姓名 </th>' +
+							'<th> 校区 </th>' +
+							'<th> 学院 </th>' +
+							'<th> 专业 </th>' +
+							'<th> 年级 </th>' +
+						'</thead>' +
+						'<tbody id="teaminfo' + response[i].teamID + '"></tbody>' +
+					'</table>';
 
-					document.getElementById("teaminfo" + response[i].teamID).innerHTML += "<tr class=\"teams-leader\"><td>"+response[i].students[0].studentName+"</td><td>"+response[i].students[0].campus+"</td><td>"+response[i].students[0].college+"</td><td>"+response[i].students[0].major+"</td><td>"+response[i].students[0].grade+"</td></tr>";
+					document.getElementById('teaminfo' + response[i].teamID).innerHTML +=
+					'<tr class="teams-leader">' +
+						'<td>' + response[i].students[0].studentName + '</td>' +
+						'<td>' + response[i].students[0].campus + '</td>' +
+						'<td>' + response[i].students[0].college + '</td>' +
+						'<td>' + response[i].students[0].major + '</td>' +
+						'<td>' + response[i].students[0].grade + '</td>' +
+					'</tr>';
 					
 					for (var stu = 1; stu < response[i].students.length; stu++) {
-						document.getElementById("teaminfo" + response[i].teamID).innerHTML += "<tr><td>"+response[i].students[stu].studentName+"</td><td>"+response[i].students[stu].campus+"</td><td>"+response[i].students[stu].college+"</td><td>"+response[i].students[stu].major+"</td><td>"+response[i].students[stu].grade+"</td></tr>";
+						document.getElementById('teaminfo' + response[i].teamID).innerHTML +=
+						'<tr>' +
+							'<td>' + response[i].students[stu].studentName + '</td>' +
+							'<td>' + response[i].students[stu].campus + '</td>' +
+							'<td>' + response[i].students[stu].college + '</td>' +
+							'<td>' + response[i].students[stu].major + '</td>' +
+							'<td>' + response[i].students[stu].grade + '</td>' +
+						'</tr>';
 					}
 				}
 			}
 
 			if (response[0].loggedIn == 0) {
-				document.getElementById("loggedInTeam").innerHTML += "<input class=\"btn btn-primary btn-lg btn-left\" onclick=\"window.location.href='../upload'\" type=\"submit\" name=\"submit\" value=\"上传作品\" /><input class=\"btn btn-primary btn-lg btn-right\" onclick=\"logout()\" type=\"submit\" name=\"submit\" value=\"退出系统\" />";
+				document.getElementById('loggedInTeam').innerHTML +=
+				'<input class="btn btn-primary btn-lg btn-left" onclick="window.location.href=\'../upload\'" type="submit" value="上传作品"/>' +
+				'<input class="btn btn-primary btn-lg btn-right" onclick="logout()" type="submit" value="退出系统"/>';
 			}
 		}
 	});
@@ -134,20 +205,20 @@ function loginPrepare() {
 		$('#loginform').submit(function(e) {
 			e.preventDefault();
 			$.ajax({
-				type: "POST",
+				type: 'POST',
 				url: 'login.php',
 				data: $(this).serialize(),
 				success: function(response)
 				{
 					if (response.code == 1)
-						alert("验证码错误！");
+						alert('验证码错误！');
 					if (response.code == 2)
-						alert("队伍 ID 或登录密码错误！");
+						alert('队伍 ID 或登录密码错误！');
 					if (response.code == 3)
-						alert("不要调皮哦");
+						alert('不要调皮哦');
 					if (response.code == 0) {
-						alert("欢迎回来，" + response.teamName);
-						window.location.href = "../teams";
+						alert('欢迎回来，' + response.teamName);
+						window.location.href = '../teams';
 					}
 				}
 			});
@@ -157,12 +228,35 @@ function loginPrepare() {
 
 function forumPrepare() {
 	$.ajax({
-		type: "JSON",
+		type: 'POST',
 		url: 'showMsg.php',
 		success: function(response)
 		{
 			for (var i = 0; i < response.length; i++) {
-				document.getElementById('messages').innerHTML += "<div class=\"container\"><div class=\"row clearfix\"><div class=\"col-md-12 column\"><div class=\"panel panel-default\"><div class=\"panel-heading msg-heading\"><div class=\"panel-title\"><div class=\"pull-left msgNo\"> #" + (response.length - i) +  "</div><div class=\"pull-left\">" + response[i].nickname + "</div><div class=\"pull-right msgTime\"><i class=\"fa fa-calendar\"></i> " + response[i].calendarTime + " <i class=\"fa fa-clock-o\"></i> " + response[i].clockTime + "</div></div></div><div class=\"row panel-body\"><div class=\"col-md-9 msg\">" + response[i].message + "</div></div></div></div></div></div>";
+				document.getElementById('messages').innerHTML +=
+				'<div class="container">' +
+					'<div class="row clearfix">' +
+						'<div class="col-md-12 column">' +
+							'<div class="panel panel-default">' +
+								'<div class="panel-heading msg-heading">' +
+									'<div class="panel-title">' +
+										'<div class="pull-left msgNo"> #' + (response.length - i) +  '</div>' +
+										'<div class="pull-left">' + response[i].nickname + '</div>' +
+										'<div class="pull-right msgTime">' +
+											//Note: The following two icons are surrounded with 3 spaces, 
+											//in order to make an easier separation
+											'<i class="fa fa-calendar"></i> ' + response[i].calendarTime +
+											' <i class="fa fa-clock-o"></i> ' + response[i].clockTime + 
+										'</div>' +
+									'</div>' +
+								'</div>' +
+								'<div class="row panel-body">' +
+									'<div class="col-md-9 msg">' + response[i].message + '</div>' +
+								'</div>' +
+							'</div>' +
+						'</div>' +
+					'</div>' +
+				'</div>';
 			}
 		}
 	});
@@ -171,7 +265,7 @@ function forumPrepare() {
 		$('#leaveMsg').submit(function(e) {
 			e.preventDefault();
 			$.ajax({
-				type: "POST",
+				type: 'POST',
 				url: 'leaveMsg.php',
 				data: $(this).serialize(),
 				success: function(response)
@@ -204,24 +298,24 @@ function registerPrepare() {
 			e.preventDefault();
 			if (Checker()) {
 				$.ajax({
-					type: "POST",
+					type: 'POST',
 					url: 'register.php',
 					data: $(this).serialize(),
 					success: function(response)
 					{
 						if (response.code == 1)
-							alert("验证码错误！");
+							alert('验证码错误！');
 						if (response.code == 2)
-							alert("两次输入密码不一致！");
+							alert('两次输入密码不一致！');
 						if (response.code == 3)
-							alert("该队名已存在，请更换");
+							alert('该队名已存在，请更换');
 						if (response.code == 4)
-							alert("不要调皮哦");
+							alert('不要调皮哦');
 						if (response.code == 5)
-							alert("注册失败，请重新报名");
+							alert('注册失败，请重新报名');
 						if (response.code == 0) {
-							var competitionName = response.competitionType == 1 ? "作品赛" : "创意赛";
-							alert("报名成功！\n\n\n请记住队伍 ID ：" + response.teamID + "\n\n队伍名：" + response.teamName + "\n\n参赛类型 ：" + competitionName);
+							var competitionName = response.competitionType == 1 ? '作品赛' : '创意赛';
+							alert('报名成功！\n\n\n请记住队伍 ID ：' + response.teamID + '\n\n队伍名：' + response.teamName + '\n\n参赛类型 ：' + competitionName);
 							freshCaptcha();
 							window.location.href = '../teams';
 						}
@@ -234,7 +328,7 @@ function registerPrepare() {
 
 function uploadPrepare() {
 	$.ajax({
-		type: "JSON",
+		type: 'JSON',
 		url: 'status.php',
 		success: function(response) {
 			if (response.loggedIn == 0) {
@@ -243,12 +337,12 @@ function uploadPrepare() {
 			}
 
 			if (response.loggedIn == 1 && response.dirExist == 1) {
-				document.getElementById("infoText").innerHTML = '<h3> 您已提交队伍作品文件，若需要更新可覆盖上传 </h3>';
+				document.getElementById('infoText').innerHTML = '<h3> 您已提交队伍作品文件，若需要更新可覆盖上传 </h3>';
 			}
 		}
 	});
 
-	$("#file").fileinput({
+	$('#file').fileinput({
 		theme: 'explorer',
 		language: 'zh',
 		uploadUrl: 'upload.php',
@@ -304,15 +398,15 @@ function uploadPrepare() {
 		},
 	});
 
-	$("#file").on("fileuploaded", function(event, data, previewId, index) {
-		var msg = ["文件上传成功！", "请<a href = \"../login\">登录</a>系统后提交文件！", "请选择上传文件！", "很抱歉，上传文件过大，请联系管理员", "上传失败，请使用简体中文、英文或数字命名文件", "上传失败，请尝试重新上传"];
+	$('#file').on('fileuploaded', function(event, data, previewId, index) {
+		var msg = ['文件上传成功！', '请<a href=\'../login\'>登录</a>系统后提交文件！', '请选择上传文件！', '很抱歉，上传文件过大，请联系管理员', '上传失败，请使用简体中文、英文或数字命名文件', '上传失败，请尝试重新上传'];
 		if (data.response.code != 0) {
-			document.getElementById("info").className = "alert alert-danger";
-			document.getElementById("infoText").innerHTML = msg[data.response.code];
+			document.getElementById('info').className = 'alert alert-danger';
+			document.getElementById('infoText').innerHTML = msg[data.response.code];
 		}
 		else {
-			document.getElementById("info").className = "alert alert-info";
-			document.getElementById("infoText").innerHTML = msg[data.response.code] +  '<h4> 文件名：' + data.response.filename + '</h4> <h4> 文件大小：' + data.response.filesize + 'MB </h4>';
+			document.getElementById('info').className = 'alert alert-info';
+			document.getElementById('infoText').innerHTML = msg[data.response.code] +  '<h4> 文件名：' + data.response.filename + '</h4> <h4> 文件大小：' + data.response.filesize + 'MB </h4>';
 			setTimeout(function() {
 				window.location.href = './';
 			}, 6000);  
