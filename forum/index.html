@@ -7,7 +7,6 @@
 	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 	<link href="../assets/css/competition.css" rel="stylesheet">
-	<link href="../assets/css/forum.css" rel="stylesheet">
 	<link rel="shortcut icon" href="../assets/pictures/icon.png">
 </head>
 
@@ -58,7 +57,7 @@
 							<label>验证码</label>
 							<input type="text" name="captcha" class="form-control" id="captcha" placeholder="请输入验证码" required="" />
 						</div>
-						<div class="form-group col-md-6 captchaArea">
+						<div class="form-group col-md-6 captchaArea-forum">
 							<img id="captchaImg" src="../assets/captcha/captcha.php" onclick="freshCaptcha()" alt="验证码">&nbsp;&nbsp;&nbsp;
 							<a href="javascript:freshCaptcha()">看不清，换一张</a>
 						</div>
@@ -88,7 +87,7 @@
 			success: function(response)
 			{
 				for (var i = 0; i < response.length; i++) {
-					document.getElementById('messages').innerHTML += "<div class=\"container\"><div class=\"row clearfix\"><div class=\"col-md-12 column\"><div class=\"panel panel-default\"><div class=\"panel-heading\"><div class=\"panel-title\"><div class=\"pull-left msgNo\"> #" + (response.length - i) +  "</div><div class=\"pull-left\">" + response[i].nickname + "</div><div class=\"pull-right msgTime\"><i class=\"fa fa-calendar\"></i> " + response[i].calendarTime + " <i class=\"fa fa-clock-o\"></i> " + response[i].clockTime + "</div></div></div><div class=\"row panel-body\"><div class=\"col-md-9 msg\">" + response[i].message + "</div></div></div></div></div></div>";
+					document.getElementById('messages').innerHTML += "<div class=\"container\"><div class=\"row clearfix\"><div class=\"col-md-12 column\"><div class=\"panel panel-default\"><div class=\"panel-heading msg-heading\"><div class=\"panel-title\"><div class=\"pull-left msgNo\"> #" + (response.length - i) +  "</div><div class=\"pull-left\">" + response[i].nickname + "</div><div class=\"pull-right msgTime\"><i class=\"fa fa-calendar\"></i> " + response[i].calendarTime + " <i class=\"fa fa-clock-o\"></i> " + response[i].clockTime + "</div></div></div><div class=\"row panel-body\"><div class=\"col-md-9 msg\">" + response[i].message + "</div></div></div></div></div></div>";
 				}
 			}
 		});

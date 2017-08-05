@@ -7,8 +7,7 @@
 	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 	<link href="../assets/css/competition.css" rel="stylesheet">
-	<link href="../assets/css/teams.css" rel="stylesheet">
-	<link rel="shortcut icon" href="../assets/icon.png">
+	<link rel="shortcut icon" href="../assets/pictures/icon.png">
 </head>
 
 <body>
@@ -37,16 +36,16 @@
 	</nav>
 
 	<div id="productionTeams">
-		<h3> 作品赛队伍信息 </h3>
+		<div class="subtitle"> 作品赛队伍信息 </div >
 	</div>
 
 	<div id="creativityTeams">
-		<h3> 创意赛队伍信息 </h3>
+		<div class="subtitle"> 创意赛队伍信息 </div >
 	</div>
 
 
 	<div id="logedInTeam">
-		<h3> 本队详细信息 </h3>
+		<div class="subtitle"> 本队详细信息 </div >
 	</div>
 
 
@@ -78,11 +77,11 @@
 					if(response[i].teamID > 1000) {
 						var teamType = response[i].teamID > 2000 ? "creativityTeams" : "productionTeams";
 
-						document.getElementById(teamType).innerHTML += "<div class=\"container\"><div class=\"row clearfix\"><div class=\"col-md-12 column\"><div class=\"panel panel-default\" id=\"team" + response[i].teamID + "\"><div class=\"panel-heading\"><div class=\"panel-title\"><div class=\"pull-left msgNo\"> #" + response[i].teamID +  "</div><div class=\"pull-left\">" + response[i].teamName + "</div><div class=\"pull-right msgTime\"><i class=\"fa fa-calendar\"></i> " + response[i].calendarTime + " <i class=\"fa fa-clock-o\"></i> " + response[i].clockTime + "</div></div></div></div></div></div></div>";
+						document.getElementById(teamType).innerHTML += "<div class=\"container\"><div class=\"row clearfix\"><div class=\"col-md-12 column\"><div class=\"panel panel-default\" id=\"team" + response[i].teamID + "\"><div class=\"panel-heading msg-heading\"><div class=\"panel-title\"><div class=\"pull-left msgNo\"> #" + response[i].teamID +  "</div><div class=\"pull-left\">" + response[i].teamName + "</div><div class=\"pull-right msgTime\"><i class=\"fa fa-calendar\"></i> " + response[i].calendarTime + " <i class=\"fa fa-clock-o\"></i> " + response[i].clockTime + "</div></div></div></div></div></div></div>";
 
 						document.getElementById("team" + response[i].teamID).innerHTML += "<table class=\"table table-bordered\"><thead><th> 姓名 </th><th> 校区 </th><th> 学院 </th><th> 专业 </th><th> 年级 </th></thead><tbody id=\"teaminfo" + response[i].teamID + "\"></tbody></table>";
 
-						document.getElementById("teaminfo" + response[i].teamID).innerHTML += "<tr class=\"teamLeader\"><td>"+response[i].students[0].studentName+"</td><td>"+response[i].students[0].campus+"</td><td>"+response[i].students[0].college+"</td><td>"+response[i].students[0].major+"</td><td>"+response[i].students[0].grade+"</td></tr>";
+						document.getElementById("teaminfo" + response[i].teamID).innerHTML += "<tr class=\"teams-leader\"><td>"+response[i].students[0].studentName+"</td><td>"+response[i].students[0].campus+"</td><td>"+response[i].students[0].college+"</td><td>"+response[i].students[0].major+"</td><td>"+response[i].students[0].grade+"</td></tr>";
 						
 						for (var stu = 1; stu < response[i].students.length; stu++) {
 							document.getElementById("teaminfo" + response[i].teamID).innerHTML += "<tr><td>"+response[i].students[stu].studentName+"</td><td>"+response[i].students[stu].campus+"</td><td>"+response[i].students[stu].college+"</td><td>"+response[i].students[stu].major+"</td><td>"+response[i].students[stu].grade+"</td></tr>";

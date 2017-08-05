@@ -6,8 +6,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../assets/css/competition.css" rel="stylesheet">
-	<link href="../assets/css/register.css" rel="stylesheet">
-	<link rel="shortcut icon" href="../assets/icon.png">
+	<link rel="shortcut icon" href="../assets/pictures/icon.png">
 </head>
 
 <body>
@@ -18,13 +17,11 @@
 				<img class="formPic" src="../assets/pictures/formTitlePic.png">
 			</div>
 
-			<div class="formTitle">
-				<h1>编程作品设计大赛 · 报名表</h1>
-			</div>
+			<div class="formTitle">编程作品设计大赛 · 报名表</div>
 
 			<form id="registerform">
 				<div class="modal-body">
-					<h3> Part 1. 队伍信息 </h3>
+					<div class="subtitle subtitle-register"> Part 1. 队伍信息 </div>
 					<div class="row">
 						<div class="col-md-8">
 							<div class="form-group">
@@ -58,9 +55,9 @@
 						</div>
 					</div>
 
-					<h3>Part 2. 成员信息</h3>
-					<div id="teamLeader">
-						<h4>队长</h4>
+					<div class="subtitle subtitle-register">Part 2. 成员信息</div>
+					<div id="teamLeader" class="teamLeader">
+						<div class="subblock">队长</div>
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
@@ -120,8 +117,8 @@
 						</div>
 					</div>
 					
-					<div id="teamMember1">
-						<h4>队员 1</h4>
+					<div id="teamMember1" class="teamMember1">
+						<div class="subblock">队员 1</div>
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
@@ -181,8 +178,8 @@
 						</div>
 					</div>
 					
-					<div id="teamMember2">
-						<h4>队员 2</h4>
+					<div id="teamMember2" class="teamMember2">
+						<div class="subblock">队员 2</div>
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
@@ -242,8 +239,8 @@
 						</div>
 					</div>
 					
-					<div id="teamMember3">
-						<h4>队员 3</h4>
+					<div id="teamMember3" class="teamMember3">
+						<div class="subblock">队员 3</div>
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
@@ -303,8 +300,8 @@
 						</div>
 					</div>
 					
-					<div id="teamMember4">
-						<h4>队员 4</h4>
+					<div id="teamMember4" class="teamMember4">
+						<div class="subblock">队员 4</div>
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
@@ -367,7 +364,7 @@
 					<input id="addButton" class="btn btn-info" type="button" onclick="addOneMember()" value="增加一名队员"/>
 
 
-					<div class="row captchaArea">
+					<div class="row captchaArea-register">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>验证码</label>

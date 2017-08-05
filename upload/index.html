@@ -9,7 +9,6 @@
 	<link href="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/themes/explorer/theme.min.css" rel="stylesheet">
 	<link href="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/css/fileinput.min.css" rel="stylesheet">
 	<link href="../assets/css/competition.css" rel="stylesheet">
-	<link href="../assets/css/upload.css" rel="stylesheet">
 </head>
 
 <body>
@@ -34,13 +33,13 @@
 		</div>
 	</nav>
 
-	<h1>编程作品设计大赛 · 作品上传</h1>
+	<div class="upload-title">编程作品设计大赛 · 作品上传</div>
 	<div id="info" class="alert alert-info">
 		<a href="#" class="close" data-dismiss="alert">&times;</a>
 		<h3 id="infoText"> 文件命名没有统一要求 作品文件将会按照队伍 ID 分开存放 <h3>
 	</div>
 
-	<div class="upload"><input id="file" class="file" type="file" name="file"></div>
+	<div class="upload-area"><input id="file" class="file" type="file" name="file"></div>
 
 	<input class="btn btn-primary btn-lg btn-left" onclick="window.location.href='../teams'" type="submit" name="submit" value="查看队伍信息" />
 	<input class="btn btn-primary btn-lg btn-right"onclick="window.location.href='../'" type="submit" name="submit" value="返回大赛首页" />
