@@ -71,7 +71,7 @@
 		</div>
 	</div>
 
-	<div id="messages"> </div>
+	<div id="messages"></div>
 
 
 	<div class="copyright">Copyright © 2017 <a href="https://github.com/KingsleyXie/CompetitionRegistrationSystem">Kingsley</a></div>
@@ -80,48 +80,6 @@
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="../assets/js/competition.js"></script>
-	<script type="text/javascript">
-		$.ajax({
-			type: "JSON",
-			url: 'showMsg.php',
-			success: function(response)
-			{
-				for (var i = 0; i < response.length; i++) {
-					document.getElementById('messages').innerHTML += "<div class=\"container\"><div class=\"row clearfix\"><div class=\"col-md-12 column\"><div class=\"panel panel-default\"><div class=\"panel-heading msg-heading\"><div class=\"panel-title\"><div class=\"pull-left msgNo\"> #" + (response.length - i) +  "</div><div class=\"pull-left\">" + response[i].nickname + "</div><div class=\"pull-right msgTime\"><i class=\"fa fa-calendar\"></i> " + response[i].calendarTime + " <i class=\"fa fa-clock-o\"></i> " + response[i].clockTime + "</div></div></div><div class=\"row panel-body\"><div class=\"col-md-9 msg\">" + response[i].message + "</div></div></div></div></div></div>";
-				}
-			}
-		});
-		
-		$(document).ready(function() {
-			$('#leaveMsg').submit(function(e) {
-				e.preventDefault();
-				$.ajax({
-					type: "POST",
-					url: 'leaveMsg.php',
-					data: $(this).serialize(),
-					success: function(response)
-					{
-						if (response.code == 0) {
-							alert('留言成功！');
-							window.location.href = './';
-						}
-						if (response.code == 1) {
-							alert('验证码错误！');
-						}
-						if (response.code == 2) {
-							alert('昵称太长啦~ 精简一下吧');
-						}
-						if (response.code == 3) {
-							alert('你们呐，不要老喜欢搞个大新闻，就说自己是管理员\n\n再不改昵称，将来留言板上出了偏差你们是要负责任的');
-						}
-						if (response.code == 4) {
-							alert('留言失败，请尝试重新提交');
-						}
-					}
-				});
-			});
-		});
-	</script>
-
+	<script type="text/javascript">forumPrepare();</script>
 </body>
 </html>

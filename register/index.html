@@ -399,40 +399,7 @@
 
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="../assets/js/register.js"></script>
 	<script src="../assets/js/competition.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#registerform').submit(function(e) {
-				e.preventDefault();
-				if (Checker()) {
-					$.ajax({
-						type: "POST",
-						url: 'register.php',
-						data: $(this).serialize(),
-						success: function(response)
-						{
-							if (response.code == 1)
-								alert("验证码错误！");
-							if (response.code == 2)
-								alert("两次输入密码不一致！");
-							if (response.code == 3)
-								alert("该队名已存在，请更换");
-							if (response.code == 4)
-								alert("不要调皮哦");
-							if (response.code == 5)
-								alert("注册失败，请重新报名");
-							if (response.code == 0) {
-								var competitionName = response.competitionType == 1 ? "作品赛" : "创意赛";
-								alert("报名成功！\n\n\n请记住队伍 ID ：" + response.teamID + "\n\n队伍名：" + response.teamName + "\n\n参赛类型 ：" + competitionName);
-								freshCaptcha();
-								window.location.href = '../teams';
-							}
-						}
-					});
-				}
-			});
-		});
-	</script>
+	<script type="text/javascript">registerPrepare();</script>
 </body>
 </html>
