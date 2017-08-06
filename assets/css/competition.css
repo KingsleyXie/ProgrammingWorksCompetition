@@ -8,17 +8,17 @@
 	}
 }
 @media (max-width: 500px) {
-	.msgTime {
+	.msg-time {
 		clear: both;
 	}
 }
 @media (min-width: 992px) {
-	.captchaArea-forum {
+	.captcha-area-forum {
 		padding-left: 2em;
 		padding-right: 0;
 	}
 }
-.captchaArea-register {
+.captcha-area-register {
 	margin-top: 20px;
 	padding-top: 15px;
 	border-top: 1px solid #e5e5e5;
@@ -34,7 +34,7 @@
 	float: right;
 	margin-bottom: 15px;
 }
-.msgNo {
+.msg-no {
 	padding-right: 0.6em;
 }
 .copyright {
@@ -88,32 +88,32 @@
 	text-align: center;
 	font-size: 36px;
 }
-.clearFloat {
+.clear-float {
 	clear: both;
 }
 .msg {
 	font-size: 135%;
 }
 @media (min-width: 520px) {
-	.formTitlePic {
+	.form-title-pic {
 		display: none;
 	}
-	.formBottomPic {
+	.form-bottom-pic {
 		display: none;
 	}
 }
 @media (max-width: 520px) {
-	.formTitle {
+	.form-title {
 		display: none;
 	}
 }
-.teamMember1, .teamMember2, .teamMember3, .teamMember4 {
+.team-member1, .team-member2, .team-member3, .team-member4 {
 	display: none;
 	margin-top: 15px;
 	padding-top: 10px;
 	border-top: 1px solid #e5e5e5;
 }
-.formPic {
+.form-pic {
 	width: 100%;
 }
 .modal-body {
@@ -128,7 +128,7 @@
 .teams-leader {
 	background-color: #f5f5f5 ;
 }
-.formTitle {
+.form-title {
 	margin-top: 15px;
 	margin-bottom: 20px;
 	text-align:center;
