@@ -19,7 +19,7 @@
 
 			<div class="form-title">编程作品设计大赛 · 报名表</div>
 
-			<form id="registerform">
+			<form id="register-form">
 				<div class="modal-body">
 					<div class="subtitle subtitle-register"> Part 1. 队伍信息 </div>
 					<div class="row">
@@ -32,7 +32,7 @@
 						<div class="col-md-4">
 							<div class="form-group">
 								<label>参赛类型</label>
-								<select id="competitionType" name="competitionType" class="form-control">
+								<select id="competition-type" name="competitionType" class="form-control">
 									<option value="0"> 请选择队伍参赛类型 </option>
 									<option value="1"> 作品赛 </option>
 									<option value="2"> 创意赛 </option>
@@ -361,7 +361,7 @@
 						</div>
 					</div>
 
-					<input id="addButton" class="btn btn-info" type="button" onclick="addOneMember()" value="增加一名队员"/>
+					<input id="btn-add" class="btn btn-info" type="button" onclick="addOneMember()" value="增加一名队员"/>
 
 
 					<div class="row captcha-area-register">
@@ -373,7 +373,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<img id="captchaImg" src="../assets/captcha/captcha.php" onclick="freshCaptcha()" alt="验证码">&nbsp;&nbsp;&nbsp;
+								<img id="captcha-img" src="../assets/captcha/captcha.php" onclick="freshCaptcha()" alt="验证码">&nbsp;&nbsp;&nbsp;
 								<a href="javascript:freshCaptcha()">看不清，换一张</a>
 							</div>
 						</div>

@@ -25,7 +25,7 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href ="" data-toggle="modal" data-target="#myModal">留下足迹</a></li>
+					<li><a href ="" data-toggle="modal" data-target="#leave-msg">留下足迹</a></li>
 					<li><a href="../register">报名参赛</a></li>
 					<li><a href="../teams">队伍信息</a></li>
 					<li><a href="../upload">上传作品</a></li>
@@ -36,14 +36,14 @@
 		</div>
 	</nav>
 
-	<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="leave-msg" tabindex="-1" aria-labelledby="leave-msg-label" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h3 class="modal-title" id="myModalLabel">发表留言</h3>
+					<h3 class="modal-title" id="leave-msg-label">发表留言</h3>
 				</div>
-				<form id="leaveMsg" class="form-horizontal">
+				<form id="leave-msg-form" class="form-horizontal">
 					<div class="modal-body">
 						<div class="form-group  col-md-12">
 							<label>昵称</label>
@@ -58,7 +58,7 @@
 							<input type="text" name="captcha" class="form-control" id="captcha" placeholder="请输入验证码" required="" />
 						</div>
 						<div class="form-group col-md-6 captcha-area-forum">
-							<img id="captchaImg" src="../assets/captcha/captcha.php" onclick="freshCaptcha()" alt="验证码">&nbsp;&nbsp;&nbsp;
+							<img id="captcha-img" src="../assets/captcha/captcha.php" onclick="freshCaptcha()" alt="验证码">&nbsp;&nbsp;&nbsp;
 							<a href="javascript:freshCaptcha()">看不清，换一张</a>
 						</div>
 						<div class="clear-float"></div>

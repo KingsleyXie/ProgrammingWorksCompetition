@@ -1,6 +1,6 @@
 //Global functions: Captcha Fresh & Logout
 function freshCaptcha() {
-	$('#captchaImg').attr('src', '../assets/captcha/captcha.php?'+Math.random());
+	$('#captcha-img').attr('src', '../assets/captcha/captcha.php?'+Math.random());
 	$('#captcha').val('');
 }
 
@@ -21,12 +21,12 @@ function logout() {
 var MAXN = 3, showed = 1;
 
 function addOneMember() {
-	if (document.getElementById('competitionType').value == 0) {
+	if (document.getElementById('competition-type').value == 0) {
 		alert('请选择队伍参赛类型！');
 		return;
 	}
 
-	if (document.getElementById('competitionType').value == 1) {
+	if (document.getElementById('competition-type').value == 1) {
 		MAXN = 5;
 	}
 
@@ -35,7 +35,7 @@ function addOneMember() {
 	showed = showed + 1;
 
 	if (showed == MAXN) {
-		document.getElementById('addButton').style.display = 'none';
+		document.getElementById('btn-add').style.display = 'none';
 	}
 }
 
@@ -96,11 +96,11 @@ function teamsPrepare() {
 		success: function(response)
 		{
 			if (response[0].loggedIn == 1) {
-				document.getElementById('loggedInTeam').innerHTML +=
+				document.getElementById('logged-in-team').innerHTML +=
 				'<button class="btn btn-lg btn-primary btn-block" onclick="window.location.href=\'../login\'">登录以查看</button>';
 			}
 			if (response[0].loggedIn == 0) {
-				document.getElementById('loggedInTeam').innerHTML +=
+				document.getElementById('logged-in-team').innerHTML +=
 				'<div class="table-responsive">' +
 					'<table class="table table-bordered">' +
 						'<thead>' +
@@ -112,14 +112,14 @@ function teamsPrepare() {
 							'<th> 专业 </th>' +
 							'<th> 年级 </th>' +
 						'</thead>' +
-						'<tbody id="loggedInTeamInfo"></tbody>' +
+						'<tbody id="logged-in-team-info"></tbody>' +
 					'</table>' +
 				'</div>';
 			}
 
 			for(var i = 1; i < response.length; i++) {
 				if (response[0].loggedIn == 0 && !(response[i].teamID > 1000)) {
-					document.getElementById('loggedInTeamInfo').innerHTML +=
+					document.getElementById('logged-in-team-info').innerHTML +=
 					'<tr>' +
 						'<td>' + response[i].studentName + '</td>' +
 						'<td>' + response[i].studentNo + '</td>' +
@@ -132,7 +132,7 @@ function teamsPrepare() {
 				}
 
 				if(response[i].teamID > 1000) {
-					var teamType = response[i].teamID > 2000 ? 'creativityTeams' : 'productionTeams';
+					var teamType = response[i].teamID > 2000 ? 'creativity-teams' : 'production-teams';
 
 					document.getElementById(teamType + '-placeholder').style.display = 'none';
 					document.getElementById(teamType).innerHTML +=
@@ -192,7 +192,7 @@ function teamsPrepare() {
 			}
 
 			if (response[0].loggedIn == 0) {
-				document.getElementById('loggedInTeam').innerHTML +=
+				document.getElementById('logged-in-team').innerHTML +=
 				'<input class="btn btn-primary btn-lg btn-left" onclick="window.location.href=\'../upload\'" type="submit" value="上传作品"/>' +
 				'<input class="btn btn-primary btn-lg btn-right" onclick="logout()" type="submit" value="退出系统"/>';
 			}
@@ -202,7 +202,7 @@ function teamsPrepare() {
 
 function loginPrepare() {
 	$(document).ready(function() {
-		$('#loginform').submit(function(e) {
+		$('#login-form').submit(function(e) {
 			e.preventDefault();
 			$.ajax({
 				type: 'POST',
@@ -262,7 +262,7 @@ function forumPrepare() {
 	});
 	
 	$(document).ready(function() {
-		$('#leaveMsg').submit(function(e) {
+		$('#leave-msg-form').submit(function(e) {
 			e.preventDefault();
 			$.ajax({
 				type: 'POST',
@@ -294,7 +294,7 @@ function forumPrepare() {
 
 function registerPrepare() {
 	$(document).ready(function() {
-		$('#registerform').submit(function(e) {
+		$('#register-form').submit(function(e) {
 			e.preventDefault();
 			if (Checker()) {
 				$.ajax({
@@ -337,7 +337,7 @@ function uploadPrepare() {
 			}
 
 			if (response.loggedIn == 1 && response.dirExist == 1) {
-				document.getElementById('infoText').innerHTML = '<h3> 您已提交队伍作品文件，若需要更新可覆盖上传 </h3>';
+				document.getElementById('info-text').innerHTML = '<h3> 您已提交队伍作品文件，若需要更新可覆盖上传 </h3>';
 			}
 		}
 	});
@@ -402,11 +402,11 @@ function uploadPrepare() {
 		var msg = ['文件上传成功！', '请<a href=\'../login\'>登录</a>系统后提交文件！', '请选择上传文件！', '很抱歉，上传文件过大，请联系管理员', '上传失败，请使用简体中文、英文或数字命名文件', '上传失败，请尝试重新上传'];
 		if (data.response.code != 0) {
 			document.getElementById('info').className = 'alert alert-danger';
-			document.getElementById('infoText').innerHTML = msg[data.response.code];
+			document.getElementById('info-text').innerHTML = msg[data.response.code];
 		}
 		else {
 			document.getElementById('info').className = 'alert alert-info';
-			document.getElementById('infoText').innerHTML = msg[data.response.code] +  '<h4> 文件名：' + data.response.filename + '</h4> <h4> 文件大小：' + data.response.filesize + 'MB </h4>';
+			document.getElementById('info-text').innerHTML = msg[data.response.code] +  '<h4> 文件名：' + data.response.filename + '</h4> <h4> 文件大小：' + data.response.filesize + 'MB </h4>';
 			setTimeout(function() {
 				window.location.href = './';
 			}, 6000);  
