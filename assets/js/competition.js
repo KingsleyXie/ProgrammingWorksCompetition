@@ -239,7 +239,7 @@ function teamsPrepare() {
 
 function loginPrepare() {
 	$(document).ready(function() {
-		$('#login-form').submit(function(e) {
+		$('#login').submit(function(e) {
 			e.preventDefault();
 			$.ajax({
 				type: 'POST',
@@ -387,7 +387,7 @@ function forumPrepare() {
 	});
 	
 	$(document).ready(function() {
-		$('#leave-msg-form').submit(function(e) {
+		$('#leave-msg').submit(function(e) {
 			e.preventDefault();
 			$.ajax({
 				type: 'POST',

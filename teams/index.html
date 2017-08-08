@@ -1,29 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="zh-cn">
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>队伍信息展示</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-	<link href="../assets/css/competition.css" rel="stylesheet">
+	<title>队伍信息展示</title>
 	<link rel="shortcut icon" href="../assets/pictures/icon.png">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+	<link rel="stylesheet" href="../assets/css/competition.css">
 </head>
 
 <body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
 					<span class="sr-only"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="./">参赛队伍信息</a>
+				<span class="navbar-brand" href="./">参赛队伍信息</span>
 			</div>
 
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<div class="collapse navbar-collapse" id="menu">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="../register">我要报名</a></li>
 					<li><a href="../forum">讨论留言</a></li>
@@ -36,28 +37,24 @@
 	</nav>
 
 	<div id="production-teams">
-		<div class="subtitle"> 作品赛队伍信息 </div >
-		<div class="placeholder" id="production-teams-placeholder"> 暂无相关队伍信息 </div>
+		<div class="subtitle">作品赛队伍信息</div >
+		<div class="placeholder" id="production-teams-placeholder">暂无相关队伍信息</div>
 	</div>
 
 	<div id="creativity-teams">
-		<div class="subtitle"> 创意赛队伍信息 </div >
-		<div class="placeholder" id="creativity-teams-placeholder"> 暂无相关队伍信息 </div>
+		<div class="subtitle">创意赛队伍信息</div >
+		<div class="placeholder" id="creativity-teams-placeholder">暂无相关队伍信息</div>
 	</div>
-
 
 	<div id="logged-in-team">
-		<div class="subtitle"> 本队详细信息 </div >
+		<div class="subtitle">本队详细信息</div >
 	</div>
 
-
 	<div class="copyright">Copyright © 2017 <a href="https://github.com/KingsleyXie/CompetitionRegistrationSystem">Kingsley</a></div>
-
-
 
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="../assets/js/competition.js"></script>
-	<script type="text/javascript">teamsPrepare();</script>
+	<script>teamsPrepare();</script>
 </body>
 </html>

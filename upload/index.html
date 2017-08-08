@@ -1,30 +1,32 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="zh-cn">
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<title>作品上传页面</title>
-	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-	<link href="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/themes/explorer/theme.min.css" rel="stylesheet">
-	<link href="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/css/fileinput.min.css" rel="stylesheet">
-	<link href="../assets/css/competition.css" rel="stylesheet">
+	<link rel="shortcut icon" href="../assets/pictures/icon.png">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/themes/explorer/theme.min.css">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/css/fileinput.min.css">
+	<link rel="stylesheet" href="../assets/css/competition.css">
 </head>
 
 <body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
 					<span class="sr-only"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="./">参赛作品上传</a>
+				<span class="navbar-brand" href="./">参赛作品上传</span>
 			</div>
 
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<div class="collapse navbar-collapse" id="menu">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="../forum">讨论留言</a></li>
 					<li><a href="../">大赛首页</a></li>
@@ -34,21 +36,20 @@
 	</nav>
 
 	<div class="upload-title">编程作品设计大赛 · 作品上传</div>
+
 	<div id="info" class="alert alert-info">
 		<a href="#" class="close" data-dismiss="alert">&times;</a>
-		<h3 id="info-text"> 文件命名没有统一要求 作品文件将会按照队伍 ID 分开存放 <h3>
+		<h3 id="info-text">文件命名没有统一要求 作品文件将会按照队伍 ID 分开存放</h3>
 	</div>
 
-	<div class="upload-area"><input id="file" class="file" type="file" name="file"></div>
+	<div class="upload-area">
+		<input type="file" class="file" id="file" name="file">
+	</div>
 
-	<input class="btn btn-primary btn-lg btn-left" onclick="window.location.href='../teams'" type="submit" name="submit" value="查看队伍信息" />
-	<input class="btn btn-primary btn-lg btn-right"onclick="window.location.href='../'" type="submit" name="submit" value="返回大赛首页" />
-
-
+	<input type="submit" class="btn btn-primary btn-lg btn-left" onclick="window.location.href='../teams'" value="查看队伍信息">
+	<input type="submit" class="btn btn-primary btn-lg btn-right" onclick="window.location.href='../'" value="返回大赛首页">
 
 	<div class="copyright">Copyright © 2017 <a href="https://github.com/KingsleyXie/CompetitionRegistrationSystem">Kingsley</a></div>
-
-
 
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -56,6 +57,6 @@
 	<script src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/themes/explorer/theme.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.9/js/locales/zh.js"></script>
 	<script src="../assets/js/competition.js"></script>
-	<script type="text/javascript">uploadPrepare();</script>
+	<script>uploadPrepare();</script>
 </body>
 </html>

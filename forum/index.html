@@ -1,31 +1,32 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="zh-cn">
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>讨论留言区</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-	<link href="../assets/css/competition.css" rel="stylesheet">
+	<title>讨论留言区</title>
 	<link rel="shortcut icon" href="../assets/pictures/icon.png">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+	<link rel="stylesheet" href="../assets/css/competition.css">
 </head>
 
 <body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
 					<span class="sr-only"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand">讨论留言区</a>
+				<span class="navbar-brand">讨论留言区</span>
 			</div>
 
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<div class="collapse navbar-collapse" id="menu">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href ="" data-toggle="modal" data-target="#leave-msg">留下足迹</a></li>
+					<li><a href ="" data-toggle="modal" data-target="#leave-msg-modal">留下足迹</a></li>
 					<li><a href="../register">报名参赛</a></li>
 					<li><a href="../teams">队伍信息</a></li>
 					<li><a href="../upload">上传作品</a></li>
@@ -36,35 +37,40 @@
 		</div>
 	</nav>
 
-	<div class="modal fade" id="leave-msg" tabindex="-1" aria-labelledby="leave-msg-label" aria-hidden="true">
+	<div class="modal fade" id="leave-msg-modal" tabindex="-1" aria-labelledby="leave-msg-label" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h3 class="modal-title" id="leave-msg-label">发表留言</h3>
 				</div>
-				<form id="leave-msg-form" class="form-horizontal">
+
+				<form class="form-horizontal leave-msg-form" id="leave-msg">
 					<div class="modal-body">
-						<div class="form-group  col-md-12">
+						<div class="form-group col-md-12">
 							<label>昵称</label>
-							<input name="nickname" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="请输入姓名或昵称" required="">
+							<input type="text" class="form-control" name="nickname" placeholder="请输入姓名或昵称" required>
 						</div>
+
 						<div class="form-group col-md-12">
 							<label>留言内容</label>
-							<textarea name="message" class="form-control" id="exampleTextarea" rows="3" placeholder="请输入留言内容" required=""></textarea>
+							<textarea class="form-control" rows="3" name="message" placeholder="请输入留言内容" required></textarea>
 						</div>
+
 						<div class="form-group  col-md-6">
 							<label>验证码</label>
-							<input type="text" name="captcha" class="form-control" id="captcha" placeholder="请输入验证码" required="" />
+							<input type="text" name="captcha" class="form-control" id="captcha" placeholder="请输入验证码" required />
 						</div>
+
 						<div class="form-group col-md-6 captcha-area-forum">
 							<img id="captcha-img" src="../assets/captcha/captcha.php" onclick="freshCaptcha()" alt="验证码">&nbsp;&nbsp;&nbsp;
-							<a href="javascript:freshCaptcha()">看不清，换一张</a>
+							<a href="Javascript:freshCaptcha()">看不清，换一张</a>
 						</div>
 						<div class="clear-float"></div>
 					</div>
+					
 					<div class="modal-footer">
-						<input class="btn btn-lg btn-primary btn-block" value="确定" type="submit"/>
+						<input type="submit" class="btn btn-lg btn-primary btn-block" value="确定">
 					</div>
 				</form>
 			</div>
@@ -73,13 +79,11 @@
 
 	<div id="messages"></div>
 
-
 	<div class="copyright">Copyright © 2017 <a href="https://github.com/KingsleyXie/CompetitionRegistrationSystem">Kingsley</a></div>
-
 
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="../assets/js/competition.js"></script>
-	<script type="text/javascript">forumPrepare();</script>
+	<script>forumPrepare();</script>
 </body>
 </html>

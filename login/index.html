@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="zh-cn">
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>登录页面</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<title>登录页面</title>
 	<link rel="shortcut icon" href="../assets/pictures/icon.png">
-	<link href="../assets/css/competition.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/css/competition.css">
 </head>
 
 <body>
@@ -15,43 +16,40 @@
 			<div class="modal-header">
 				<h3 class="modal-title" id="loginModalLabel" align="center">编程作品设计大赛 · 登录页面</h3>
 			</div>
-			<br>
-			<div class="modal-body">
-				<form id="login-form" class="form-horizontal">
+			<div class="modal-body login-form">
+				<form id="login" class="form-horizontal">
 					<div class="form-group">
-						<label for="account" class="col-sm-3 hidden-xs control-label">队伍 ID </label>
+						<label class="col-sm-3 hidden-xs control-label">队伍 ID </label>
 						<div class="col-sm-6 col-xs-10 col-xs-offset-1 col-sm-offset-0">
-							<input type="text" name="teamID" class="form-control" id="account" placeholder="请输入队伍 ID " required="">
+							<input type="text" class="form-control" name="teamID" placeholder="请输入队伍 ID" required>
 						</div>
 					</div>
+
 					<div class="form-group">
-						<label for="passwd" class="col-sm-3 hidden-xs control-label">登录密码</label>
+						<label class="col-sm-3 hidden-xs control-label">登录密码</label>
 						<div class="col-sm-6 col-xs-10 col-xs-offset-1 col-sm-offset-0">
-							<input type="password" name="password" class="form-control" id="passwd" placeholder="请输入登录密码" required="">
+							<input type="password" class="form-control" name="password" placeholder="请输入登录密码" required>
 						</div>
 					</div>
+
 					<div class="form-group">
-						<label for="captcha" class="col-sm-3 hidden-xs control-label">验证码</label>
+						<label class="col-sm-3 hidden-xs control-label">验证码</label>
 						<div class="col-sm-6 col-xs-10 col-xs-offset-1 col-sm-offset-0">
-							<input type="text" name="captcha" class="form-control" id="captcha" placeholder="请输入验证码" required="">
+							<input type="text" class="form-control" id="captcha" name="captcha" placeholder="请输入验证码" required>
 						</div>
 					</div>
+
 					<div class="form-group">
 						<label class="col-sm-3 hidden-xs control-label"></label>
 						<div class="col-sm-6 col-xs-10 col-xs-offset-1 col-sm-offset-0">
 							<img id="captcha-img" src="../assets/captcha/captcha.php" onclick="freshCaptcha()" alt="验证码">&nbsp;&nbsp;&nbsp;
-							<a href="javascript:freshCaptcha()">看不清，换一张</a>
+							<a href="Javascript:freshCaptcha()">看不清，换一张</a>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="col-sm-3 hidden-xs control-label"></label>
-						<div class="col-sm-6 col-xs-10 col-xs-offset-1 col-sm-offset-0">
-							<span class="tip" id="login-tip"></span>
-						</div>
-					</div>
+
 					<div class="modal-footer">
-						<input class="btn btn-lg btn-info btn-block" value="登录" type="submit"/>  			
-						<button class="btn btn-lg btn-success btn-block" onclick="window.location.href='../register'"">我要报名</button>
+						<input type="submit" class="btn btn-lg btn-info btn-block" value="登录">
+						<button class="btn btn-lg btn-success btn-block" onclick="window.location.href='../register'">我要报名</button>
 					</div>
 				</form>
 			</div>
@@ -60,11 +58,9 @@
 	
 	<div class="copyright">Copyright © 2017 <a href="https://github.com/KingsleyXie/CompetitionRegistrationSystem">Kingsley</a></div>
 
-
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="../assets/js/competition.js"></script>
-	<script type="text/javascript">loginPrepare();</script>
+	<script>loginPrepare();</script>
 </body>
-
 </html>
