@@ -143,7 +143,7 @@ function teamsPrepare() {
 									'<div class="panel-heading msg-heading">' +
 										'<div class="panel-title">' +
 											'<div class="pull-left msg-no"> #' + response[i].teamID + ' ' + '</div>' +
-											'<div class="pull-left">"' + response[i].teamName + '</div>' +
+											'<div class="pull-left">' + response[i].teamName + '</div>' +
 											'<div class="pull-right msg-time">' +
 												//Note: The following two icons are surrounded with 3 spaces, 
 												//in order to make an easier separation
