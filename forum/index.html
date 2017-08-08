@@ -47,22 +47,22 @@
 
 				<form class="form-horizontal leave-msg-form" id="leave-msg">
 					<div class="modal-body">
-						<div class="form-group col-md-12">
+						<div class="col-md-12 form-group">
 							<label>昵称</label>
 							<input type="text" class="form-control" name="nickname" placeholder="请输入姓名或昵称" required>
 						</div>
 
-						<div class="form-group col-md-12">
+						<div class="col-md-12 form-group">
 							<label>留言内容</label>
 							<textarea class="form-control" rows="3" name="message" placeholder="请输入留言内容" required></textarea>
 						</div>
 
-						<div class="form-group  col-md-6">
+						<div class="col-md-6 form-group">
 							<label>验证码</label>
 							<input type="text" name="captcha" class="form-control" id="captcha" placeholder="请输入验证码" required />
 						</div>
 
-						<div class="form-group col-md-6 captcha-area-forum">
+						<div class="col-md-6 form-group captcha-area-forum">
 							<img id="captcha-img" src="../assets/captcha/captcha.php" onclick="freshCaptcha()" alt="验证码">&nbsp;&nbsp;&nbsp;
 							<a href="Javascript:freshCaptcha()">看不清，换一张</a>
 						</div>

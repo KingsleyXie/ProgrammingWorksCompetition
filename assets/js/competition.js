@@ -274,7 +274,7 @@ function uploadPrepare() {
 			}
 
 			if (response.loggedIn == 1 && response.dirExist == 1) {
-				document.getElementById('info-text').innerHTML = '<h3> 您已提交队伍作品文件，若需要更新可覆盖上传 </h3>';
+				document.getElementById('info-text').innerHTML = '<h3>您已提交队伍作品文件，若需要更新可覆盖上传</h3>';
 			}
 		}
 	});
@@ -285,7 +285,7 @@ function uploadPrepare() {
 		uploadUrl: 'upload.php',
 		browseLabel: '浏览',
 		msgFilesTooMany: '请将所有要上传的文件打包成 <strong>一个</strong> 压缩包',
-		dropZoneTitle: '请以压缩包格式上传队伍作品文件<br> <br> <strong> 将文件拖拽到这里 </strong> 或 <strong> 点击浏览按钮选择文件 </strong>',
+		dropZoneTitle: '请以压缩包格式上传队伍作品文件<br><br><strong>将文件拖拽到这里</strong> 或 <strong>点击浏览按钮选择文件</strong>',
 		allowedFileExtensions: ['zip', 'rar', 'tar', 'gzip', 'gz', '7z'],
 		maxFileSize: 500000,
 		maxFileCount: 1,
@@ -336,17 +336,17 @@ function uploadPrepare() {
 	});
 
 	$("#file").on('fileuploaded', function(event, data, previewId, index) {
-		var msg = ['文件上传成功！', '请<a href=\'../login\'>登录</a>系统后提交文件！', '请选择上传文件！', '很抱歉，上传文件过大，请联系管理员', '上传失败，请使用简体中文、英文或数字命名文件', '上传失败，请尝试重新上传'];
+		var msg = ['参赛作品上传成功！', '请<a href=\'../login\'>登录</a>系统后提交文件！', '请选择上传文件！', '很抱歉，上传文件过大，请联系管理员', '上传失败，请使用简体中文、英文或数字命名文件', '上传失败，请尝试重新上传'];
 		if (data.response.code != 0) {
 			document.getElementById('info').className = 'alert alert-danger';
 			document.getElementById('info-text').innerHTML = msg[data.response.code];
 		}
 		else {
 			document.getElementById('info').className = 'alert alert-info';
-			document.getElementById('info-text').innerHTML = msg[data.response.code] +  '<h4> 文件名：' + data.response.filename + '</h4> <h4> 文件大小：' + data.response.filesize + 'MB </h4>';
+			document.getElementById('info-text').innerHTML = msg[data.response.code] +  '<br><br><h4>文件名：' + data.response.filename + ' 文件大小：' + data.response.filesize + 'MB</h4>';
 			setTimeout(function() {
 				window.location.href = './';
-			}, 6000);  
+			}, 7000);  
 		}
 	});
 }

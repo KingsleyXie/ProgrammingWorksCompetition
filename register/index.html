@@ -44,55 +44,96 @@
 				<div class="modal-body">
 					<div class="subtitle subtitle-register">Part 1. 队伍信息</div>
 					<div class="row">
-						<div class="col-md-8">
-							<div class="form-group">
-								<label>队名</label>
-								<input type="text" class="form-control" name="teamName" placeholder="请输入队伍名称" required>
-							</div>
+						<div class="col-md-8 form-group">
+							<label>队名</label>
+							<input type="text" class="form-control" name="teamName" placeholder="请输入队伍名称" required>
 						</div>
 
-						<div class="col-md-4">
-							<div class="form-group">
-								<label>参赛类型</label>
-								<select class="form-control" id="competition-type" name="competitionType">
-									<option value="0">请选择队伍参赛类型</option>
-									<option value="1">作品赛</option>
-									<option value="2">创意赛</option>
-								</select>
-							</div>
+						<div class="col-md-4 form-group">
+							<label>参赛类型</label>
+							<select class="form-control" id="competition-type" name="competitionType">
+								<option value="0">请选择队伍参赛类型</option>
+								<option value="1">作品赛</option>
+								<option value="2">创意赛</option>
+							</select>
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>登录密码</label>
-								<input type="password" class="form-control" name="password" placeholder="请设置登录密码" required>
-							</div>
+						<div class="col-md-6 form-group">
+							<label>登录密码</label>
+							<input type="password" class="form-control" name="password" placeholder="请设置登录密码" required>
 						</div>
 
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>确认密码</label>
-								<input type="password" class="form-control" name="passwordConfirm" placeholder="请再次输入登录密码" required>
-							</div>
+						<div class="col-md-6 form-group">
+							<label>确认密码</label>
+							<input type="password" class="form-control" name="passwordConfirm" placeholder="请再次输入登录密码" required>
 						</div>
 					</div>
 
 					<div class="subtitle subtitle-register">Part 2. 成员信息</div>
 					<div class="subblock">队长</div>
 					<div class="row">
-						<div class="col-md-4">
-							<div class="form-group">
-								<label>姓名</label>
-								<input type="text" class="form-control" name="teamLeaderName" required>
-							</div>
+						<div class="col-md-4 form-group">
+							<label>姓名</label>
+							<input type="text" class="form-control" name="teamLeaderName" required>
 						</div>
 
-						<div class="col-md-2">
-							<div class="form-group">
+						<div class="col-md-2 form-group">
+							<label>年级</label>
+							<select class="form-control" name="grade">
+								<option value="0"></option>
+								<option value="2016级">2016级</option>
+								<option value="2015级">2015级</option>
+								<option value="2014级">2014级</option>
+								<option value="2013级">2013级</option>
+								<option value="2012级">2012级</option>
+							</select>
+						</div>
+
+						<div class="col-md-3 form-group">
+							<label>学号</label>
+							<input type="text" class="form-control" name="studentNo" required>
+						</div>
+
+						<div class="col-md-3 form-group">
+							<label>联系方式</label>
+							<input type="text" class="form-control" name="contact" required>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-5 form-group">
+							<label>学院</label>
+							<input type="text" class="form-control" name="college" required>
+						</div>
+
+						<div class="col-md-4 form-group">
+							<label>专业</label>
+							<input type="text" class="form-control" name="major" required>
+						</div>
+
+						<div class="col-md-3 form-group">
+							<label>校区</label>
+							<select class="form-control" name="campus" required>
+								<option value="0"></option>
+								<option value="大学城校区">大学城校区</option>
+								<option value="五山校区">五山校区</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="team-member1" id="team-member1">
+						<div class="subblock">队员 1</div>
+						<div class="row">
+							<div class="col-md-4 form-group">
+								<label>姓名</label>
+								<input type="text" class="form-control" name="teamMemberName1">
+							</div>
+
+							<div class="col-md-2 form-group">
 								<label>年级</label>
-								<select class="form-control" name="grade">
+								<select class="form-control" name="grade1">
 									<option value="0"></option>
 									<option value="2016级">2016级</option>
 									<option value="2015级">2015级</option>
@@ -101,42 +142,32 @@
 									<option value="2012级">2012级</option>
 								</select>
 							</div>
-						</div>
 
-						<div class="col-md-3">
-							<div class="form-group">
+							<div class="col-md-3 form-group">
 								<label>学号</label>
-								<input type="text" class="form-control" name="studentNo" required>
+								<input type="text" class="form-control" name="studentNo1">
 							</div>
-						</div>
 
-						<div class="col-md-3">
-							<div class="form-group">
+							<div class="col-md-3 form-group">
 								<label>联系方式</label>
-								<input type="text" class="form-control" name="contact" required>
+								<input type="text" class="form-control" name="contact1">
 							</div>
 						</div>
-					</div>
 
-					<div class="row">
-						<div class="col-md-5">
-							<div class="form-group">
+						<div class="row">
+							<div class="col-md-5 form-group">
 								<label>学院</label>
-								<input type="text" class="form-control" name="college" required>
+								<input type="text" class="form-control" name="college1">
 							</div>
-						</div>
 
-						<div class="col-md-4">
-							<div class="form-group">
+							<div class="col-md-4 form-group">
 								<label>专业</label>
-								<input type="text" class="form-control" name="major" required>
+								<input type="text" class="form-control" name="major1">
 							</div>
-						</div>
 
-						<div class="col-md-3">
-							<div class="form-group">
+							<div class="col-md-3 form-group">
 								<label>校区</label>
-								<select class="form-control" name="campus" required>
+								<select class="form-control" name="campus1">
 									<option value="0"></option>
 									<option value="大学城校区">大学城校区</option>
 									<option value="五山校区">五山校区</option>
@@ -145,136 +176,55 @@
 						</div>
 					</div>
 					
-					<div class="team-member1" id="team-member1">
-						<div class="subblock">队员 1</div>
-						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>姓名</label>
-									<input type="text" class="form-control" name="teamMemberName1">
-								</div>
-							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<label>年级</label>
-									<select class="form-control" name="grade1">
-										<option value="0"></option>
-										<option value="2016级">2016级</option>
-										<option value="2015级">2015级</option>
-										<option value="2014级">2014级</option>
-										<option value="2013级">2013级</option>
-										<option value="2012级">2012级</option>
-									</select>
-								</div>
-							</div>
-
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>学号</label>
-									<input type="text" class="form-control" name="studentNo1">
-								</div>
-							</div>
-
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>联系方式</label>
-									<input type="text" class="form-control" name="contact1">
-								</div>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-5">
-								<div class="form-group">
-									<label>学院</label>
-									<input type="text" class="form-control" name="college1">
-								</div>
-							</div>
-
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>专业</label>
-									<input type="text" class="form-control" name="major1">
-								</div>
-							</div>
-
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>校区</label>
-									<select class="form-control" name="campus1">
-										<option value="0"></option>
-										<option value="大学城校区">大学城校区</option>
-										<option value="五山校区">五山校区</option>
-									</select>
-								</div>
-							</div>
-						</div>
-					</div>
-					
 					<div class="team-member2" id="team-member2">
 						<div class="subblock">队员 2</div>
 						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>姓名</label>
-									<input type="text" class="form-control" name="teamMemberName2">
-								</div>
+							<div class="col-md-4 form-group">
+								<label>姓名</label>
+								<input type="text" class="form-control" name="teamMemberName2">
 							</div>
 
-							<div class="col-md-2">
-								<div class="form-group">
-									<label>年级</label>
-									<select class="form-control" name="grade2">
-										<option value="0"></option>
-										<option value="2016级">2016级</option>
-										<option value="2015级">2015级</option>
-										<option value="2014级">2014级</option>
-										<option value="2013级">2013级</option>
-										<option value="2012级">2012级</option>
-									</select>
-								</div>
+							<div class="col-md-2 form-group">
+								<label>年级</label>
+								<select class="form-control" name="grade2">
+									<option value="0"></option>
+									<option value="2016级">2016级</option>
+									<option value="2015级">2015级</option>
+									<option value="2014级">2014级</option>
+									<option value="2013级">2013级</option>
+									<option value="2012级">2012级</option>
+								</select>
 							</div>
 
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>学号</label>
-									<input type="text" class="form-control" name="studentNo2">
-								</div>
+							<div class="col-md-3 form-group">
+								<label>学号</label>
+								<input type="text" class="form-control" name="studentNo2">
 							</div>
 
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>联系方式</label>
-									<input type="text" class="form-control" name="contact2">
-								</div>
+							<div class="col-md-3 form-group">
+								<label>联系方式</label>
+								<input type="text" class="form-control" name="contact2">
 							</div>
 						</div>
 
 						<div class="row">
-							<div class="col-md-5">
-								<div class="form-group">
-									<label>学院</label>
-									<input type="text" class="form-control" name="college2">
-								</div>
+							<div class="col-md-5 form-group">
+								<label>学院</label>
+								<input type="text" class="form-control" name="college2">
 							</div>
 
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>专业</label>
-									<input type="text" class="form-control" name="major2">
-								</div>
+							<div class="col-md-4 form-group">
+								<label>专业</label>
+								<input type="text" class="form-control" name="major2">
 							</div>
 
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>校区</label>
-									<select class="form-control" name="campus2">
-										<option value="0"></option>
-										<option value="大学城校区">大学城校区</option>
-										<option value="五山校区">五山校区</option>
-									</select>
-								</div>
+							<div class="col-md-3 form-group">
+								<label>校区</label>
+								<select class="form-control" name="campus2">
+									<option value="0"></option>
+									<option value="大学城校区">大学城校区</option>
+									<option value="五山校区">五山校区</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -282,66 +232,52 @@
 					<div class="team-member3" id="team-member3">
 						<div class="subblock">队员 3</div>
 						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>姓名</label>
-									<input type="text" class="form-control" name="teamMemberName3">
-								</div>
+							<div class="col-md-4 form-group">
+								<label>姓名</label>
+								<input type="text" class="form-control" name="teamMemberName3">
 							</div>
 
-							<div class="col-md-2">
-								<div class="form-group">
-									<label>年级</label>
-									<select class="form-control" name="grade3">
-										<option value="0"></option>
-										<option value="2016级">2016级</option>
-										<option value="2015级">2015级</option>
-										<option value="2014级">2014级</option>
-										<option value="2013级">2013级</option>
-										<option value="2012级">2012级</option>
-									</select>
-								</div>
+							<div class="col-md-2 form-group">
+								<label>年级</label>
+								<select class="form-control" name="grade3">
+									<option value="0"></option>
+									<option value="2016级">2016级</option>
+									<option value="2015级">2015级</option>
+									<option value="2014级">2014级</option>
+									<option value="2013级">2013级</option>
+									<option value="2012级">2012级</option>
+								</select>
 							</div>
 
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>学号</label>
-									<input type="text" class="form-control" name="studentNo3">
-								</div>
+							<div class="col-md-3 form-group">
+								<label>学号</label>
+								<input type="text" class="form-control" name="studentNo3">
 							</div>
 
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>联系方式</label>
-									<input type="text" class="form-control" name="contact3">
-								</div>
+							<div class="col-md-3 form-group">
+								<label>联系方式</label>
+								<input type="text" class="form-control" name="contact3">
 							</div>
 						</div>
 
 						<div class="row">
-							<div class="col-md-5">
-								<div class="form-group">
-									<label>学院</label>
-									<input type="text" class="form-control" name="college3">
-								</div>
+							<div class="col-md-5 form-group">
+								<label>学院</label>
+								<input type="text" class="form-control" name="college3">
 							</div>
 
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>专业</label>
-									<input type="text" class="form-control" name="major3">
-								</div>
+							<div class="col-md-4 form-group">
+								<label>专业</label>
+								<input type="text" class="form-control" name="major3">
 							</div>
 
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>校区</label>
-									<select class="form-control" name="campus3">
-										<option value="0"></option>
-										<option value="大学城校区">大学城校区</option>
-										<option value="五山校区">五山校区</option>
-									</select>
-								</div>
+							<div class="col-md-3 form-group">
+								<label>校区</label>
+								<select class="form-control" name="campus3">
+									<option value="0"></option>
+									<option value="大学城校区">大学城校区</option>
+									<option value="五山校区">五山校区</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -349,66 +285,52 @@
 					<div class="team-member4" id="team-member4">
 						<div class="subblock">队员 4</div>
 						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>姓名</label>
-									<input type="text" class="form-control" name="teamMemberName4">
-								</div>
+							<div class="col-md-4 form-group">
+								<label>姓名</label>
+								<input type="text" class="form-control" name="teamMemberName4">
 							</div>
 
-							<div class="col-md-2">
-								<div class="form-group">
-									<label>年级</label>
-									<select class="form-control" name="grade4">
-										<option value="0"></option>
-										<option value="2016级">2016级</option>
-										<option value="2015级">2015级</option>
-										<option value="2014级">2014级</option>
-										<option value="2013级">2013级</option>
-										<option value="2012级">2012级</option>
-									</select>
-								</div>
+							<div class="col-md-2 form-group">
+								<label>年级</label>
+								<select class="form-control" name="grade4">
+									<option value="0"></option>
+									<option value="2016级">2016级</option>
+									<option value="2015级">2015级</option>
+									<option value="2014级">2014级</option>
+									<option value="2013级">2013级</option>
+									<option value="2012级">2012级</option>
+								</select>
 							</div>
 
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>学号</label>
-									<input type="text" class="form-control" name="studentNo4">
-								</div>
+							<div class="col-md-3 form-group">
+								<label>学号</label>
+								<input type="text" class="form-control" name="studentNo4">
 							</div>
 
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>联系方式</label>
-									<input type="text" class="form-control" name="contact4">
-								</div>
+							<div class="col-md-3 form-group">
+								<label>联系方式</label>
+								<input type="text" class="form-control" name="contact4">
 							</div>
 						</div>
 
 						<div class="row">
-							<div class="col-md-5">
-								<div class="form-group">
-									<label>学院</label>
-									<input type="text" class="form-control" name="college4">
-								</div>
+							<div class="col-md-5 form-group">
+								<label>学院</label>
+								<input type="text" class="form-control" name="college4">
 							</div>
 
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>专业</label>
-									<input type="text" class="form-control" name="major4">
-								</div>
+							<div class="col-md-4 form-group">
+								<label>专业</label>
+								<input type="text" class="form-control" name="major4">
 							</div>
 
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>校区</label>
-									<select class="form-control" name="campus4">
-										<option value="0"></option>
-										<option value="大学城校区">大学城校区</option>
-										<option value="五山校区">五山校区</option>
-									</select>
-								</div>
+							<div class="col-md-3 form-group">
+								<label>校区</label>
+								<select class="form-control" name="campus4">
+									<option value="0"></option>
+									<option value="大学城校区">大学城校区</option>
+									<option value="五山校区">五山校区</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -416,18 +338,14 @@
 					<input type="button" class="btn btn-info" id="btn-add" onclick="addOneMember()" value="增加一名队员">
 
 					<div class="row captcha-area-register">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>验证码</label>
-								<input type="text" class="form-control" name="captcha" placeholder="请输入验证码" required>
-							</div>
+						<div class="col-md-6 form-group">
+							<label>验证码</label>
+							<input type="text" class="form-control" name="captcha" placeholder="请输入验证码" required>
 						</div>
 
-						<div class="col-md-6">
-							<div class="form-group">
-								<img id="captcha-img" src="../assets/captcha/captcha.php" onclick="freshCaptcha()" alt="验证码">&nbsp;&nbsp;&nbsp;
-								<a href="Javascript:freshCaptcha()">看不清，换一张</a>
-							</div>
+						<div class="col-md-6 form-group">
+							<img id="captcha-img" src="../assets/captcha/captcha.php" onclick="freshCaptcha()" alt="验证码">&nbsp;&nbsp;&nbsp;
+							<a href="Javascript:freshCaptcha()">看不清，换一张</a>
 						</div>
 					</div>
 				</div>
