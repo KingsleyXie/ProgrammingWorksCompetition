@@ -1,7 +1,7 @@
 //Global functions: Captcha Fresh & Logout
 function freshCaptcha() {
-	$('#captcha-img').attr('src', '../assets/captcha/captcha.php?'+Math.random());
-	$('#captcha').val('');
+	$("#captcha-img").attr('src', '../assets/captcha/captcha.php?'+Math.random());
+	$("#captcha").val('');
 }
 
 function logout() {
@@ -64,15 +64,15 @@ function checkForm() {
 		return false;
 	}
 
-	for (var i = 1; i < showed - 1; i++) {
+	for (var i = 1; i <= showed - 1; i++) {
 		//Todo: Complete this part
-		if (register.teamMemberName1.value == '' || 
-			register.studentNo1.value == '' || 
-			register.contact1.value == '' || 
-			register.college1.value == '' || 
-			register.major1.value == '' || 
-			register.grade1.value == 0 || 
-			register.campus1.value == 0) {
+		if ($("[name=teamMemberName" + i + "]").val() == '' || 
+			$("[name=studentNo" + i + "]").val() == '' || 
+			$("[name=contact" + i + "]").val() == '' || 
+			$("[name=college" + i + "]").val() == '' || 
+			$("[name=major" + i + "]").val() == '' || 
+			$("[name=grade" + i + "]").val() == 0 || 
+			$("[name=campus" + i + "]").val() == 0) {
 			alert('请将队员 ' + i + ' 信息填写完整！');
 			return false;
 		}
@@ -91,7 +91,7 @@ function checkForm() {
 //Code for 5 Pages: Load or Send Data
 function registerPrepare() {
 	$(document).ready(function() {
-		$('#register').submit(function(e) {
+		$("#register").submit(function(e) {
 			e.preventDefault();
 			if (checkForm()) {
 				$.ajax({
@@ -239,7 +239,7 @@ function teamsPrepare() {
 
 function loginPrepare() {
 	$(document).ready(function() {
-		$('#login').submit(function(e) {
+		$("#login").submit(function(e) {
 			e.preventDefault();
 			$.ajax({
 				type: 'POST',
@@ -279,7 +279,7 @@ function uploadPrepare() {
 		}
 	});
 
-	$('#file').fileinput({
+	$("#file").fileinput({
 		theme: 'explorer',
 		language: 'zh',
 		uploadUrl: 'upload.php',
@@ -335,7 +335,7 @@ function uploadPrepare() {
 		},
 	});
 
-	$('#file').on('fileuploaded', function(event, data, previewId, index) {
+	$("#file").on('fileuploaded', function(event, data, previewId, index) {
 		var msg = ['文件上传成功！', '请<a href=\'../login\'>登录</a>系统后提交文件！', '请选择上传文件！', '很抱歉，上传文件过大，请联系管理员', '上传失败，请使用简体中文、英文或数字命名文件', '上传失败，请尝试重新上传'];
 		if (data.response.code != 0) {
 			document.getElementById('info').className = 'alert alert-danger';
@@ -387,7 +387,7 @@ function forumPrepare() {
 	});
 	
 	$(document).ready(function() {
-		$('#leave-msg').submit(function(e) {
+		$("#leave-msg").submit(function(e) {
 			e.preventDefault();
 			$.ajax({
 				type: 'POST',
