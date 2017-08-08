@@ -1,405 +1,427 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="zh-cn">
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>报名页面</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../assets/css/competition.css" rel="stylesheet">
+	<title>报名页面</title>
 	<link rel="shortcut icon" href="../assets/pictures/icon.png">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/css/competition.css">
 </head>
 
 <body>
 	<div class="container">
 		<div class="modal-content">
-
-			<div class="form-title-pic">
-				<img class="form-pic" src="../assets/pictures/form-title-pic.png">
-			</div>
-
+			<img class="form-pic" src="../assets/pictures/form-title-pic.png">
 			<div class="form-title">编程作品设计大赛 · 报名表</div>
 
-			<form id="register-form">
+			<form id="register">
 				<div class="modal-body">
-					<div class="subtitle subtitle-register"> Part 1. 队伍信息 </div>
+					<div class="subtitle subtitle-register">Part 1. 队伍信息</div>
 					<div class="row">
 						<div class="col-md-8">
 							<div class="form-group">
 								<label>队名</label>
-								<input type="text" class="form-control" placeholder="请输入队伍名称" name="teamName" value="" />
+								<input type="text" class="form-control" name="teamName" placeholder="请输入队伍名称" required>
 							</div>
 						</div>
+
 						<div class="col-md-4">
 							<div class="form-group">
 								<label>参赛类型</label>
-								<select id="competition-type" name="competitionType" class="form-control">
-									<option value="0"> 请选择队伍参赛类型 </option>
-									<option value="1"> 作品赛 </option>
-									<option value="2"> 创意赛 </option>
+								<select class="form-control" name="competitionType">
+									<option value="0">请选择队伍参赛类型</option>
+									<option value="1">作品赛</option>
+									<option value="2">创意赛</option>
 								</select>
 							</div>
 						</div>
 					</div>
+
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>登录密码</label>
-								<input type="password" class="form-control" placeholder="请设置登录密码" name="password" value="" />
+								<input type="password" class="form-control" name="password" placeholder="请设置登录密码" required>
 							</div>
 						</div>
+
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>确认密码</label>
-								<input type="password" class="form-control" placeholder="请再次输入登录密码" name="passwordConfirm" value="" />
+								<input type="password" class="form-control" name="passwordConfirm" placeholder="请再次输入登录密码" required>
 							</div>
 						</div>
 					</div>
 
 					<div class="subtitle subtitle-register">Part 2. 成员信息</div>
-					<div id="teamLeader" class="teamLeader">
-						<div class="subblock">队长</div>
-						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>姓名</label>
-									<input type="text" class="form-control" name="teamLeaderName" value="" />
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="form-group">
-									<label>年级</label>
-									<select id="grade" name="grade" class="form-control">
-										<option value="0"></option>
-										<option value="2016级"> 2016级 </option>
-										<option value="2015级"> 2015级 </option>
-										<option value="2014级"> 2014级 </option>
-										<option value="2013级"> 2013级 </option>
-										<option value="2012级"> 2012级 </option>
-									</select>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>学号</label>
-									<input type="text" class="form-control"  name="studentNo" value="" />
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>联系方式</label>
-									<input type="text" class="form-control" name="contact" value="" />
-								</div>
+					<div class="subblock">队长</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>姓名</label>
+								<input type="text" class="form-control" name="teamLeaderName" required>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-5">
-								<div class="form-group">
-									<label>学院</label>
-									<input type="text" class="form-control"  name="college" value="" />
-								</div>
+
+						<div class="col-md-2">
+							<div class="form-group">
+								<label>年级</label>
+								<select class="form-control" name="grade">
+									<option value="0"></option>
+									<option value="2016级">2016级</option>
+									<option value="2015级">2015级</option>
+									<option value="2014级">2014级</option>
+									<option value="2013级">2013级</option>
+									<option value="2012级">2012级</option>
+								</select>
 							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>专业</label>
-									<input type="text" class="form-control"  name="major" value="" />
-								</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>学号</label>
+								<input type="text" class="form-control" name="studentNo" required>
 							</div>
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>校区</label>
-									<select id="campus" name="campus" class="form-control">
-										<option value="0"></option>
-										<option value="大学城校区"> 大学城校区 </option>
-										<option value="五山校区"> 五山校区 </option>
-									</select>
-								</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>联系方式</label>
+								<input type="text" class="form-control" name="contact" required>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-5">
+							<div class="form-group">
+								<label>学院</label>
+								<input type="text" class="form-control" name="college" required>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>专业</label>
+								<input type="text" class="form-control" name="major" required>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>校区</label>
+								<select class="form-control" name="campus" required>
+									<option value="0"></option>
+									<option value="大学城校区">大学城校区</option>
+									<option value="五山校区">五山校区</option>
+								</select>
 							</div>
 						</div>
 					</div>
 					
-					<div id="team-member1" class="team-member1">
+					<div class="team-member1" id="team-member1">
 						<div class="subblock">队员 1</div>
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>姓名</label>
-									<input type="text" class="form-control" name="teamMemberName1" value="" />
+									<input type="text" class="form-control" name="teamMemberName1">
 								</div>
 							</div>
+
 							<div class="col-md-2">
 								<div class="form-group">
 									<label>年级</label>
-									<select id="grade1" name="grade1" class="form-control">
+									<select class="form-control" name="grade1">
 										<option value="0"></option>
-										<option value="2016级"> 2016级 </option>
-										<option value="2015级"> 2015级 </option>
-										<option value="2014级"> 2014级 </option>
-										<option value="2013级"> 2013级 </option>
-										<option value="2012级"> 2012级 </option>
+										<option value="2016级">2016级</option>
+										<option value="2015级">2015级</option>
+										<option value="2014级">2014级</option>
+										<option value="2013级">2013级</option>
+										<option value="2012级">2012级</option>
 									</select>
 								</div>
 							</div>
+
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>学号</label>
-									<input type="text" class="form-control"  name="studentNo1" value="" />
+									<input type="text" class="form-control" name="studentNo1">
 								</div>
 							</div>
+
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>联系方式</label>
-									<input type="text" class="form-control" name="contact1" value="" />
+									<input type="text" class="form-control" name="contact1">
 								</div>
 							</div>
 						</div>
+
 						<div class="row">
 							<div class="col-md-5">
 								<div class="form-group">
 									<label>学院</label>
-									<input type="text" class="form-control"  name="college1" value="" />
+									<input type="text" class="form-control" name="college1">
 								</div>
 							</div>
+
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>专业</label>
-									<input type="text" class="form-control"  name="major1" value="" />
+									<input type="text" class="form-control" name="major1">
 								</div>
 							</div>
+
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>校区</label>
-									<select id="campus1" name="campus1" class="form-control">
+									<select class="form-control" name="campus1">
 										<option value="0"></option>
-										<option value="大学城校区"> 大学城校区 </option>
-										<option value="五山校区"> 五山校区 </option>
+										<option value="大学城校区">大学城校区</option>
+										<option value="五山校区">五山校区</option>
 									</select>
 								</div>
 							</div>
 						</div>
 					</div>
 					
-					<div id="team-member2" class="team-member2">
+					<div class="team-member2" id="team-member2">
 						<div class="subblock">队员 2</div>
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>姓名</label>
-									<input type="text" class="form-control" name="teamMemberName2" value="" />
+									<input type="text" class="form-control" name="teamMemberName2">
 								</div>
 							</div>
+
 							<div class="col-md-2">
 								<div class="form-group">
 									<label>年级</label>
-									<select id="grade2" name="grade2" class="form-control">
+									<select class="form-control" name="grade2">
 										<option value="0"></option>
-										<option value="2016级"> 2016级 </option>
-										<option value="2015级"> 2015级 </option>
-										<option value="2014级"> 2014级 </option>
-										<option value="2013级"> 2013级 </option>
-										<option value="2012级"> 2012级 </option>
+										<option value="2016级">2016级</option>
+										<option value="2015级">2015级</option>
+										<option value="2014级">2014级</option>
+										<option value="2013级">2013级</option>
+										<option value="2012级">2012级</option>
 									</select>
 								</div>
 							</div>
+
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>学号</label>
-									<input type="text" class="form-control"  name="studentNo2" value="" />
+									<input type="text" class="form-control" name="studentNo2">
 								</div>
 							</div>
+
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>联系方式</label>
-									<input type="text" class="form-control" name="contact2" value="" />
+									<input type="text" class="form-control" name="contact2">
 								</div>
 							</div>
 						</div>
+
 						<div class="row">
 							<div class="col-md-5">
 								<div class="form-group">
 									<label>学院</label>
-									<input type="text" class="form-control"  name="college2" value="" />
+									<input type="text" class="form-control" name="college2">
 								</div>
 							</div>
+
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>专业</label>
-									<input type="text" class="form-control"  name="major2" value="" />
+									<input type="text" class="form-control" name="major2">
 								</div>
 							</div>
+
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>校区</label>
-									<select id="campus2" name="campus2" class="form-control">
+									<select class="form-control" name="campus2">
 										<option value="0"></option>
-										<option value="大学城校区"> 大学城校区 </option>
-										<option value="五山校区"> 五山校区 </option>
+										<option value="大学城校区">大学城校区</option>
+										<option value="五山校区">五山校区</option>
 									</select>
 								</div>
 							</div>
 						</div>
 					</div>
 					
-					<div id="team-member3" class="team-member3">
+					<div class="team-member3" id="team-member3">
 						<div class="subblock">队员 3</div>
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>姓名</label>
-									<input type="text" class="form-control" name="teamMemberName3" value="" />
+									<input type="text" class="form-control" name="teamMemberName3">
 								</div>
 							</div>
+
 							<div class="col-md-2">
 								<div class="form-group">
 									<label>年级</label>
-									<select id="grade3" name="grade3" class="form-control">
+									<select class="form-control" name="grade3">
 										<option value="0"></option>
-										<option value="2016级"> 2016级 </option>
-										<option value="2015级"> 2015级 </option>
-										<option value="2014级"> 2014级 </option>
-										<option value="2013级"> 2013级 </option>
-										<option value="2012级"> 2012级 </option>
+										<option value="2016级">2016级</option>
+										<option value="2015级">2015级</option>
+										<option value="2014级">2014级</option>
+										<option value="2013级">2013级</option>
+										<option value="2012级">2012级</option>
 									</select>
 								</div>
 							</div>
+
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>学号</label>
-									<input type="text" class="form-control"  name="studentNo3" value="" />
+									<input type="text" class="form-control" name="studentNo3">
 								</div>
 							</div>
+
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>联系方式</label>
-									<input type="text" class="form-control" name="contact3" value="" />
+									<input type="text" class="form-control" name="contact3">
 								</div>
 							</div>
 						</div>
+
 						<div class="row">
 							<div class="col-md-5">
 								<div class="form-group">
 									<label>学院</label>
-									<input type="text" class="form-control"  name="college3" value="" />
+									<input type="text" class="form-control" name="college3">
 								</div>
 							</div>
+
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>专业</label>
-									<input type="text" class="form-control"  name="major3" value="" />
+									<input type="text" class="form-control" name="major3">
 								</div>
 							</div>
+
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>校区</label>
-									<select id="campus3" name="campus3" class="form-control">
+									<select class="form-control" name="campus3">
 										<option value="0"></option>
-										<option value="大学城校区"> 大学城校区 </option>
-										<option value="五山校区"> 五山校区 </option>
+										<option value="大学城校区">大学城校区</option>
+										<option value="五山校区">五山校区</option>
 									</select>
 								</div>
 							</div>
 						</div>
 					</div>
 					
-					<div id="team-member4" class="team-member4">
+					<div class="team-member4" id="team-member4">
 						<div class="subblock">队员 4</div>
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>姓名</label>
-									<input type="text" class="form-control" name="teamMemberName4" value="" />
+									<input type="text" class="form-control" name="teamMemberName4">
 								</div>
 							</div>
+
 							<div class="col-md-2">
 								<div class="form-group">
 									<label>年级</label>
-									<select id="grade4" name="grade4" class="form-control">
+									<select class="form-control" name="grade4">
 										<option value="0"></option>
-										<option value="2016级"> 2016级 </option>
-										<option value="2015级"> 2015级 </option>
-										<option value="2014级"> 2014级 </option>
-										<option value="2013级"> 2013级 </option>
-										<option value="2012级"> 2012级 </option>
+										<option value="2016级">2016级</option>
+										<option value="2015级">2015级</option>
+										<option value="2014级">2014级</option>
+										<option value="2013级">2013级</option>
+										<option value="2012级">2012级</option>
 									</select>
 								</div>
 							</div>
+
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>学号</label>
-									<input type="text" class="form-control"  name="studentNo4" value="" />
+									<input type="text" class="form-control" name="studentNo4">
 								</div>
 							</div>
+
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>联系方式</label>
-									<input type="text" class="form-control" name="contact4" value="" />
+									<input type="text" class="form-control" name="contact4">
 								</div>
 							</div>
 						</div>
+
 						<div class="row">
 							<div class="col-md-5">
 								<div class="form-group">
 									<label>学院</label>
-									<input type="text" class="form-control"  name="college4" value="" />
+									<input type="text" class="form-control" name="college4">
 								</div>
 							</div>
+
 							<div class="col-md-4">
 								<div class="form-group">
 									<label>专业</label>
-									<input type="text" class="form-control"  name="major4" value="" />
+									<input type="text" class="form-control" name="major4">
 								</div>
 							</div>
+
 							<div class="col-md-3">
 								<div class="form-group">
 									<label>校区</label>
-									<select id="campus4" name="campus4" class="form-control">
+									<select class="form-control" name="campus4">
 										<option value="0"></option>
-										<option value="大学城校区"> 大学城校区 </option>
-										<option value="五山校区"> 五山校区 </option>
+										<option value="大学城校区">大学城校区</option>
+										<option value="五山校区">五山校区</option>
 									</select>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<input id="btn-add" class="btn btn-info" type="button" onclick="addOneMember()" value="增加一名队员"/>
-
+					<input type="button" class="btn btn-info" id="btn-add" onclick="addOneMember()" value="增加一名队员">
 
 					<div class="row captcha-area-register">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>验证码</label>
-								<input type="text" name="captcha" class="form-control" id="captcha" placeholder="请输入验证码"/>
+								<input type="text" class="form-control" name="captcha" placeholder="请输入验证码" required>
 							</div>
 						</div>
+
 						<div class="col-md-6">
 							<div class="form-group">
 								<img id="captcha-img" src="../assets/captcha/captcha.php" onclick="freshCaptcha()" alt="验证码">&nbsp;&nbsp;&nbsp;
-								<a href="javascript:freshCaptcha()">看不清，换一张</a>
+								<a href="Javascript:freshCaptcha()">看不清，换一张</a>
 							</div>
 						</div>
 					</div>
 				</div>
+
 				<div class="modal-footer">
-					<input class="btn btn-lg btn-primary btn-block" value="确认报名" type="submit"/> 
+					<input type="submit" class="btn btn-lg btn-primary btn-block" value="确认报名">
 				</div>
 			</form>
 
-			<div class="form-bottom-pic">
-				<img class="form-pic" src="../assets/pictures/form-bottom-pic.png">
-			</div>
-
+			<img class="form-pic" src="../assets/pictures/form-bottom-pic.png">
 		</div>
 	</div>
 
-
-
 	<div class="copyright">Copyright © 2017 <a href="https://github.com/KingsleyXie/CompetitionRegistrationSystem">Kingsley</a></div>
-	
-
 
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="../assets/js/competition.js"></script>
-	<script type="text/javascript">registerPrepare();</script>
+	<script>registerPrepare();</script>
 </body>
 </html>

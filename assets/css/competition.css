@@ -95,26 +95,29 @@
 	font-size: 135%;
 }
 @media (min-width: 520px) {
-	.form-title-pic {
+	.form-pic {
 		display: none;
 	}
-	.form-bottom-pic {
-		display: none;
-	}
+}
+.form-pic {
+	width: 100%;
 }
 @media (max-width: 520px) {
 	.form-title {
 		display: none;
 	}
 }
+.form-title {
+	margin-top: 15px;
+	margin-bottom: 20px;
+	text-align:center;
+	font-size: 36px;
+}
 .team-member1, .team-member2, .team-member3, .team-member4 {
 	display: none;
 	margin-top: 15px;
 	padding-top: 10px;
 	border-top: 1px solid #e5e5e5;
-}
-.form-pic {
-	width: 100%;
 }
 .modal-body {
 	padding-top: 0px;
@@ -127,12 +130,6 @@
 }
 .teams-leader {
 	background-color: #f5f5f5 ;
-}
-.form-title {
-	margin-top: 15px;
-	margin-bottom: 20px;
-	text-align:center;
-	font-size: 36px;
 }
 .subblock-deprecated {
 	width: 11em !important;

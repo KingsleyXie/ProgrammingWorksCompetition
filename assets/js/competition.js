@@ -39,46 +39,46 @@ function addOneMember() {
 	}
 }
 
-function Checker() {
-	if (registerform.teamName.value == '' || 
-		registerform.password.value == '' || 
-		registerform.passwordConfirm.value == '' || 
-		registerform.competitionType.value == 0) {
+function checkForm() {
+	if (register.teamName.value == '' || 
+		register.password.value == '' || 
+		register.passwordConfirm.value == '' || 
+		register.competitionType.value == 0) {
 		alert('请将队伍基本报名信息填写完整！');
 		return false;
 	}
 
-	if (registerform.password.value != registerform.passwordConfirm.value) {
+	if (register.password.value != register.passwordConfirm.value) {
 		alert('两次输入密码不一致！');
 		return false;
 	}
 
-	if (registerform.teamLeaderName.value == '' || 
-		registerform.studentNo.value == '' || 
-		registerform.contact.value == '' || 
-		registerform.college.value == '' || 
-		registerform.major.value == '' || 
-		registerform.grade.value == 0 || 
-		registerform.campus.value == 0) {
+	if (register.teamLeaderName.value == '' || 
+		register.studentNo.value == '' || 
+		register.contact.value == '' || 
+		register.college.value == '' || 
+		register.major.value == '' || 
+		register.grade.value == 0 || 
+		register.campus.value == 0) {
 		alert('请将队长信息填写完整！');
 		return false;
 	}
 
 	for (var i = 1; i < showed - 1; i++) {
 		//Todo: Complete this part
-		if (registerform.teamMemberName1.value == '' || 
-			registerform.studentNo1.value == '' || 
-			registerform.contact1.value == '' || 
-			registerform.college1.value == '' || 
-			registerform.major1.value == '' || 
-			registerform.grade1.value == 0 || 
-			registerform.campus1.value == 0) {
+		if (register.teamMemberName1.value == '' || 
+			register.studentNo1.value == '' || 
+			register.contact1.value == '' || 
+			register.college1.value == '' || 
+			register.major1.value == '' || 
+			register.grade1.value == 0 || 
+			register.campus1.value == 0) {
 			alert('请将队员 ' + i + ' 信息填写完整！');
 			return false;
 		}
 	}
 
-	if (registerform.captcha.value == '') {
+	if (register.captcha.value == '') {
 		alert('请输入验证码!')
 		return false;
 	}
@@ -294,9 +294,9 @@ function forumPrepare() {
 
 function registerPrepare() {
 	$(document).ready(function() {
-		$('#register-form').submit(function(e) {
+		$('#register').submit(function(e) {
 			e.preventDefault();
-			if (Checker()) {
+			if (checkForm()) {
 				$.ajax({
 					type: 'POST',
 					url: 'register.php',
