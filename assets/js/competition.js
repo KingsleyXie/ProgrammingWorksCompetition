@@ -89,6 +89,43 @@ function checkForm() {
 
 
 //Code for 5 Pages: Load or Send Data
+function registerPrepare() {
+	$(document).ready(function() {
+		$('#register').submit(function(e) {
+			e.preventDefault();
+			if (checkForm()) {
+				$.ajax({
+					type: 'POST',
+					url: 'register.php',
+					data: $(this).serialize(),
+					success: function(response)
+					{
+						if (response.code == 1)
+							alert('验证码错误！');
+						if (response.code == 2)
+							alert('两次输入密码不一致！');
+						if (response.code == 3)
+							alert('该队名已存在，请更换');
+						if (response.code == 4)
+							alert('不要调皮哦');
+						if (response.code == 5)
+							alert('注册失败，请重新报名');
+						if (response.code == 0) {
+							var competitionName = response.competitionType == 1 ? '作品赛' : '创意赛';
+							alert('报名成功！\n\n\n' + 
+								'请记住队伍 ID ：' + response.teamID + 
+								'\n\n队伍名：' + response.teamName + 
+								'\n\n参赛类型 ：' + competitionName);
+							freshCaptcha();
+							window.location.href = '../teams';
+						}
+					}
+				});
+			}
+		});
+	});
+}
+
 function teamsPrepare() {
 	$.ajax({
 		type: 'POST',
@@ -226,106 +263,6 @@ function loginPrepare() {
 	});
 }
 
-function forumPrepare() {
-	$.ajax({
-		type: 'POST',
-		url: 'showMsg.php',
-		success: function(response)
-		{
-			for (var i = 0; i < response.length; i++) {
-				document.getElementById('messages').innerHTML +=
-				'<div class="container">' +
-					'<div class="row clearfix">' +
-						'<div class="col-md-12 column">' +
-							'<div class="panel panel-default">' +
-								'<div class="panel-heading msg-heading">' +
-									'<div class="panel-title">' +
-										'<div class="pull-left msg-no"> #' + (response.length - i) +  '</div>' +
-										'<div class="pull-left">' + response[i].nickname + '</div>' +
-										'<div class="pull-right msg-time">' +
-											//Note: The following two icons are surrounded with 3 spaces, 
-											//in order to make an easier separation
-											'<i class="fa fa-calendar"></i> ' + response[i].calendarTime +
-											' <i class="fa fa-clock-o"></i> ' + response[i].clockTime + 
-										'</div>' +
-									'</div>' +
-								'</div>' +
-								'<div class="row panel-body">' +
-									'<div class="col-md-9 msg">' + response[i].message + '</div>' +
-								'</div>' +
-							'</div>' +
-						'</div>' +
-					'</div>' +
-				'</div>';
-			}
-		}
-	});
-	
-	$(document).ready(function() {
-		$('#leave-msg-form').submit(function(e) {
-			e.preventDefault();
-			$.ajax({
-				type: 'POST',
-				url: 'leaveMsg.php',
-				data: $(this).serialize(),
-				success: function(response)
-				{
-					if (response.code == 0) {
-						alert('留言成功！');
-						window.location.href = './';
-					}
-					if (response.code == 1) {
-						alert('验证码错误！');
-					}
-					if (response.code == 2) {
-						alert('昵称太长啦~ 精简一下吧');
-					}
-					if (response.code == 3) {
-						alert('你们呐，不要老喜欢搞个大新闻，就说自己是管理员\n\n再不改昵称，将来留言板上出了偏差你们是要负责任的');
-					}
-					if (response.code == 4) {
-						alert('留言失败，请尝试重新提交');
-					}
-				}
-			});
-		});
-	});
-}
-
-function registerPrepare() {
-	$(document).ready(function() {
-		$('#register').submit(function(e) {
-			e.preventDefault();
-			if (checkForm()) {
-				$.ajax({
-					type: 'POST',
-					url: 'register.php',
-					data: $(this).serialize(),
-					success: function(response)
-					{
-						if (response.code == 1)
-							alert('验证码错误！');
-						if (response.code == 2)
-							alert('两次输入密码不一致！');
-						if (response.code == 3)
-							alert('该队名已存在，请更换');
-						if (response.code == 4)
-							alert('不要调皮哦');
-						if (response.code == 5)
-							alert('注册失败，请重新报名');
-						if (response.code == 0) {
-							var competitionName = response.competitionType == 1 ? '作品赛' : '创意赛';
-							alert('报名成功！\n\n\n请记住队伍 ID ：' + response.teamID + '\n\n队伍名：' + response.teamName + '\n\n参赛类型 ：' + competitionName);
-							freshCaptcha();
-							window.location.href = '../teams';
-						}
-					}
-				});
-			}
-		});
-	});
-}
-
 function uploadPrepare() {
 	$.ajax({
 		type: 'JSON',
@@ -411,5 +348,71 @@ function uploadPrepare() {
 				window.location.href = './';
 			}, 6000);  
 		}
+	});
+}
+
+function forumPrepare() {
+	$.ajax({
+		type: 'POST',
+		url: 'showMsg.php',
+		success: function(response)
+		{
+			for (var i = 0; i < response.length; i++) {
+				document.getElementById('messages').innerHTML +=
+				'<div class="container">' +
+					'<div class="row clearfix">' +
+						'<div class="col-md-12 column">' +
+							'<div class="panel panel-default">' +
+								'<div class="panel-heading msg-heading">' +
+									'<div class="panel-title">' +
+										'<div class="pull-left msg-no"> #' + (response.length - i) +  '</div>' +
+										'<div class="pull-left">' + response[i].nickname + '</div>' +
+										'<div class="pull-right msg-time">' +
+											//Note: The following two icons are surrounded with 3 spaces, 
+											//in order to make an easier separation
+											'<i class="fa fa-calendar"></i> ' + response[i].calendarTime +
+											' <i class="fa fa-clock-o"></i> ' + response[i].clockTime + 
+										'</div>' +
+									'</div>' +
+								'</div>' +
+								'<div class="row panel-body">' +
+									'<div class="col-md-9 msg">' + response[i].message + '</div>' +
+								'</div>' +
+							'</div>' +
+						'</div>' +
+					'</div>' +
+				'</div>';
+			}
+		}
+	});
+	
+	$(document).ready(function() {
+		$('#leave-msg-form').submit(function(e) {
+			e.preventDefault();
+			$.ajax({
+				type: 'POST',
+				url: 'leaveMsg.php',
+				data: $(this).serialize(),
+				success: function(response)
+				{
+					if (response.code == 0) {
+						alert('留言成功！');
+						window.location.href = './';
+					}
+					if (response.code == 1) {
+						alert('验证码错误！');
+					}
+					if (response.code == 2) {
+						alert('昵称太长啦~ 精简一下吧');
+					}
+					if (response.code == 3) {
+						alert('你们呐，不要老喜欢搞个大新闻，就说自己是管理员\n\n再不改昵称，将来留言板上出了偏差你们是要负责任的');
+					}
+					if (response.code == 4) {
+						alert('留言失败，请尝试重新提交');
+					}
+				}
+			});
+		});
 	});
 }
