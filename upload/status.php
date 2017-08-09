@@ -1,6 +1,6 @@
 <?php
-header('Content-Type: application/json');
 session_start();
+header('Content-Type: application/json');
 require_once('../assets/config.php');
 
 $loggedIn = 0;
@@ -16,4 +16,3 @@ if ($loggedIn && is_dir($directory)) {
 
 $response = array('loggedIn' => $loggedIn, 'dirExist' => $dirExist);
 echo json_encode($response);
-?>

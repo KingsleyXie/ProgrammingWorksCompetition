@@ -261,8 +261,10 @@ function loginPrepare() {
 						alert('验证码错误！');
 						freshCaptcha();
 					}
-					if (response.code == 2)
+					if (response.code == 2) {
 						alert('队伍 ID 或登录密码错误！');
+						freshCaptcha();
+					}
 					if (response.code == 3)
 						alert('不要调皮哦');
 					if (response.code == 0) {
@@ -354,7 +356,8 @@ function uploadPrepare() {
 			' 文件大小：' + data.response.filesize + 'MB</h4>',
 
 			'请<a href=\'../login\'>登录</a>系统后提交文件！',
-			'请选择上传文件！', '很抱歉，上传文件过大，请联系管理员',
+			'请选择上传文件！',
+			'很抱歉，上传文件过大，请联系管理员',
 			'上传失败，请使用简体中文、英文或数字命名文件',
 			'上传失败，请尝试重新上传'
 		];
