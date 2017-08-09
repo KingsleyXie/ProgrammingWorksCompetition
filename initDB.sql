@@ -1,7 +1,8 @@
-CREATE DATABASE IF NOT EXISTS Competition_DB_Name DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE Competition_DB_Name;
+DROP DATABASE IF EXISTS competition;
+CREATE DATABASE competition DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE competition;
 
-CREATE TABLE IF NOT EXISTS `productionTeams`(
+CREATE TABLE `productionTeams`(
   `teamID` INTEGER NOT NULL AUTO_INCREMENT,
   `teamName` VARCHAR(90) NOT NULL,
   `registerTime` TIMESTAMP NOT NULL,
@@ -11,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `productionTeams`(
   UNIQUE KEY `teamID_UNIQUE`(`teamID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 AUTO_INCREMENT=1001;
 
-CREATE TABLE IF NOT EXISTS `creativityTeams`(
+CREATE TABLE `creativityTeams`(
   `teamID` INTEGER NOT NULL AUTO_INCREMENT,
   `teamName` VARCHAR(90) NOT NULL,
   `registerTime` TIMESTAMP NOT NULL,
@@ -21,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `creativityTeams`(
   UNIQUE KEY `teamID_UNIQUE`(`teamID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 AUTO_INCREMENT=2001;
 
-CREATE TABLE IF NOT EXISTS `students`(
+CREATE TABLE `students`(
   `studentID` INTEGER NOT NULL AUTO_INCREMENT,
   `studentName` VARCHAR(90) NOT NULL,
   `studentNo` VARCHAR(90) NOT NULL,
@@ -36,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `students`(
   UNIQUE KEY `studentID_UNIQUE`(`studentID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-CREATE TABLE IF NOT EXISTS `forum`(
+CREATE TABLE `forum`(
   `ID` INTEGER NOT NULL AUTO_INCREMENT,
   `nickname` VARCHAR(30) NOT NULL,
   `message` VARCHAR(200) NOT NULL,
@@ -45,23 +46,32 @@ CREATE TABLE IF NOT EXISTS `forum`(
   UNIQUE KEY `ID_UNIQUE`(`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+-- This is the first and default message to be showed in forum:
+INSERT INTO `forum` (`nickname`, `message`, `postTime`)
+  VALUES
+    ('管理员', '大家好~ 讨论留言功能已经上线啦，欢迎大家热情参与哦', NOW());
 
 
+
+
+
+/*
 -- The following data are made for test while developing the system
-
 INSERT INTO `productionTeams` (`teamName`, `registerTime`, `pwdSHA256`)
   VALUES
-    ('怒斥香港记者队', NOW(), '124640BF2792A0CDCE2C04E13326D67BF013BAC6CE546616B04888E7C4E68631'),
-    ('视察二院队', NOW(), '124640BF2792A0CDCE2C04E13326D67BF013BAC6CE546616B04888E7C4E68631'),
-    ('华莱士访谈队', NOW(), '124640BF2792A0CDCE2C04E13326D67BF013BAC6CE546616B04888E7C4E68631');
+    ('怒斥香港记者队', NOW(), '124640bf2792a0cdce2c04e13326d67bf013bac6ce546616b04888e7c4e68631'),
+    ('视察二院队', NOW(), '124640bf2792a0cdce2c04e13326d67bf013bac6ce546616b04888e7c4e68631'),
+    ('华莱士访谈队', NOW(), '124640bf2792a0cdce2c04e13326d67bf013bac6ce546616b04888e7c4e68631');
 
 INSERT INTO `creativityTeams` (`teamName`, `registerTime`, `pwdSHA256`)
   VALUES
-    ('怒斥香港记者队', NOW(), '124640BF2792A0CDCE2C04E13326D67BF013BAC6CE546616B04888E7C4E68631'),
-    ('视察二院队', NOW(), '124640BF2792A0CDCE2C04E13326D67BF013BAC6CE546616B04888E7C4E68631'),
-    ('华莱士访谈队', NOW(), '124640BF2792A0CDCE2C04E13326D67BF013BAC6CE546616B04888E7C4E68631');
+    ('怒斥香港记者队', NOW(), '124640bf2792a0cdce2c04e13326d67bf013bac6ce546616b04888e7c4e68631'),
+    ('视察二院队', NOW(), '124640bf2792a0cdce2c04e13326d67bf013bac6ce546616b04888e7c4e68631'),
+    ('华莱士访谈队', NOW(), '124640bf2792a0cdce2c04e13326d67bf013bac6ce546616b04888e7c4e68631');
 
--- Passwords for these six teams are all '2333'
+-- Note: Passwords for these six teams are all '2333'
+
+
 
 INSERT INTO `students` (`studentName`, `studentNo`, `contact`, `campus`, `college`, `major`, `grade`, `teamID`, `teamCharacter`)
 	VALUES
@@ -81,10 +91,13 @@ INSERT INTO `students` (`studentName`, `studentNo`, `contact`, `campus`, `colleg
     ('郭伟华', '201522223333', '15923336666', '大学城校区', '膜法科学与工程学院', '膜法科学与技术', '2016级', 2002, 'teamMember'),
     ('Elder', '201522223333', '15923336666', '五山校区', '外国语学院', '英语交流与访谈', '2013级', 2003, 'teamLeader'),
     ('华莱士', '201522223333', '15923336666', '大学城校区', '外国语学院', '英语交流与访谈', '2012级', 2003, 'teamMember');
-    
 
-INSERT INTO `forum` (`nickname`, `message`, `postTime`)
-  VALUES
-    ('管理员', '大家好~ 讨论留言功能已经上线啦，欢迎大家热情参与哦', NOW());
-
--- There are actually lots of mogic data in `forum` table for test, but I don't dare to upload it, hahaha.
+-- Show All teams' information
+SELECT productionTeams.*, students.*
+FROM productionTeams INNER JOIN students
+ON productionTeams.teamID = students.teamID
+UNION ALL
+SELECT creativityTeams.*, students.*
+FROM creativityTeams INNER JOIN students
+ON creativityTeams.teamID = students.teamID;
+*/
