@@ -1,7 +1,6 @@
 //Global functions: Captcha Fresh & Logout
 function freshCaptcha() {
-	$("#captcha-img").attr('src', '../assets/captcha/captcha.php?'+Math.random());
-	$("#captcha").val('');
+	$("#captcha-img").attr('src', '../assets/captcha/captcha.php');
 }
 
 function logout() {
