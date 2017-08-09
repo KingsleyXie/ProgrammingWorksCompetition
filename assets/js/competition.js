@@ -20,21 +20,21 @@ function logout() {
 var MAXN = 3, showed = 1;
 
 function addOneMember() {
-	if (document.getElementById('competition-type').value == 0) {
+	if ($("#competition-type").val() == 0) {
 		alert('请选择队伍参赛类型！');
 		return;
 	}
 
-	if (document.getElementById('competition-type').value == 1) {
+	if ($("#competition-type").val() == 1) {
 		MAXN = 5;
 	}
 
-	document.getElementById('team-member' + showed).style.display = 'block';
+	$("#team-member" + showed).show();
 
 	showed = showed + 1;
 
 	if (showed == MAXN) {
-		document.getElementById('btn-add').style.display = 'none';
+		$("#btn-add").hide();
 	}
 }
 
@@ -64,7 +64,6 @@ function checkForm() {
 	}
 
 	for (var i = 1; i <= showed - 1; i++) {
-		//Todo: Complete this part
 		if ($("[name=teamMemberName" + i + "]").val() == '' || 
 			$("[name=studentNo" + i + "]").val() == '' || 
 			$("[name=contact" + i + "]").val() == '' || 
@@ -99,8 +98,10 @@ function registerPrepare() {
 					data: $(this).serialize(),
 					success: function(response)
 					{
-						if (response.code == 1)
+						if (response.code == 1) {
 							alert('验证码错误！');
+							freshCaptcha();
+						}
 						if (response.code == 2)
 							alert('两次输入密码不一致！');
 						if (response.code == 3)
@@ -110,11 +111,17 @@ function registerPrepare() {
 						if (response.code == 5)
 							alert('注册失败，请重新报名');
 						if (response.code == 0) {
-							var competitionName = response.competitionType == 1 ? '作品赛' : '创意赛';
-							alert('报名成功！\n\n\n' + 
-								'请记住队伍 ID ：' + response.teamID + 
+							var competitionName =
+								response.competitionType == 1 ?
+								'作品赛' : '创意赛';
+
+							alert(
+								'报名成功！\n' + 
+								'\n\n请记住队伍 ID ：' + response.teamID + 
 								'\n\n队伍名：' + response.teamName + 
-								'\n\n参赛类型 ：' + competitionName);
+								'\n\n参赛类型 ：' + competitionName
+								);
+
 							freshCaptcha();
 							window.location.href = '../teams';
 						}
@@ -132,11 +139,12 @@ function teamsPrepare() {
 		success: function(response)
 		{
 			if (response[0].loggedIn == 1) {
-				document.getElementById('logged-in-team').innerHTML +=
-				'<button class="btn btn-lg btn-primary btn-block" onclick="window.location.href=\'../login\'">登录以查看</button>';
+				$("#logged-in-team").append(
+				'<button class="btn btn-lg btn-primary btn-block" onclick="window.location.href=\'../login\'">登录以查看</button>'
+				);
 			}
 			if (response[0].loggedIn == 0) {
-				document.getElementById('logged-in-team').innerHTML +=
+				$("#logged-in-team").append(
 				'<div class="table-responsive">' +
 					'<table class="table table-bordered">' +
 						'<thead>' +
@@ -150,12 +158,12 @@ function teamsPrepare() {
 						'</thead>' +
 						'<tbody id="logged-in-team-info"></tbody>' +
 					'</table>' +
-				'</div>';
+				'</div>');
 			}
 
 			for(var i = 1; i < response.length; i++) {
 				if (response[0].loggedIn == 0 && !(response[i].teamID > 1000)) {
-					document.getElementById('logged-in-team-info').innerHTML +=
+					$("#logged-in-team-info").append(
 					'<tr>' +
 						'<td>' + response[i].studentName + '</td>' +
 						'<td>' + response[i].studentNo + '</td>' +
@@ -164,14 +172,16 @@ function teamsPrepare() {
 						'<td>' + response[i].college + '</td>' +
 						'<td>' + response[i].major + '</td>' +
 						'<td>' + response[i].grade + '</td>' +
-					'</tr>';
+					'</tr>');
 				}
 
 				if(response[i].teamID > 1000) {
-					var teamType = response[i].teamID > 2000 ? 'creativity-teams' : 'production-teams';
+					var teamType =
+						response[i].teamID > 2000 ?
+						'creativity-teams' : 'production-teams';
+					$("#" + teamType + "-placeholder").hide();
 
-					document.getElementById(teamType + '-placeholder').style.display = 'none';
-					document.getElementById(teamType).innerHTML +=
+					$("#" + teamType).append(
 					'<div class="container">' +
 						'<div class="row clearfix">' +
 							'<div class="col-md-12 column">' +
@@ -191,9 +201,9 @@ function teamsPrepare() {
 								'</div>' +
 							'</div>' +
 						'</div>' +
-					'</div>';
+					'</div>');
 
-					document.getElementById('team' + response[i].teamID).innerHTML +=
+					$("#team" + response[i].teamID).append(
 					'<table class="table table-bordered">' +
 						'<thead>' +
 							'<th> 姓名 </th>' +
@@ -202,35 +212,36 @@ function teamsPrepare() {
 							'<th> 专业 </th>' +
 							'<th> 年级 </th>' +
 						'</thead>' +
-						'<tbody id="teaminfo' + response[i].teamID + '"></tbody>' +
-					'</table>';
+						'<tbody id="team-info' + response[i].teamID + '"></tbody>' +
+					'</table>');
 
-					document.getElementById('teaminfo' + response[i].teamID).innerHTML +=
+					$("#team-info" + response[i].teamID).append(
 					'<tr class="teams-leader">' +
 						'<td>' + response[i].students[0].studentName + '</td>' +
 						'<td>' + response[i].students[0].campus + '</td>' +
 						'<td>' + response[i].students[0].college + '</td>' +
 						'<td>' + response[i].students[0].major + '</td>' +
 						'<td>' + response[i].students[0].grade + '</td>' +
-					'</tr>';
+					'</tr>');
 					
 					for (var stu = 1; stu < response[i].students.length; stu++) {
-						document.getElementById('teaminfo' + response[i].teamID).innerHTML +=
+						$("#team-info" + response[i].teamID).append(
 						'<tr>' +
 							'<td>' + response[i].students[stu].studentName + '</td>' +
 							'<td>' + response[i].students[stu].campus + '</td>' +
 							'<td>' + response[i].students[stu].college + '</td>' +
 							'<td>' + response[i].students[stu].major + '</td>' +
 							'<td>' + response[i].students[stu].grade + '</td>' +
-						'</tr>';
+						'</tr>');
 					}
 				}
 			}
 
 			if (response[0].loggedIn == 0) {
-				document.getElementById('logged-in-team').innerHTML +=
+				$("#logged-in-team").append(
 				'<input class="btn btn-primary btn-lg btn-left" onclick="window.location.href=\'../upload\'" type="submit" value="上传作品"/>' +
-				'<input class="btn btn-primary btn-lg btn-right" onclick="logout()" type="submit" value="退出系统"/>';
+				'<input class="btn btn-primary btn-lg btn-right" onclick="logout()" type="submit" value="退出系统"/>'
+				);
 			}
 		}
 	});
@@ -246,8 +257,10 @@ function loginPrepare() {
 				data: $(this).serialize(),
 				success: function(response)
 				{
-					if (response.code == 1)
+					if (response.code == 1) {
 						alert('验证码错误！');
+						freshCaptcha();
+					}
 					if (response.code == 2)
 						alert('队伍 ID 或登录密码错误！');
 					if (response.code == 3)
@@ -273,7 +286,7 @@ function uploadPrepare() {
 			}
 
 			if (response.loggedIn == 1 && response.dirExist == 1) {
-				document.getElementById('info-text').innerHTML = '<h3>您已提交队伍作品文件，若需要更新可覆盖上传</h3>';
+				$("#info-text").html('<h3>您已提交队伍作品文件，若需要更新可覆盖上传</h3>');
 			}
 		}
 	});
@@ -335,17 +348,28 @@ function uploadPrepare() {
 	});
 
 	$("#file").on('fileuploaded', function(event, data, previewId, index) {
-		var msg = ['参赛作品上传成功！', '请<a href=\'../login\'>登录</a>系统后提交文件！', '请选择上传文件！', '很抱歉，上传文件过大，请联系管理员', '上传失败，请使用简体中文、英文或数字命名文件', '上传失败，请尝试重新上传'];
+		var msg = [
+			'参赛作品上传成功！<br><br>' +
+			'<h4>文件名：' + data.response.filename +
+			' 文件大小：' + data.response.filesize + 'MB</h4>',
+
+			'请<a href=\'../login\'>登录</a>系统后提交文件！',
+			'请选择上传文件！', '很抱歉，上传文件过大，请联系管理员',
+			'上传失败，请使用简体中文、英文或数字命名文件',
+			'上传失败，请尝试重新上传'
+		];
+		
+		$("#info-text").html(msg[data.response.code]);
+		
 		if (data.response.code != 0) {
-			document.getElementById('info').className = 'alert alert-danger';
-			document.getElementById('info-text').innerHTML = msg[data.response.code];
+			$("#info").attr('class', 'alert alert-danger');
+			$('#file').fileinput('refresh');
 		}
 		else {
-			document.getElementById('info').className = 'alert alert-info';
-			document.getElementById('info-text').innerHTML = msg[data.response.code] +  '<br><br><h4>文件名：' + data.response.filename + ' 文件大小：' + data.response.filesize + 'MB</h4>';
+			$("#info").attr('class', 'alert alert-info');
 			setTimeout(function() {
 				window.location.href = './';
-			}, 7000);  
+			}, 9000);
 		}
 	});
 }
@@ -357,7 +381,7 @@ function forumPrepare() {
 		success: function(response)
 		{
 			for (var i = 0; i < response.length; i++) {
-				document.getElementById('messages').innerHTML +=
+				$("#messages").append(
 				'<div class="container">' +
 					'<div class="row clearfix">' +
 						'<div class="col-md-12 column">' +
@@ -380,7 +404,7 @@ function forumPrepare() {
 							'</div>' +
 						'</div>' +
 					'</div>' +
-				'</div>';
+				'</div>');
 			}
 		}
 	});
@@ -400,16 +424,17 @@ function forumPrepare() {
 					}
 					if (response.code == 1) {
 						alert('验证码错误！');
+						freshCaptcha();
 					}
-					if (response.code == 2) {
+					if (response.code == 2)
 						alert('昵称太长啦~ 精简一下吧');
-					}
-					if (response.code == 3) {
-						alert('你们呐，不要老喜欢搞个大新闻，就说自己是管理员\n\n再不改昵称，将来留言板上出了偏差你们是要负责任的');
-					}
-					if (response.code == 4) {
+					if (response.code == 3)
+						alert(
+							'你们呐，不要老喜欢搞个大新闻，就说自己是管理员\n\n' +
+							'再不改昵称，将来留言板上出了偏差你们是要负责任的'
+							);
+					if (response.code == 4)
 						alert('留言失败，请尝试重新提交');
-					}
 				}
 			});
 		});
