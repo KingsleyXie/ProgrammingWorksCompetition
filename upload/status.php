@@ -10,9 +10,7 @@ if (isset($_SESSION['teamID'])) {
 	$directory = $fileDir . $_SESSION['teamID'];
 }
 
-if ($loggedIn && is_dir($directory)) {
-	$dirExist = 1;
-}
+if ($loggedIn && is_dir($directory)) $dirExist = 1;
 
 $response = array('loggedIn' => $loggedIn, 'dirExist' => $dirExist);
 echo json_encode($response);

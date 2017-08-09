@@ -1,7 +1,6 @@
 <?php
 session_start();
 header('Content-Type: application/json');
-
 require_once('../assets/config.php');
 
 $response[0] = array( 'loggedIn' => 1);
