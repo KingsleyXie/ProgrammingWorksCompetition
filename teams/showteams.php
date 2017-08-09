@@ -10,11 +10,7 @@ $index = 1;
 if (isset($_SESSION['teamID'])) {
     $response[0] = array( 'loggedIn' => 0);
     
-    $sql = 'SELECT * from students where teamID = ?';
-    $stmt = $connect->prepare($sql);
-    $stmt->execute(array($_SESSION['teamID']));
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    foreach($result as $student) {
+    foreach($connect->query('SELECT * from students where teamID = ' . $_SESSION['teamID']) as $student) {
         $response[$index] = array(
         	'studentName' => $student['studentName'],
         	'studentNo' => $student['studentNo'],
@@ -28,12 +24,8 @@ if (isset($_SESSION['teamID'])) {
 }
 
 foreach($connect->query('SELECT * from productionTeams ORDER BY teamID DESC') as $team) {
-    $sql = 'SELECT * from students where teamID = ?';
-    $stmt = $connect->prepare($sql);
-    $stmt->execute(array($team['teamID']));
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stuIndex = 0;
-    foreach($result as $student) {
+    foreach($connect->query('SELECT * from students where teamID = ' . $team['teamID']) as $student) {
       $students[$stuIndex] = array(
       	'studentName' => $student['studentName'],
       	'campus' => $student['campus'],
@@ -42,6 +34,7 @@ foreach($connect->query('SELECT * from productionTeams ORDER BY teamID DESC') as
       	'grade' => $student['grade']);
       $stuIndex++;
     }
+
     $response[$index] = array(
     	'teamName' => $team['teamName'],
     	'teamID' => $team['teamID'],
@@ -53,12 +46,8 @@ foreach($connect->query('SELECT * from productionTeams ORDER BY teamID DESC') as
 }
 
 foreach($connect->query('SELECT * from creativityteams ORDER BY teamID DESC') as $team) {
-    $sql = 'SELECT * from students where teamID = ?';
-    $stmt = $connect->prepare($sql);
-    $stmt->execute(array($team['teamID']));
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stuIndex = 0;
-    foreach($result as $student) {
+    foreach($connect->query('SELECT * from students where teamID = ' . $team['teamID']) as $student) {
       $students[$stuIndex] = array(
       	'studentName' => $student['studentName'],
       	'campus' => $student['campus'],

@@ -269,6 +269,7 @@ function loginPrepare() {
 						alert('不要调皮哦');
 					if (response.code == 0) {
 						alert('欢迎回来，' + response.teamName);
+						freshCaptcha();
 						window.location.href = '../teams';
 					}
 				}

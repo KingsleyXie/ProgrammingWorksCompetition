@@ -46,11 +46,8 @@ if (!empty($result)) {
 	return;
 }
 
-$sql = 'SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = \'' . $competitionType . '\'';
-$stmt = $connect->prepare($sql);
-$stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$nextID = $result[0]['AUTO_INCREMENT'];
+$query = $connect->query('SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = \'' . $competitionType . '\'')->fetch(PDO::FETCH_ASSOC);
+$nextID = $query['AUTO_INCREMENT'];
 
 $sql = 'INSERT INTO `'. $competitionType .'` (`teamName`, `registerTime`, `pwdSHA256`) VALUES (?,NOW(),?)';
 $stmt = $connect->prepare($sql);
