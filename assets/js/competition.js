@@ -1,6 +1,31 @@
-//Global functions: Captcha Fresh & Logout
+//Global functions: Captcha Fresh, Modal Alert & Logout
 function freshCaptcha() {
 	$("#captcha-img").attr('src', '../assets/captcha/captcha.php');
+}
+
+function modalAlert(alertMsg) {
+	$("nav").after(
+	'<div class="modal fade" id="alertModal" tabindex="-1">' +
+		'<div class="modal-dialog">' +
+			'<div class="modal-content">' +
+				'<div class="modal-header">' +
+					'<button type="button" class="close" data-dismiss="modal">' +
+						'<span aria-hidden="true">&times;</span>' +
+					'</button>' +
+					'<h5 class="modal-title text-center">系统提示</h5>' +
+				'</div>' +
+
+				'<div class="modal-body text-center">' +
+					'<h4>' + alertMsg + '</h4>' +
+				'</div>' +
+
+				'<div class="modal-footer">' +
+					'<button type="button" class="btn btn-primary center-block" data-dismiss="modal">我知道了</button>' +
+				'</div>' +
+			'</div>' +
+		'</div>' +
+	'</div>');
+	$("#alertModal").modal();
 }
 
 function logout() {
@@ -9,19 +34,19 @@ function logout() {
 		url: 'logout.php',
 		success: function(response) {
 			if (response.code == 0) {
-				alert('退出系统成功，' + response.teamName);
+				modalAlert('退出系统成功，' + response.teamName);
 			}
 			window.location.href = '../';
 		}
 	});
 }
 
-//Code for Register
+//Code for Register: Add or reduce team member & form check
 var MAXN = 3, showed = 1;
 
 function addOneMember() {
 	if ($("#competition-type").val() == 0) {
-		alert('请选择队伍参赛类型！');
+		modalAlert('请选择队伍参赛类型！');
 		return;
 	}
 
@@ -54,12 +79,12 @@ function checkForm() {
 		register.password.value == '' || 
 		register.passwordConfirm.value == '' || 
 		register.competitionType.value == 0) {
-		alert('请将队伍基本报名信息填写完整！');
+		modalAlert('请将队伍基本报名信息填写完整！');
 		return false;
 	}
 
 	if (register.password.value != register.passwordConfirm.value) {
-		alert('两次输入密码不一致！');
+		modalAlert('两次输入密码不一致！');
 		return false;
 	}
 
@@ -70,7 +95,7 @@ function checkForm() {
 		register.major.value == '' || 
 		register.grade.value == 0 || 
 		register.campus.value == 0) {
-		alert('请将队长信息填写完整！');
+		modalAlert('请将队长信息填写完整！');
 		return false;
 	}
 
@@ -82,13 +107,13 @@ function checkForm() {
 			$("[name=major" + i + "]").val() == '' || 
 			$("[name=grade" + i + "]").val() == 0 || 
 			$("[name=campus" + i + "]").val() == 0) {
-			alert('请将队员 ' + i + ' 信息填写完整！');
+			modalAlert('请将队员 ' + i + ' 信息填写完整！');
 			return false;
 		}
 	}
 
 	if (register.captcha.value == '') {
-		alert('请输入验证码!')
+		modalAlert('请输入验证码!')
 		return false;
 	}
 
@@ -112,18 +137,17 @@ function registerPrepare() {
 							var competitionName =
 								response.competitionType == 1 ?
 								'作品赛' : '创意赛';
-
-							alert(
-								'报名成功！\n' + 
-								'\n\n请记住队伍 ID ：' + response.teamID + 
-								'\n\n队伍名：' + response.teamName + 
-								'\n\n参赛类型 ：' + competitionName
+							modalAlert(
+								'报名成功！<br>' + 
+								'<h5>请记住队伍 ID ：' + response.teamID + 
+								'<br>队伍名：' + response.teamName + 
+								'<br>参赛类型 ：' + competitionName +
+								'</h5>'
 								);
-
 							freshCaptcha();
 							window.location.href = '../teams';
 						} else {
-							alert(response.errMsg);
+							modalAlert(response.errMsg);
 							freshCaptcha();
 						}
 					}
@@ -247,11 +271,11 @@ function loginPrepare() {
 				data: $(this).serialize(),
 				success: function(response) {
 					if (response.code == 0) {
-						alert('欢迎回来，' + response.teamName);
+						modalAlert('欢迎回来，' + response.teamName);
 						freshCaptcha();
 						window.location.href = '../teams/#logged-in-team';
 					} else {
-						alert(response.errMsg);
+						modalAlert(response.errMsg);
 						freshCaptcha();
 					}
 				}
@@ -265,10 +289,10 @@ function uploadPrepare() {
 		type: 'JSON',
 		url: 'status.php',
 		success: function(response) {
-			// if (!response.loggedIn) {
-			// 	alert('请登录系统后提交文件！');
-			// 	window.location.href = '../login';
-			// }
+			if (!response.loggedIn) {
+				modalAlert('请登录系统后提交文件！');
+				window.location.href = '../login';
+			}
 
 			if (response.dirExist) {
 				$("#init-info-text").html('<h3>您已提交队伍作品文件，若需要更新可覆盖上传</h3>');
@@ -299,7 +323,7 @@ function uploadPrepare() {
 			'mp3': '<i class="fa fa-file-audio-o text-warning"></i>',
 			'jpg': '<i class="fa fa-file-photo-o text-danger"></i>', 
 			'gif': '<i class="fa fa-file-photo-o text-muted"></i>', 
-			'png': '<i class="fa fa-file-photo-o text-primary"></i>'    
+			'png': '<i class="fa fa-file-photo-o text-primary"></i>'	
 		},
 		previewFileExtSettings: {
 			'doc': function(ext) {
@@ -339,14 +363,14 @@ function uploadPrepare() {
 				'参赛作品上传成功！<br><br>' +
 				'<h4>文件名：' + data.response.filename +
 				' 文件大小：' + data.response.filesize + 'MB</h4>');
-			$("#info").attr('class', 'alert alert-info');
+			$("#info").attr('class', 'alert alert-info text-center');
 			setTimeout(function() {
 				$("#info-text").html('您已提交队伍作品文件，若需要更新可覆盖上传');
 				$('#file').fileinput('refresh');
 			}, 5000);
 		} else {
 			$("#info-text").html(data.response.errMsg);
-			$("#info").attr('class', 'alert alert-danger');
+			$("#info").attr('class', 'alert alert-danger text-center');
 			$('#file').fileinput('refresh');
 		}
 	});
@@ -395,11 +419,18 @@ function forumPrepare() {
 				data: $(this).serialize(),
 				success: function(response) {
 					if (response.code == 0) {
-						alert('留言成功！');
-						window.location.href = './';
+						$('#leave-msg-modal').modal('toggle');
+						modalAlert('留言成功！');
+						$('#alertModal').on('hide.bs.modal', function () {
+							window.location.href = './';
+						});
 					} else {
-						alert(response.errMsg);
-						freshCaptcha();
+						$('#leave-msg-modal').modal('toggle');
+						modalAlert(response.errMsg);
+						$('#alertModal').on('hide.bs.modal', function () {
+							$('#leave-msg-modal').modal('toggle'); 
+							freshCaptcha();
+						});
 					}
 				}
 			});
