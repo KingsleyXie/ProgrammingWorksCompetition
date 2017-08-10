@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS competition;
+-- DROP DATABASE IF EXISTS competition;
 CREATE DATABASE competition DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE competition;
 
@@ -47,6 +47,7 @@ CREATE TABLE `forum`(
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- This is the first and default message to be showed in forum:
+-- Note: You should run a SQL statement like this if you want to post a message as administrator
 INSERT INTO `forum` (`nickname`, `message`, `postTime`)
   VALUES
     ('管理员', '大家好~ 讨论留言功能已经上线啦，欢迎大家热情参与哦', NOW());
