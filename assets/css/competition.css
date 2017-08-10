@@ -14,7 +14,6 @@
 	margin-bottom: 30px;
 	padding-top: 10px;
 	line-height: 1.3em;
-	border-top: 1px solid rgba(158, 158, 158, 0.3);
 	text-align: center;
 	clear: both;
 }
@@ -122,21 +121,9 @@
 	margin-bottom: 30px;
 }
 .upload-title {
-	margin-top: 20px;
-	margin-bottom: 10px;
 	padding-bottom: 20px;
-	padding-top: 10px;
 	text-align: center;
-	font-size: 36px;
-}
-
-.btn-left {
-	float: left;
-	margin-bottom: 15px;
-}
-.btn-right {
-	float: right;
-	margin-bottom: 15px;
+	font-size: 32px;
 }
 
 .subblock-deprecated {

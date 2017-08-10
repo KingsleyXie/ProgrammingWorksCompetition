@@ -224,13 +224,6 @@ function teamsPrepare() {
 					}
 				}
 			}
-
-			if (response[0].loggedIn == 0) {
-				$("#logged-in-team").append(
-				'<input class="btn btn-primary btn-lg btn-left" onclick="window.location.href=\'../upload\'" type="submit" value="上传作品"/>' +
-				'<input class="btn btn-primary btn-lg btn-right" onclick="logout()" type="submit" value="退出系统"/>'
-				);
-			}
 		}
 	});
 }

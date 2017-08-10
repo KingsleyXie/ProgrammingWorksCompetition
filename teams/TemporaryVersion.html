@@ -70,8 +70,7 @@
 		$.ajax({
 			type: "POST",
 			url: "showteams.php",
-			success: function(response)
-			{
+			success: function(response) {
 				if (response[0].loggedIn == 1) {
 					$("#logged-in-team").append(
 					'<button class="btn btn-lg btn-primary btn-block" onclick="window.location.href=\'../login\'">登录以查看</button>');
@@ -126,12 +125,6 @@
 							'<td>' + response[i].calendarTime + ' ' + response[i].clockTime + '</td>' +
 						'</tr>');
 					}
-				}
-
-				if (response[0].loggedIn == 0) {
-					$("#logged-in-team").append(
-					'<button class="btn btn-primary btn-lg btn-left" onclick="window.location.href=\'../upload\'">上传作品</button>' +
-					'<button class="btn btn-primary btn-lg btn-right" onclick="logout()">退出系统</button>');
 				}
 			}
 		});
