@@ -60,6 +60,7 @@
 
 	<div class="subtitle">本队详细信息</div>
 	<div id="logged-in-team"></div>
+	<button class="btn btn-lg btn-primary btn-block" id="btn-log" onclick="window.location.href='../login'">请登录后查看</button>
 
 	<div class="copyright">Copyright © 2017 <a href="https://github.com/KingsleyXie/CompetitionRegistrationSystem">Kingsley</a></div>
 
@@ -71,12 +72,7 @@
 			type: "POST",
 			url: "showteams.php",
 			success: function(response) {
-				if (response[0].loggedIn == 1) {
-					$("#logged-in-team").append(
-					'<button class="btn btn-lg btn-primary btn-block" onclick="window.location.href=\'../login\'">登录以查看</button>');
-				}
-
-				if (response[0].loggedIn == 0) {
+				if (response[0].loggedIn) {
 					$("#logged-in-team").append(
 					'<div class="table-responsive">' +
 						'<table class="table table-bordered">' +
@@ -92,10 +88,12 @@
 							'<tbody id="logged-in-team-info"></tbody>' +
 						'</table>' +
 					'</div>');
+					$('#btn-log').on('click', function() {logout();});
+					$("#btn-log").text('退出系统');
 				}
 
 				for(var i = 1; i < response.length; i++) {
-					if (response[0].loggedIn == 0 && !(response[i].teamID > 0)) {
+					if (response[0].loggedIn && !(response[i].teamID > 0)) {
 						$("#logged-in-team-info").append( 
 						'<tr>' +
 							'<td>' + response[i].studentName + '</td>' +

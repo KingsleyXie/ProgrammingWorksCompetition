@@ -124,14 +124,8 @@ function teamsPrepare() {
 	$.ajax({
 		type: 'POST',
 		url: 'showteams.php',
-		success: function(response)
-		{
-			if (response[0].loggedIn == 1) {
-				$("#logged-in-team").append(
-				'<button class="btn btn-lg btn-primary btn-block" onclick="window.location.href=\'../login\'">登录以查看</button>'
-				);
-			}
-			if (response[0].loggedIn == 0) {
+		success: function(response) {
+			if (response[0].loggedIn) {
 				$("#logged-in-team").append(
 				'<div class="table-responsive">' +
 					'<table class="table table-bordered">' +
@@ -147,10 +141,12 @@ function teamsPrepare() {
 						'<tbody id="logged-in-team-info"></tbody>' +
 					'</table>' +
 				'</div>');
+				$('#btn-log').on('click', function() {logout();});
+				$("#btn-log").text('退出系统');
 			}
 
 			for(var i = 1; i < response.length; i++) {
-				if (response[0].loggedIn == 0 && !(response[i].teamID > 1000)) {
+				if (response[0].loggedIn && !(response[i].teamID > 1000)) {
 					$("#logged-in-team-info").append(
 					'<tr>' +
 						'<td>' + response[i].studentName + '</td>' +
@@ -240,7 +236,7 @@ function loginPrepare() {
 					if (response.code == 0) {
 						alert('欢迎回来，' + response.teamName);
 						freshCaptcha();
-						window.location.href = '../teams';
+						window.location.href = '../teams/#logged-in-team';
 					} else {
 						alert(response.errMsg);
 						freshCaptcha();
@@ -256,12 +252,12 @@ function uploadPrepare() {
 		type: 'JSON',
 		url: 'status.php',
 		success: function(response) {
-			if (response.loggedIn == 0) {
+			if (!response.loggedIn) {
 				alert('请登录系统后提交文件！');
 				window.location.href = '../login';
 			}
 
-			if (response.loggedIn == 1 && response.dirExist == 1) {
+			if (response.dirExist) {
 				$("#info-text").html('<h3>您已提交队伍作品文件，若需要更新可覆盖上传</h3>');
 			}
 		}

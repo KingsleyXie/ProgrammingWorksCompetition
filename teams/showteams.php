@@ -3,11 +3,11 @@ session_start();
 header('Content-Type: application/json');
 require_once('../assets/config.php');
 
-$response[0] = array( 'loggedIn' => 1);
+$response[0] = array( 'loggedIn' => false);
 $index = 1;
 
 if (isset($_SESSION['teamID'])) {
-	$response[0] = array( 'loggedIn' => 0);
+	$response[0] = array( 'loggedIn' => true);
 	foreach($connect->query('SELECT * from students where teamID = ' . $_SESSION['teamID']) as $student) {
 		$response[$index] = array(
 			'studentName' => $student['studentName'],
