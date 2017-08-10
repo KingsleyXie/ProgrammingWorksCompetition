@@ -3,7 +3,7 @@ function freshCaptcha() {
 	$("#captcha-img").attr('src', '../assets/captcha/captcha.php');
 }
 
-function modalAlert(alertMsg) {
+function modalAlert(alertMsg, func) {
 	$("nav").after(
 	'<div class="modal fade" id="alertModal" tabindex="-1">' +
 		'<div class="modal-dialog">' +
@@ -25,7 +25,11 @@ function modalAlert(alertMsg) {
 			'</div>' +
 		'</div>' +
 	'</div>');
+
 	$("#alertModal").modal();
+	if (typeof func === 'function') {
+		$('#alertModal').on('hide.bs.modal', function () { func(); });
+	}
 }
 
 function logout() {
@@ -34,9 +38,10 @@ function logout() {
 		url: 'logout.php',
 		success: function(response) {
 			if (response.code == 0) {
-				modalAlert('退出系统成功，' + response.teamName);
+				modalAlert('退出系统成功，' + response.teamName, function () {
+					window.location.href = '../';
+				});
 			}
-			window.location.href = '../';
 		}
 	});
 }
@@ -142,10 +147,10 @@ function registerPrepare() {
 								'<h5>请记住队伍 ID ：' + response.teamID + 
 								'<br>队伍名：' + response.teamName + 
 								'<br>参赛类型 ：' + competitionName +
-								'</h5>'
-								);
-							freshCaptcha();
-							window.location.href = '../teams';
+								'</h5>', function () {
+								freshCaptcha();
+								window.location.href = '../teams';
+							});
 						} else {
 							modalAlert(response.errMsg);
 							freshCaptcha();
@@ -271,9 +276,10 @@ function loginPrepare() {
 				data: $(this).serialize(),
 				success: function(response) {
 					if (response.code == 0) {
-						modalAlert('欢迎回来，' + response.teamName);
-						freshCaptcha();
-						window.location.href = '../teams/#logged-in-team';
+						modalAlert('欢迎回来，' + response.teamName, function () {
+							freshCaptcha();
+							window.location.href = '../teams/#logged-in-team';
+						});
 					} else {
 						modalAlert(response.errMsg);
 						freshCaptcha();
@@ -290,8 +296,9 @@ function uploadPrepare() {
 		url: 'status.php',
 		success: function(response) {
 			if (!response.loggedIn) {
-				modalAlert('请登录系统后提交文件！');
-				window.location.href = '../login';
+				modalAlert('请登录系统后提交文件！', function () {
+					window.location.href = '../login';
+				});
 			}
 
 			if (response.dirExist) {
@@ -420,14 +427,12 @@ function forumPrepare() {
 				success: function(response) {
 					if (response.code == 0) {
 						$('#leave-msg-modal').modal('toggle');
-						modalAlert('留言成功！');
-						$('#alertModal').on('hide.bs.modal', function () {
+						modalAlert('留言成功！', function () {
 							window.location.href = './';
 						});
 					} else {
 						$('#leave-msg-modal').modal('toggle');
-						modalAlert(response.errMsg);
-						$('#alertModal').on('hide.bs.modal', function () {
+						modalAlert(response.errMsg, function () {
 							$('#leave-msg-modal').modal('toggle'); 
 							freshCaptcha();
 						});
