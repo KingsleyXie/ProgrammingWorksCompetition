@@ -252,13 +252,13 @@ function uploadPrepare() {
 		type: 'JSON',
 		url: 'status.php',
 		success: function(response) {
-			if (!response.loggedIn) {
-				alert('请登录系统后提交文件！');
-				window.location.href = '../login';
-			}
+			// if (!response.loggedIn) {
+			// 	alert('请登录系统后提交文件！');
+			// 	window.location.href = '../login';
+			// }
 
 			if (response.dirExist) {
-				$("#info-text").html('<h3>您已提交队伍作品文件，若需要更新可覆盖上传</h3>');
+				$("#init-info-text").html('<h3>您已提交队伍作品文件，若需要更新可覆盖上传</h3>');
 			}
 		}
 	});
@@ -320,6 +320,7 @@ function uploadPrepare() {
 	});
 
 	$("#file").on('fileuploaded', function(event, data, previewId, index) {
+		$("#init-info").hide(); $("#info").show();
 		if (data.response.code == 0) {
 			$("#info-text").html(
 				'参赛作品上传成功！<br><br>' +
@@ -327,8 +328,9 @@ function uploadPrepare() {
 				' 文件大小：' + data.response.filesize + 'MB</h4>');
 			$("#info").attr('class', 'alert alert-info');
 			setTimeout(function() {
-				window.location.href = './';
-			}, 9000);
+				$("#info-text").html('您已提交队伍作品文件，若需要更新可覆盖上传');
+				$('#file').fileinput('refresh');
+			}, 5000);
 		} else {
 			$("#info-text").html(data.response.errMsg);
 			$("#info").attr('class', 'alert alert-danger');
