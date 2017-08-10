@@ -12,7 +12,7 @@ $connect = new PDO("mysql:host=$addr;dbname=$dbname;charset=utf8", $user, $passw
 
 
 //Return Code Process Function:
-function codeReturn($code, $errMsg='success') {
+function response($code, $errMsg='success') {
 	$response = array('code' => $code, 'errMsg' => $errMsg);
 	echo json_encode($response);
 	exit(0);
@@ -32,7 +32,7 @@ function existCheck() {
 function blankCheck() {
 	for($i = 0; $i < func_num_args(); $i++) {
 		if (($_POST[func_get_arg($i)] == '') OR ($_POST[func_get_arg($i)] === 0)) {
-			codeReturn(4, '必填项中含有空值');
+			response(1, '必填项中含有空值');
 			exit(0);
 		}
 	}

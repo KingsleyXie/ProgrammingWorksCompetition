@@ -1,9 +1,8 @@
 <?php
 header('Content-Type: application/json');
-
 require_once('../assets/config.php');
-$index = 0;
 
+$index = 0;
 foreach($connect->query('SELECT * from forum ORDER BY ID DESC') as $message) {
 	$response[$index] = array(
 		'nickname' => htmlspecialchars($message['nickname']),

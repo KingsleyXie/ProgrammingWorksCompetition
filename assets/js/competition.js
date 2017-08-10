@@ -30,9 +30,7 @@ function addOneMember() {
 	}
 
 	$("#team-member" + showed).show();
-
 	showed = showed + 1;
-
 	if (showed == MAXN) {
 		$("#btn-add").hide();
 	}
@@ -96,20 +94,7 @@ function registerPrepare() {
 					type: 'POST',
 					url: 'register.php',
 					data: $(this).serialize(),
-					success: function(response)
-					{
-						if (response.code == 1) {
-							alert('验证码错误！');
-							freshCaptcha();
-						}
-						if (response.code == 2)
-							alert('两次输入密码不一致！');
-						if (response.code == 3)
-							alert('该队名已存在，请更换');
-						if (response.code == 4)
-							alert('不要调皮哦');
-						if (response.code == 5)
-							alert('注册失败，请重新报名');
+					success: function(response) {
 						if (response.code == 0) {
 							var competitionName =
 								response.competitionType == 1 ?
@@ -124,6 +109,9 @@ function registerPrepare() {
 
 							freshCaptcha();
 							window.location.href = '../teams';
+						} else {
+							alert(response.errMsg);
+							freshCaptcha();
 						}
 					}
 				});
@@ -255,22 +243,14 @@ function loginPrepare() {
 				type: 'POST',
 				url: 'login.php',
 				data: $(this).serialize(),
-				success: function(response)
-				{
-					if (response.code == 1) {
-						alert('验证码错误！');
-						freshCaptcha();
-					}
-					if (response.code == 2) {
-						alert('队伍 ID 或登录密码错误！');
-						freshCaptcha();
-					}
-					if (response.code == 3)
-						alert('不要调皮哦');
+				success: function(response) {
 					if (response.code == 0) {
 						alert('欢迎回来，' + response.teamName);
 						freshCaptcha();
 						window.location.href = '../teams';
+					} else {
+						alert(response.errMsg);
+						freshCaptcha();
 					}
 				}
 			});
@@ -351,29 +331,19 @@ function uploadPrepare() {
 	});
 
 	$("#file").on('fileuploaded', function(event, data, previewId, index) {
-		var msg = [
-			'参赛作品上传成功！<br><br>' +
-			'<h4>文件名：' + data.response.filename +
-			' 文件大小：' + data.response.filesize + 'MB</h4>',
-
-			'请<a href=\'../login\'>登录</a>系统后提交文件！',
-			'请选择上传文件！',
-			'很抱歉，上传文件过大，请联系管理员',
-			'上传失败，请使用简体中文、英文或数字命名文件',
-			'上传失败，请尝试重新上传'
-		];
-		
-		$("#info-text").html(msg[data.response.code]);
-		
-		if (data.response.code != 0) {
-			$("#info").attr('class', 'alert alert-danger');
-			$('#file').fileinput('refresh');
-		}
-		else {
+		if (data.response.code == 0) {
+			$("#info-text").html(
+				'参赛作品上传成功！<br><br>' +
+				'<h4>文件名：' + data.response.filename +
+				' 文件大小：' + data.response.filesize + 'MB</h4>');
 			$("#info").attr('class', 'alert alert-info');
 			setTimeout(function() {
 				window.location.href = './';
 			}, 9000);
+		} else {
+			$("#info-text").html(data.response.errMsg);
+			$("#info").attr('class', 'alert alert-danger');
+			$('#file').fileinput('refresh');
 		}
 	});
 }
@@ -382,8 +352,7 @@ function forumPrepare() {
 	$.ajax({
 		type: 'POST',
 		url: 'showMsg.php',
-		success: function(response)
-		{
+		success: function(response) {
 			for (var i = 0; i < response.length; i++) {
 				$("#messages").append(
 				'<div class="container">' +
@@ -420,25 +389,14 @@ function forumPrepare() {
 				type: 'POST',
 				url: 'leaveMsg.php',
 				data: $(this).serialize(),
-				success: function(response)
-				{
+				success: function(response) {
 					if (response.code == 0) {
 						alert('留言成功！');
 						window.location.href = './';
-					}
-					if (response.code == 1) {
-						alert('验证码错误！');
+					} else {
+						alert(response.errMsg);
 						freshCaptcha();
 					}
-					if (response.code == 2)
-						alert('昵称太长啦~ 精简一下吧');
-					if (response.code == 3)
-						alert(
-							'你们呐，不要老喜欢搞个大新闻，就说自己是管理员\n\n' +
-							'再不改昵称，将来留言板上出了偏差你们是要负责任的'
-							);
-					if (response.code == 4)
-						alert('留言失败，请尝试重新提交');
 				}
 			});
 		});
