@@ -31,8 +31,8 @@ function existCheck() {
 //Check if necessary paraments are blank
 function blankCheck() {
 	for($i = 0; $i < func_num_args(); $i++) {
-		if (($_POST[func_get_arg($i)] == '') OR ($_POST[func_get_arg($i)] == 0)) {
-			codeReturn(1, '必填项中含有空值');
+		if (($_POST[func_get_arg($i)] == '') OR ($_POST[func_get_arg($i)] === 0)) {
+			codeReturn(4, '必填项中含有空值');
 			exit(0);
 		}
 	}

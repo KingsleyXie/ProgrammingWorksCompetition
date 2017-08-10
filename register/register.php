@@ -5,18 +5,8 @@ require_once('../assets/config.php');
 
 $_POST['teamName'] = str_replace(array(" ", "\t", "\r"), "", $_POST['teamName']);
 
-if (!(isset($_POST['teamName']) AND
-	isset($_POST['password']) AND
-	isset($_POST['passwordConfirm']) AND
-	isset($_POST['competitionType']) AND
-	isset($_POST['captcha']) AND
-	isset($_POST['teamLeaderName']) AND
-	isset($_POST['studentNo']) AND
-	isset($_POST['contact']) AND
-	isset($_POST['college']) AND
-	isset($_POST['major']) AND
-	isset($_POST['grade']) AND
-	isset($_POST['campus']))) codeReturn(4);
+existCheck('teamName', 'password', 'passwordConfirm', 'competitionType', 'captcha', 'teamLeaderName', 'studentNo', 'contact', 'college', 'major', 'grade', 'campus');
+blankCheck('teamName', 'password', 'passwordConfirm', 'competitionType', 'captcha', 'teamLeaderName', 'studentNo', 'contact', 'college', 'major', 'grade', 'campus');
 if (strtolower($_POST['captcha']) != $_SESSION['captcha']) codeReturn(1);
 if ($_POST['password'] !== $_POST['passwordConfirm']) codeReturn(2);
 
@@ -50,12 +40,12 @@ $stmt->execute(array(
 	$nextID, 'teamLeader'));
 
 for ($i = 1; $i < 5; $i++) {
-	if(($_POST['teamMemberName' . $i] !== '') AND
-		($_POST['studentNo' . $i] !== '') AND
-		($_POST['contact' . $i] !== '') AND
-		($_POST['college' . $i] !== '') AND
-		($_POST['major' . $i] !== '') AND
-		($_POST['grade' . $i] !== 0) AND
+	if(($_POST['teamMemberName' . $i] !== '') AND 
+		($_POST['studentNo' . $i] !== '') AND 
+		($_POST['contact' . $i] !== '') AND 
+		($_POST['college' . $i] !== '') AND 
+		($_POST['major' . $i] !== '') AND 
+		($_POST['grade' . $i] !== 0) AND 
 		($_POST['campus' . $i] !== 0)) {
 		$sql = 'INSERT INTO `students` (`studentName`, `studentNo`, `contact`, `campus`, `college`, `major`, `grade`, `teamID`, `teamCharacter`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		$stmt = $connect->prepare($sql);
