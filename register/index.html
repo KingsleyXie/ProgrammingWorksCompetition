@@ -335,7 +335,8 @@
 						</div>
 					</div>
 
-					<input type="button" class="btn btn-info" id="btn-add" onclick="addOneMember()" value="增加一名队员">
+					<input type="button" class="btn btn-info" id="btn-add" onclick="addOneMember();" value="增加一名队员">
+					<input type="button" class="btn btn-info hidden" id="btn-reduce" onclick="reduceOneMember();" value="减少一名队员">
 
 					<div class="row captcha-area-register">
 						<div class="col-md-6 form-group">
@@ -344,7 +345,7 @@
 						</div>
 
 						<div class="col-md-6 form-group">
-							<img id="captcha-img" src="../assets/captcha/captcha.php" onclick="freshCaptcha()" alt="验证码">&nbsp;&nbsp;&nbsp;
+							<img id="captcha-img" src="../assets/captcha/captcha.php" onclick="freshCaptcha();" alt="验证码">&nbsp;&nbsp;&nbsp;
 							<a href="#" onclick="freshCaptcha(); return false;">看不清，换一张</a>
 						</div>
 					</div>

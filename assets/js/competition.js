@@ -25,15 +25,28 @@ function addOneMember() {
 		return;
 	}
 
-	if ($("#competition-type").val() == 1) {
-		MAXN = 5;
-	}
-
-	$("#team-member" + showed).show();
+	if ($("#competition-type").val() == 1)  MAXN = 5;
+	if ($("#competition-type").val() == 2)  MAXN = 3;
+	
+	$("#btn-reduce").attr('class', 'btn btn-info');
+	$("#team-member" + showed).show(1000);
+	$("#btn-reduce").show(300);
 	showed = showed + 1;
-	if (showed == MAXN) {
-		$("#btn-add").hide();
-	}
+	if (showed == MAXN) $("#btn-add").hide(300);
+}
+
+function reduceOneMember() {
+	showed = showed - 1;
+	$("[name=teamMemberName" + showed + "]").val('');
+	$("[name=studentNo" + showed + "]").val('');
+	$("[name=contact" + showed + "]").val('');
+	$("[name=college" + showed + "]").val('');
+	$("[name=major" + showed + "]").val('');
+	$("[name=grade" + showed + "]").val(0);
+	$("[name=campus" + showed + "]").val(0);
+	$("#team-member" + showed).hide(1000);
+	$("#btn-add").show(300);
+	if (showed == 1) $("#btn-reduce").hide(300);
 }
 
 function checkForm() {
