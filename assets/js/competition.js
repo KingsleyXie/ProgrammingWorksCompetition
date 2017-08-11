@@ -143,10 +143,10 @@ function registerPrepare() {
 								response.competitionType == 1 ?
 								'作品赛' : '创意赛';
 							modalAlert(
-								'报名成功！<br>' + 
+								'报名成功！<br><br>' + 
 								'<h5>请记住队伍 ID ：' + response.teamID + 
-								'<br>队伍名：' + response.teamName + 
-								'<br>参赛类型 ：' + competitionName +
+								'<br><br>队伍名：' + response.teamName + 
+								'<br><br>参赛类型 ：' + competitionName +
 								'</h5>', function () {
 								freshCaptcha();
 								window.location.href = '../teams';
