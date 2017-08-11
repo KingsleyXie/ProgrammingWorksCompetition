@@ -281,18 +281,27 @@ function teamsPrepare() {
 
 function loginPrepare() {
 	$(document).ready(function() {
-		$("#login").submit(function(e) {
+		$("#login-or-reset").submit(function(e) {
 			e.preventDefault();
+			var url = $("[name=studentNo]").val() === '' ? 'login.php' : 'reset.php';
+
 			$.ajax({
 				type: 'POST',
-				url: 'login.php',
+				url: url,
 				data: $(this).serialize(),
 				success: function(response) {
 					if (response.code == 0) {
-						modalAlert('欢迎回来，' + response.teamName, function () {
-							freshCaptcha();
-							window.location.href = '../teams/#logged-in-team';
-						});
+						if (url == 'login.php')
+							modalAlert('欢迎回来，' + response.teamName, function () {
+								freshCaptcha();
+								window.location.href = '../teams/#logged-in-team';
+							});
+						
+						if (url == 'reset.php')
+							modalAlert('密码重置成功，请使用新密码登录系统', function () {
+								window.location.href = './';
+							});
+
 					} else {
 						modalAlert(response.errMsg);
 						freshCaptcha();
