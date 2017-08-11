@@ -44,6 +44,13 @@ function blankCheck() {
 
 
 
+//$competitionType for register, login & reset:
+if (isset($_POST['teamID']))
+	$competitionType = $_POST['teamID'] > 2000 ? 'creativityteams' : 'productionteams';
+if (isset($_POST['competitionType']))
+	$competitionType = $_POST['competitionType'] == 2 ? 'creativityteams' : 'productionteams';
+
+
 
 
 

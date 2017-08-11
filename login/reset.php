@@ -18,8 +18,6 @@ $stmt->execute(array($_POST['teamID'], $_POST['studentNo'], $_POST['contact']));
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (empty($result)) response(4, '验证失败，请确认相关信息填写无误');
 
-$competitionType = $_POST['teamID'] > 2000 ? 'creativityteams' : 'productionteams';
-
 $newSalt = sha1((mt_rand()));
 $sql = '
 UPDATE `' . $competitionType . '`

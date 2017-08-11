@@ -15,8 +15,6 @@ blankCheck('teamName', 'password', 'passwordConfirm', 'competitionType',
 if (strtolower($_POST['captcha']) != $_SESSION['captcha']) response(2, '验证码错误！');
 if ($_POST['password'] !== $_POST['passwordConfirm']) response(3, '两次输入密码不一致！');
 
-$competitionType = $_POST['competitionType'] == 2 ? 'creativityteams' : 'productionteams';
-
 $sql = '
 SELECT *
 from `' . $competitionType . '`

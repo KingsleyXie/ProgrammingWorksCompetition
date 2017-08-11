@@ -8,7 +8,7 @@ if (strtolower($_POST['captcha']) != $_SESSION['captcha']) response(2, '验证�
 
 $sql = '
 SELECT *
-FROM `' . ($_POST['teamID'] > 2000 ? 'creativityteams' : 'productionteams') . '`
+FROM `' . $competitionType . '`
 WHERE teamID = ?';
 $stmt = $connect->prepare($sql);
 $stmt->execute(array($_POST['teamID']));
