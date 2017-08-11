@@ -7,14 +7,18 @@ $user = 'competition_DB_username_here';					//Username for Project Database
 $password = 'corresponding_password_here';		//Password for Project Database
 
 //Database Connection based on PDO:
-$connect = new PDO("mysql:host=$addr;dbname=$dbname;charset=utf8", $user, $password);
+try {
+	$connect = new PDO("mysql:host=$addr;dbname=$dbname;charset=utf8", $user, $password);
+} catch(PDOException $ex) {
+    response(233, '数据库连接出错，请联系管理员');
+    exit(0);
+}
 
 
 
 //Return Code Process Function:
 function response($code, $errMsg='success') {
-	$response = array('code' => $code, 'errMsg' => $errMsg);
-	echo json_encode($response);
+	echo json_encode(array('code' => $code, 'errMsg' => $errMsg));
 	exit(0);
 }
 

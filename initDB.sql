@@ -8,8 +8,7 @@ CREATE TABLE `productionTeams`(
   `registerTime` TIMESTAMP NOT NULL,
   `pwdSHA256` VARCHAR(90) NOT NULL,
   PRIMARY KEY(`teamID`),
-  UNIQUE KEY `teamName_UNIQUE`(`teamName`),
-  UNIQUE KEY `teamID_UNIQUE`(`teamID`)
+  UNIQUE KEY `teamName_UNIQUE`(`teamName`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 AUTO_INCREMENT=1001;
 
 CREATE TABLE `creativityTeams`(
@@ -18,8 +17,7 @@ CREATE TABLE `creativityTeams`(
   `registerTime` TIMESTAMP NOT NULL,
   `pwdSHA256` VARCHAR(90) NOT NULL,
   PRIMARY KEY(`teamID`),
-  UNIQUE KEY `teamName_UNIQUE`(`teamName`),
-  UNIQUE KEY `teamID_UNIQUE`(`teamID`)
+  UNIQUE KEY `teamName_UNIQUE`(`teamName`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 AUTO_INCREMENT=2001;
 
 CREATE TABLE `students`(
@@ -33,8 +31,7 @@ CREATE TABLE `students`(
   `grade` VARCHAR(90) NOT NULL,
   `teamID` INTEGER NOT NULL,
   `teamCharacter` VARCHAR(90) NOT NULL,
-  PRIMARY KEY(`studentID`),
-  UNIQUE KEY `studentID_UNIQUE`(`studentID`)
+  PRIMARY KEY(`studentID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 CREATE TABLE `forum`(
@@ -42,8 +39,7 @@ CREATE TABLE `forum`(
   `nickname` VARCHAR(30) NOT NULL,
   `message` VARCHAR(200) NOT NULL,
   `postTime` TIMESTAMP NOT NULL,
-  PRIMARY KEY(`ID`),
-  UNIQUE KEY `ID_UNIQUE`(`ID`)
+  PRIMARY KEY(`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- This is the first and default message to be showed in forum:
