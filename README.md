@@ -5,7 +5,7 @@
 This is a naive online web system for **Programming Works Competition** with `Register`, `Login`, `Information Check(Teams)`, `File Upload` and `Forum` functions provided.
 
 - Register: You can register as `Production Team` or `Creativity Team`, while `Creativity Team` can include **3** members at most and `Production Team` can include **5** at most
-- Login: Already registered teams can login this system with the `TeamID` provided at the time of registration, and then you can see the detailed information of your team members and use upload function to submit you entry
+- Login: Already registered teams can login this system with the `TeamID` provided at the time of registration, and then you can see the detailed information of your team members and use upload function to submit you entry. Additionally, if any team forgets their password, it's still easy to reset it once the right information of team leader is inputted.
 - Teams: By default, this page shows brief information of all teams and their members. If you are logged in, detailed information of your team will show in the third part, with which you can check if the information is correct
 - Upload: This part is built with [bootstrap-fileinput](https://github.com/kartik-v/bootstrap-fileinput), and you can upload the entry of your team with **Compressed Package Format** when logged in
 - Forum: Anyone can see all the messages currently as well as leaving a message with a nickname
