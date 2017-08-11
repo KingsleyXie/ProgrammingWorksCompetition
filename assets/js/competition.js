@@ -183,6 +183,8 @@ function teamsPrepare() {
 						'<tbody id="logged-in-team-info"></tbody>' +
 					'</table>' +
 				'</div>');
+				
+				$("#btn-log").attr('onclick', null);
 				$('#btn-log').on('click', function() {logout();});
 				$("#btn-log").text('退出系统');
 			}
