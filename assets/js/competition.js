@@ -54,7 +54,7 @@ function resetPassword() {
 	$("#page-title").text('重置密码');
 	$("#page-btn").val('确定');
 	$("#reset-segment").slideDown(1000);
-	$("#login-segment").slideUp(1000);
+	$("#login-segment").slideUp(700);
 }
 
 //Code for Register: Add or reduce team member & form check
@@ -296,12 +296,10 @@ function loginPrepare() {
 								freshCaptcha();
 								window.location.href = '../teams/#logged-in-team';
 							});
-						
 						if (url == 'reset.php')
 							modalAlert('密码重置成功，请使用新密码登录系统', function () {
 								window.location.href = './';
 							});
-
 					} else {
 						modalAlert(response.errMsg);
 						freshCaptcha();
