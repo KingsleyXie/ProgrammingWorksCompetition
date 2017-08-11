@@ -8,7 +8,10 @@ $index = 1;
 
 if (isset($_SESSION['teamID'])) {
 	$response[0] = array( 'loggedIn' => true);
-	foreach($connect->query('SELECT * from students where teamID = ' . $_SESSION['teamID']) as $student) {
+	foreach($connect->query('
+		SELECT *
+		FROM students
+		WHERE teamID = ' . $_SESSION['teamID']) as $student) {
 		$response[$index] = array(
 			'studentName' => $student['studentName'],
 			'studentNo' => $student['studentNo'],

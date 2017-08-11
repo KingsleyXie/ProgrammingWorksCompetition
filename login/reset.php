@@ -10,11 +10,9 @@ if (strtolower($_POST['captcha']) != $_SESSION['captcha']) response(2, '验证�
 if ($_POST['newPassword'] !== $_POST['newPasswordConfirm']) response(3, '两次输入密码不一致！');
 
 $sql = '
-SELECT * FROM `students`
-WHERE `teamID` = ? AND
-`studentNo` = ? AND
-`contact` = ? AND
-`teamCharacter` = \'teamLeader\'';
+SELECT *
+FROM `students`
+WHERE `teamID` = ? AND `studentNo` = ? AND `contact` = ? AND `teamCharacter` = \'teamLeader\'';
 $stmt = $connect->prepare($sql);
 $stmt->execute(array($_POST['teamID'], $_POST['studentNo'], $_POST['contact']));
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

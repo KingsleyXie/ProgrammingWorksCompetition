@@ -5,12 +5,18 @@ Run or Visit this PHP file, **save as HTML file**, then copy the results and pas
 CAUTIONS: DO NOT PUT THIS FILE IN ONLINE ENVIRONMENT!!! OR YOU WILL LEAK ALL THE DATA
 ----------------------------------------------------------------------------------------------*/
 
-
 require_once("./assets/config.php");
 
 echo "作品赛队伍\n";
-foreach($connect->query('SELECT * from productionTeams ORDER BY teamID DESC') as $team) {
-	$sql = 'SELECT * from students where teamID = ?';
+foreach($connect->query('
+	SELECT *
+	FROM productionTeams
+	ORDER BY teamID DESC') as $team) {
+	
+	$sql = '
+	SELECT *
+	FROM students
+	WHERE teamID = ?';
 	$stmt = $connect->prepare($sql);
 	$stmt->execute(array($team['teamID']));
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -24,9 +30,17 @@ foreach($connect->query('SELECT * from productionTeams ORDER BY teamID DESC') as
 	}
 	echo "\n\n\n";
 }
+
 echo "创意赛队伍\n";
-foreach($connect->query('SELECT * from creativityteams ORDER BY teamID DESC') as $team) {
-	$sql = 'SELECT * from students where teamID = ?';
+foreach($connect->query('
+	SELECT *
+	FROM creativityteams
+	ORDER BY teamID DESC') as $team) {
+
+	$sql = '
+	SELECT *
+	FROM students
+	WHERE teamID = ?';
 	$stmt = $connect->prepare($sql);
 	$stmt->execute(array($team['teamID']));
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
