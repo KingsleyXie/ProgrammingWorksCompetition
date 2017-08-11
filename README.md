@@ -10,7 +10,9 @@ This is a naive online web system for **Programming Works Competition** with `Re
 - Upload: This part is built with [bootstrap-fileinput](https://github.com/kartik-v/bootstrap-fileinput), and you can upload the entry of your team with **Compressed Package Format** when logged in
 - Forum: Anyone can see all the messages currently as well as leaving a message with a nickname
 
-##### The interface of this project is based on [Bootstrap](http://getbootstrap.com/) Front-end Framework, and it is my first time to use Front-end Framework.
+The interface of this project is based on [Bootstrap](http://getbootstrap.com/) Front-end Framework, and it is my first time to use Front-end Framework.
+
+**Note: Preview pictures of this system are stored in `./assets/pictures/preview`**
 
 ### Deployment Tutorial
 1. Change the `Competition_DB_Name` to your database name for this competition in `initDB.sql`
@@ -19,3 +21,4 @@ This is a naive online web system for **Programming Works Competition** with `Re
 4. Modify `assets/config.php` with the instructions inside the file
 5. Make sure your server can run PHP files correctly and then you don't need to modify any code
 6. Have some test before make it online to run, and replace files in `assets/pictures` with pictures corresponding to your competition
+
