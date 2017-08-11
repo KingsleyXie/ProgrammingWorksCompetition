@@ -15,10 +15,13 @@ The interface of this project is based on [Bootstrap](http://getbootstrap.com/) 
 **Note: Preview pictures of this system are stored in `./assets/pictures/preview`**
 
 ### Deployment Tutorial
-1. Change the `Competition_DB_Name` to your database name for this competition in `initDB.sql`
-2. Use `initDB.sql` to create the database with the necessary tables
-3. Move `importData.php`(Especially!), `initDB.sql`, `registerformFill.js` to somewhere can't be accessed by website visitors, and deploy the files on your server
-4. Modify `assets/config.php` with the instructions inside the file
-5. Make sure your server can run PHP files correctly and then you don't need to modify any code
-6. Have some test before make it online to run, and replace files in `assets/pictures` with pictures corresponding to your competition
-
+1. Use `initDB.sql` to create the database with necessary tables, change the default database name `competition` if it's necessary
+2. If you use the Full Version instead of Default Version(See [Releases](./releases)), please remember to remove: `importData.php` **(Especially!)**, `initDB.sql` and `registerformFill.js` to somewhere else that can't be accessed by website visitors, and deploy the files on your server
+3. Modify `assets/config.php` with the instructions inside the file, normally they are: 
+  - **Database Name**
+  - **Username for Project Database**
+  - **Password for Project Database**
+  - **Upload File Directory**
+  - **Backup File Directory**
+4. Make sure your server can run PHP files correctly and then you don't need to modify any code
+5. Have some test before make it online to run, and replace files in `assets/pictures` with pictures corresponding to your competition

@@ -5,7 +5,8 @@ USE competition;
 CREATE TABLE `productionTeams`(
   `teamID` INTEGER NOT NULL AUTO_INCREMENT,
   `teamName` VARCHAR(90) NOT NULL,
-  `registerTime` TIMESTAMP NOT NULL,
+  `registerTime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  `updateTime` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   `salt` VARCHAR(90) NOT NULL,
   `saltedPasswordHash` VARCHAR(90) NOT NULL,
   PRIMARY KEY(`teamID`),
@@ -15,7 +16,8 @@ CREATE TABLE `productionTeams`(
 CREATE TABLE `creativityTeams`(
   `teamID` INTEGER NOT NULL AUTO_INCREMENT,
   `teamName` VARCHAR(90) NOT NULL,
-  `registerTime` TIMESTAMP NOT NULL,
+  `registerTime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  `updateTime` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   `salt` VARCHAR(90) NOT NULL,
   `saltedPasswordHash` VARCHAR(90) NOT NULL,
   PRIMARY KEY(`teamID`),
@@ -40,37 +42,37 @@ CREATE TABLE `forum`(
   `ID` INTEGER NOT NULL AUTO_INCREMENT,
   `nickname` VARCHAR(30) NOT NULL,
   `message` VARCHAR(200) NOT NULL,
-  `postTime` TIMESTAMP NOT NULL,
+  `postTime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   PRIMARY KEY(`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- This is the first and default message to be showed in forum:
 -- Note: You should run a SQL statement like this if you want to post a message as administrator
 INSERT INTO `forum`
-(`nickname`, `message`, `postTime`)
+(`nickname`, `message`)
 VALUES
-('管理员', '大家好~ 讨论留言功能已经上线啦，欢迎大家热情参与哦', NOW());
+('管理员', '大家好~ 讨论留言功能已经上线啦，欢迎大家热情参与哦');
 
 
 
 
 
 
-/*
 -- The following data are made for test while developing the system
+/*
 INSERT INTO `productionTeams`
-(`teamName`, `registerTime`, `salt`, `saltedPasswordHash`)
+(`teamName`, `salt`, `saltedPasswordHash`)
 VALUES
-('怒斥香港记者队', NOW(), 'fd052f4aec3de2e22fb8c40fc707dc766dcac39a', 'a728d2a03745a8cd9a3bbd0fe6246c6cdec8691fe063ee996139c05dbd5aace8'),
-('视察二院队', NOW(), '4ad8332887bac2754e7338ee8b60fd2b80f78643', 'd78483e3d4402bcb4aa2c664b8bd3163bea14203501d28c3b53cfc2802d09d9c'),
-('华莱士访谈队', NOW(), 'a0a1f3839e9ec1941429b6d4eb2c79316eb22d0f', '578991d2b39972a39ab2c50d3ab5fca1af1ae98b38a7d7a1385543c66b351d65');
+('怒斥香港记者队', 'fd052f4aec3de2e22fb8c40fc707dc766dcac39a', 'a728d2a03745a8cd9a3bbd0fe6246c6cdec8691fe063ee996139c05dbd5aace8'),
+('视察二院队', '4ad8332887bac2754e7338ee8b60fd2b80f78643', 'd78483e3d4402bcb4aa2c664b8bd3163bea14203501d28c3b53cfc2802d09d9c'),
+('华莱士访谈队', 'a0a1f3839e9ec1941429b6d4eb2c79316eb22d0f', '578991d2b39972a39ab2c50d3ab5fca1af1ae98b38a7d7a1385543c66b351d65');
 
 INSERT INTO `creativityTeams`
-(`teamName`, `registerTime`, `salt`, `saltedPasswordHash`)
+(`teamName`, `salt`, `saltedPasswordHash`)
 VALUES
-('怒斥香港记者队', NOW(), '285c2b590d18a028dfbfc5406bce77cf06e9fe87', '81d256538f18586ad558fdd3c244e4142662ba280ead0d0c738ec5a5b8b653eb'),
-('视察二院队', NOW(), '3e6296c693ea16112b5d63f2bad30463d3f79be3', 'defe58d3f9c873406df50613643bd4313495db9fc6b3a6eaedb4bc14037e6636'),
-('华莱士访谈队', NOW(), '94f2e0b113edf074ed8cc907ef4bdc1c9dc895f2', '253cf5cbcda1cbc856f1b056208db174f31feef9c26218423572affbdfaa7c47');
+('怒斥香港记者队', '285c2b590d18a028dfbfc5406bce77cf06e9fe87', '81d256538f18586ad558fdd3c244e4142662ba280ead0d0c738ec5a5b8b653eb'),
+('视察二院队', '3e6296c693ea16112b5d63f2bad30463d3f79be3', 'defe58d3f9c873406df50613643bd4313495db9fc6b3a6eaedb4bc14037e6636'),
+('华莱士访谈队', '94f2e0b113edf074ed8cc907ef4bdc1c9dc895f2', '253cf5cbcda1cbc856f1b056208db174f31feef9c26218423572affbdfaa7c47');
 
 -- Note: Passwords for these six teams are all '2333'
 

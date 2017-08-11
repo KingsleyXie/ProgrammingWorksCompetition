@@ -27,15 +27,16 @@ if (!empty($result)) response(4, '该队名已存在，请更换');
 $query = $connect->query('
 	SELECT `AUTO_INCREMENT`
 	FROM INFORMATION_SCHEMA.TABLES
-	WHERE TABLE_NAME = \'' . $competitionType . '\'')->fetch(PDO::FETCH_ASSOC);
+	WHERE TABLE_SCHEMA = \'' . $dbname . '\'
+	AND TABLE_NAME = \'' . $competitionType . '\'')->fetch(PDO::FETCH_ASSOC);
 $nextID = $query['AUTO_INCREMENT'];
 $salt = sha1((mt_rand()));
 
 $sql = '
 INSERT INTO `'. $competitionType .'`
-(`teamName`, `registerTime`, `salt`, `saltedPasswordHash`)
+(`teamName`, `salt`, `saltedPasswordHash`)
 VALUES
-(?, NOW(), ?, ?)';
+(?, ?, ?)';
 $stmt = $connect->prepare($sql);
 $stmt->execute(array($_POST['teamName'], $salt, hash('sha256', $_POST['password'] . $salt)));
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

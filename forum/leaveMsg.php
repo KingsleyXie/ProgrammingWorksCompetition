@@ -9,9 +9,9 @@ if (strpos($_POST['nickname'], '管理员') > -1) response(3, "你们呐，不�
 
 $sql = '
 INSERT INTO `forum`
-(`nickname`, `message`, `postTime`)
+(`nickname`, `message`)
 VALUES
-(?,?,NOW())';
+(?,?)';
 $stmt = $connect->prepare($sql);
 $stmt->execute(array($_POST['nickname'], $_POST['message']));
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
