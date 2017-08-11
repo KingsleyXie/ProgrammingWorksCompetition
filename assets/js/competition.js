@@ -46,6 +46,17 @@ function logout() {
 	});
 }
 
+//Code for reset password in login submodule
+function resetPassword() {
+	$("#reset-segment").attr('class', '');
+	$("#reset-segment").hide();
+	
+	$("#page-title").text('重置密码');
+	$("#page-btn").val('确定');
+	$("#reset-segment").slideDown(1000);
+	$("#login-segment").slideUp(1000);
+}
+
 //Code for Register: Add or reduce team member & form check
 var MAXN = 3, showed = 1;
 
