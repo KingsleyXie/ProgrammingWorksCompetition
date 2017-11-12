@@ -8,7 +8,7 @@
 require_once('./assets/config.php');
 
 header('Content-Type: text/csv');
-header('Content-Disposition: attachment;filename=报名数据.csv');
+header('Content-Disposition: attachment;filename=报名数据（按队伍分隔）.csv');
 header('Cache-Control: max-age=0');
 
 echo pack('H*','EFBBBF'); // Add UTF-8 BOM
