@@ -13,69 +13,56 @@ header('Cache-Control: max-age=0');
 
 echo pack('H*','EFBBBF'); // Add UTF-8 BOM
 
-echo 'Part A. 作品赛队伍' . "\n\n";
+echo 'Part A. 作品赛队伍' . "\n";
 foreach($connect->query('
-		SELECT *
-		FROM productionTeams
-		ORDER BY teamID DESC
-	') as $team) {
-
-	$stmt = $connect->prepare('
+	SELECT DISTINCT teamID
+	FROM productionTeams
+	ORDER BY teamID ASC
+') as $team) {
+	echo "\n" . '队伍 ID,队名,姓名,学号,联系方式,校区,学院,专业,年级,注册时间' . "\n";
+	foreach($connect->query('
 		SELECT
-			studentName,
-			studentNo,
-			contact,
-			campus,
-			college,
-			major,
-			grade
-		FROM students
-		WHERE teamID = ?
-	');
-	$stmt->execute([$team['teamID']]);
-	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-	echo "\n" . '队名,队伍 ID,注册日期,注册时间' . "\n";
-	echo $team['teamName'] . ',' . $team['teamID'] . ',' .
-		date('Y-m-d',strtotime($team['registerTime'])). ',' .
-		date('H:i',strtotime($team['registerTime'])) . "\n";
-
-	echo '队员信息：' . "\n";
-	echo '姓名,学号,联系方式,校区,学院,专业,年级' . "\n";
-	foreach($result as $student) echo join($student, ',') . "\n";
+			productionTeams.teamID,
+			productionTeams.teamName,
+			students.studentName,
+			students.studentNo,
+			students.contact,
+			students.campus,
+			students.college,
+			students.major,
+			students.grade,
+			productionteams.registerTime
+		FROM productionTeams
+		INNER JOIN students
+		ON productionteams.teamID = students.teamID
+		WHERE productionTeams.teamID = ' . $team['teamID'], PDO::FETCH_ASSOC
+	) as $member) echo join($member, ',') . "\n";
 }
 
 echo "\n\n\n";
 
-echo 'Part B. 创意赛队伍' . "\n\n";
+echo 'Part B. 创意赛队伍' . "\n";
 foreach($connect->query('
-		SELECT *
-		FROM creativityteams
-		ORDER BY teamID DESC
-	') as $team) {
-
-	$stmt = $connect->prepare('
+	SELECT DISTINCT teamID
+	FROM creativityTeams
+	ORDER BY teamID ASC
+') as $team) {
+	echo "\n" . '队伍 ID,队名,姓名,学号,联系方式,校区,学院,专业,年级,注册时间' . "\n";
+	foreach($connect->query('
 		SELECT
-			studentName,
-			studentNo,
-			contact,
-			campus,
-			college,
-			major,
-			grade
-		FROM students
-		WHERE teamID = ?
-	');
-	$stmt->execute([$team['teamID']]);
-	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-	echo "\n" . '队名,队伍 ID,注册日期,注册时间' . "\n";
-	echo $team['teamName'] . ',' .
-		$team['teamID'] . ',' .
-		date('Y-m-d',strtotime($team['registerTime'])). ',' .
-		date('H:i',strtotime($team['registerTime'])) . "\n";
-
-	echo '队员信息：' . "\n";
-	echo '姓名,学号,联系方式,校区,学院,专业,年级' . "\n";
-	foreach($result as $student) echo join($student, ',') . "\n";
+			creativityTeams.teamID,
+			creativityTeams.teamName,
+			students.studentName,
+			students.studentNo,
+			students.contact,
+			students.campus,
+			students.college,
+			students.major,
+			students.grade,
+			creativityTeams.registerTime
+		FROM creativityTeams
+		INNER JOIN students
+		ON creativityTeams.teamID = students.teamID
+		WHERE creativityTeams.teamID = ' . $team['teamID'], PDO::FETCH_ASSOC
+	) as $member) echo join($member, ',') . "\n";
 }
