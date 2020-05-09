@@ -21,7 +21,7 @@ if (is_dir($directory)) {
 }
 mkdir($directory);
 
-if (!move_uploaded_file($_FILES['file']['tmp_name'],$fileDir . $_SESSION['teamID'] . '\\' . $filename)) response(6, '上传失败，请尝试重新上传');
+if (!move_uploaded_file($_FILES['file']['tmp_name'],$fileDir . $_SESSION['teamID'] . '/' . $filename)) response(6, '上传失败，请尝试重新上传');
 
 $response = array('code' => 0, 'filename' => $_FILES['file']['name'], 'filesize' => $filesize);
 echo json_encode($response);

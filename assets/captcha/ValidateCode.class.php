@@ -54,7 +54,7 @@ private $charset = 'abcdefghkmnprstuvwxyzABCDEFGHKMNPRSTUVWXYZ23456789';    //�
 
     //输出
     private function outPut() {
-        header('Content-type:image/png');
+        header('Content-Type: image/png');
         imagepng($this->img);
         imagedestroy($this->img);
     }

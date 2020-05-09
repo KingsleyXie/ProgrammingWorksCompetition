@@ -46,9 +46,9 @@ function blankCheck() {
 
 //$competitionType for register, login & reset:
 if (isset($_POST['teamID']))
-	$competitionType = $_POST['teamID'] > 2000 ? 'creativityteams' : 'productionteams';
+	$competitionType = $_POST['teamID'] > 2000 ? 'creativityTeams' : 'productionTeams';
 if (isset($_POST['competitionType']))
-	$competitionType = $_POST['competitionType'] == 2 ? 'creativityteams' : 'productionteams';
+	$competitionType = $_POST['competitionType'] == 2 ? 'creativityTeams' : 'productionTeams';
 
 
 
@@ -63,3 +63,7 @@ if (isset($_POST['competitionType']))
 date_default_timezone_set('Asia/Shanghai');					//Set Timezone
 $fileDir = 'C:\Users\your_user_name\Desktop\Competition\\';		//Upload File Directory
 $bakDir = 'C:\Users\your_user_name\Desktop\CompetitionBAK\\';	//Backup File Directory
+
+// Updates For Uinx Platform(WSL Here For Example):
+$fileDir = '/mnt/c/Users/your_user_name/Desktop/Competition/';		//Upload File Directory
+$bakDir = '/mnt/c/Users/your_user_name/Desktop/CompetitionBAK/';	//Backup File Directory

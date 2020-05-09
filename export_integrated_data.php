@@ -25,10 +25,10 @@ foreach($connect->query('
 		students.college,
 		students.major,
 		students.grade,
-		productionteams.registerTime
+		productionTeams.registerTime
 	FROM productionTeams
 	INNER JOIN students
-	ON productionteams.teamID = students.teamID
+	ON productionTeams.teamID = students.teamID
 	UNION ALL
 	SELECT
 		creativityTeams.teamID AS teamID,

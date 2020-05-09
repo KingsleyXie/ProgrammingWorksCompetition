@@ -28,7 +28,7 @@ foreach($connect->query(
 	'SELECT
 	productionTeams.teamID AS teamID,
 	productionTeams.teamName,
-	productionteams.registerTime,
+	productionTeams.registerTime,
 	students.studentID AS studentID,
 	students.studentName,
 	students.campus,
@@ -42,7 +42,7 @@ foreach($connect->query(
 	SELECT
 	creativityTeams.teamID AS teamID,
 	creativityTeams.teamName,
-	creativityteams.registerTime,
+	creativityTeams.registerTime,
 	students.studentID AS studentID,
 	students.studentName,
 	students.campus,
